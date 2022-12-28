@@ -4,16 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".HomeActivity">
 
-    <Button
-        android:id="@+id/btn_login"
+    <TextView
+        android:id="@+id/tx_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로그인 화면 임시로"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="닉네임: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tx_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="이메일: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tx_nickname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
