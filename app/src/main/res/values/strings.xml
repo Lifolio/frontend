@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lifolio</string>
+    <string name="naver_client_id">xB08c1NyOxu3tOCrWFix</string>
+    <string name="naver_client_secret">0F23cGUkT3</string>
 </resources>
