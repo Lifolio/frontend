@@ -1,26 +1,31 @@
 package com.example.lifolio
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.lifolio.databinding.ActivityLoginBinding
-import com.example.lifolio.databinding.ActivityMainBinding
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.NidOAuthLogin
+import com.navercorp.nid.oauth.OAuthLoginCallback
+import com.navercorp.nid.profile.NidProfileCallback
+import com.navercorp.nid.profile.data.NidProfileResponse
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-
-// 로그인 정보 확인
+        // 카카오 소셜 로그인
+        // 로그인 정보 확인
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
                 Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
@@ -73,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        val kakao_login_button = binding.kakaoLoginButton // 로그인 버튼
+        val kakao_login_button = binding.kakao // 로그인 버튼
 
         kakao_login_button.setOnClickListener {
             if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
@@ -82,5 +87,49 @@ class LoginActivity : AppCompatActivity() {
                 LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
         }
+
+        // 네이버 소셜 로그인
+        val naver_login_button = binding.naver // 로그인 버튼
+
+        naver_login_button.setOnClickListener {
+            val oAuthLoginCallback = object : OAuthLoginCallback {
+                override fun onSuccess() {
+                    // 네이버 로그인 API 호출 성공 시 유저 정보를 가져온다
+                    NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
+                        override fun onSuccess(result: NidProfileResponse) {
+                            val nickname = result.profile?.nickname.toString()
+
+                            Log.e(TAG, "네이버 로그인한 유저 정보 - 이름 : $nickname")
+
+//                            val intent = Intent(this, HomeActivity::class.java)
+//                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+//                            finish()
+                        }
+
+                        override fun onError(errorCode: Int, message: String) {
+                            //
+                        }
+
+                        override fun onFailure(httpStatus: Int, message: String) {
+                            //
+                        }
+                    })
+                }
+
+                override fun onError(errorCode: Int, message: String) {
+                    val naverAccessToken = NaverIdLoginSDK.getAccessToken()
+                    Log.e(TAG, "naverAccessToken : $naverAccessToken")
+                }
+
+                override fun onFailure(httpStatus: Int, message: String) {
+                    //
+                }
+            }
+
+            NaverIdLoginSDK.initialize(this@LoginActivity, getString(R.string.naver_client_id), getString(R.string.naver_client_secret), "앱 이름")
+            NaverIdLoginSDK.authenticate(this@LoginActivity, oAuthLoginCallback)
+
+        }
     }
+
 }

@@ -70,17 +70,78 @@
         android:hint="비밀번호"
         app:layout_constraintTop_toBottomOf="@id/edit_id" />
 
-    <ImageButton
-        android:id="@+id/kakao_login_button"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/kakao"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/kakao_login_medium_wide"
+        android:layout_marginHorizontal="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_pw" />
+        android:background="@drawable/kakao_login_btn"
+        app:layout_constraintTop_toBottomOf="@id/edit_pw" >
+
+        <ImageView
+            android:id="@+id/img_kakao"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/kakao"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/kakao"
+            app:layout_constraintEnd_toStartOf="@id/tx_kakao"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/kakao"
+            app:layout_constraintTop_toTopOf="@id/kakao" />
+
+        <TextView
+            android:id="@+id/tx_kakao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카카오 로그인"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/kakao"
+            app:layout_constraintEnd_toEndOf="@id/kakao"
+            app:layout_constraintStart_toEndOf="@id/img_kakao"
+            app:layout_constraintTop_toTopOf="@id/kakao" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/naver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/naver_login_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kakao">
+
+        <ImageView
+            android:id="@+id/img_naver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/naver"
+            app:layout_constraintBottom_toBottomOf="@id/naver"
+            app:layout_constraintEnd_toStartOf="@id/tx_naver"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/naver"
+            app:layout_constraintTop_toTopOf="@id/naver" />
+
+        <TextView
+            android:id="@+id/tx_naver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="네이버 로그인"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/naver"
+            app:layout_constraintEnd_toEndOf="@id/naver"
+            app:layout_constraintStart_toEndOf="@id/img_naver"
+            app:layout_constraintTop_toTopOf="@id/naver" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nav_bottom"
