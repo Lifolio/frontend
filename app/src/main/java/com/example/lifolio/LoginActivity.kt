@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        val kakao_login_button = binding.kakaoLoginBtn // 로그인 버튼
+        val kakao_login_button = binding.kakao // 로그인 버튼
 
         kakao_login_button.setOnClickListener {
             if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
@@ -88,6 +88,48 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        // 네이버 소셜 로그인
+        val naver_login_button = binding.naver // 로그인 버튼
+
+        naver_login_button.setOnClickListener {
+            val oAuthLoginCallback = object : OAuthLoginCallback {
+                override fun onSuccess() {
+                    // 네이버 로그인 API 호출 성공 시 유저 정보를 가져온다
+                    NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
+                        override fun onSuccess(result: NidProfileResponse) {
+                            val nickname = result.profile?.nickname.toString()
+
+                            Log.e(TAG, "네이버 로그인한 유저 정보 - 이름 : $nickname")
+
+//                            val intent = Intent(this, HomeActivity::class.java)
+//                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+//                            finish()
+                        }
+
+                        override fun onError(errorCode: Int, message: String) {
+                            //
+                        }
+
+                        override fun onFailure(httpStatus: Int, message: String) {
+                            //
+                        }
+                    })
+                }
+
+                override fun onError(errorCode: Int, message: String) {
+                    val naverAccessToken = NaverIdLoginSDK.getAccessToken()
+                    Log.e(TAG, "naverAccessToken : $naverAccessToken")
+                }
+
+                override fun onFailure(httpStatus: Int, message: String) {
+                    //
+                }
+            }
+
+            NaverIdLoginSDK.initialize(this@LoginActivity, getString(R.string.naver_client_id), getString(R.string.naver_client_secret), "앱 이름")
+            NaverIdLoginSDK.authenticate(this@LoginActivity, oAuthLoginCallback)
+
+        }
     }
 
 }

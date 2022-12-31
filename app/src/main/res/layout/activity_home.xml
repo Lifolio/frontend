@@ -29,8 +29,18 @@
         android:layout_height="wrap_content"
         android:text="카카오 로그아웃(임시)"
         android:textColor="#181600"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/naver_logout_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/naver_logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="네이버 로그아웃(임시)"
+        android:textColor="#181600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kakao_logout_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
