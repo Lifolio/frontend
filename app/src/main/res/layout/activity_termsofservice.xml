@@ -9,7 +9,7 @@
     tools:context=".SingUp.TermsOfServiceActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/termsofservice_signup_const"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="#f8f8fa">
@@ -40,11 +40,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/termsofservice_signup_const"
         app:layout_constraintVertical_bias="0.091" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/termsofservice_first_term"
         android:layout_width="304dp"
         android:layout_height="40dp"
         android:background="@drawable/signup_btn_round"
@@ -75,14 +75,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
+        android:id="@+id/termsofservice_second_term"
         android:layout_width="304dp"
         android:layout_height="40dp"
         android:background="@drawable/signup_btn_round"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/termsofservice_first_term">
 
         <CheckBox
             android:id="@+id/termsofservice_tos2_checkbox"
@@ -106,13 +106,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/termsofservice_third_term"
         android:layout_width="304dp"
         android:layout_height="40dp"
         android:background="@drawable/signup_btn_round"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/termsofservice_second_term">
 
         <CheckBox
             android:id="@+id/termsofservice_tos3_checkbox"

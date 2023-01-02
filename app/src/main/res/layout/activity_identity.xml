@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/identity_signup_const"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="#f8f8fa">
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/identity_signup_const"
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
