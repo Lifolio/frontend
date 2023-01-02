@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.lifolio.SingUp.TermsOfServiceActivity
 import com.example.lifolio.databinding.ActivityMainBinding
 import com.kakao.sdk.common.util.Utility
 
@@ -16,6 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnSignup.setOnClickListener {
+            val intent = Intent(this, TermsOfServiceActivity::class.java)
             startActivity(intent)
         }
     }
