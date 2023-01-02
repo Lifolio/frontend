@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tos_first_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="추후 수정1" />
