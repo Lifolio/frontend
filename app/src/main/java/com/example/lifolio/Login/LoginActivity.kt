@@ -1,11 +1,14 @@
-package com.example.lifolio
+package com.example.lifolio.Login
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.lifolio.Home.HomeActivity
+import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
@@ -23,6 +26,36 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 로그인 버튼
+        binding.navBottom.setOnClickListener{
+            // editText 로부터 입력된 값을 받아온다
+            val id = binding.editId.text.toString()
+            val pw = binding.editPw.text.toString()
+
+            if(id == "" || pw == "") {
+                // 회원정보 입력 전부 안 되어 있으면
+                Toast.makeText(this, "회원정보를 전부 입력해주세요", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(this, "${id}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "${pw}", Toast.LENGTH_SHORT).show()
+                // 쉐어드로부터 저장된 id, pw 가져오기
+                val sharedPreference = getSharedPreferences("user", Context.MODE_PRIVATE)
+                val savedId = sharedPreference.getString("id", "")
+                val savedPw = sharedPreference.getString("pw", "")
+
+                // 유저가 입력한 id, pw 값과 쉐어드로 불러온 id, pw값 비교
+                if(id == savedId && pw == savedPw){
+                    // 로그인 성공
+
+                }
+                else{
+                    // 로그인 실패
+                }
+            }
+
+        }
 
         // 카카오 소셜 로그인
         // 로그인 정보 확인
@@ -126,7 +159,9 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            NaverIdLoginSDK.initialize(this@LoginActivity, getString(R.string.naver_client_id), getString(R.string.naver_client_secret), "앱 이름")
+            NaverIdLoginSDK.initialize(this@LoginActivity, getString(R.string.naver_client_id), getString(
+                R.string.naver_client_secret
+            ), "앱 이름")
             NaverIdLoginSDK.authenticate(this@LoginActivity, oAuthLoginCallback)
 
         }
