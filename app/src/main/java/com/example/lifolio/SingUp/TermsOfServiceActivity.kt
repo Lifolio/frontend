@@ -3,6 +3,7 @@ package com.example.lifolio.SingUp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityTermsofserviceBinding
 
 class TermsOfServiceActivity : AppCompatActivity() { //여러 약관들을 동의 받는 Activity
@@ -12,6 +13,11 @@ class TermsOfServiceActivity : AppCompatActivity() { //여러 약관들을 동�
         super.onCreate(savedInstanceState)
         binding = ActivityTermsofserviceBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.termsofserviceBackBtn.setOnClickListener { // 뒤로가기 버튼
+            onBackPressed()
+            overridePendingTransition(0,0)
+        }
 
         binding.termsofserviceTos1Btn.setOnClickListener {
             val intent = Intent(this,TosActivity::class.java)
@@ -37,6 +43,7 @@ class TermsOfServiceActivity : AppCompatActivity() { //여러 약관들을 동�
         binding.termsofserviceNextBtn.setOnClickListener {
             val intent = Intent(this,IdentityActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0,0)
         }
     }
 }

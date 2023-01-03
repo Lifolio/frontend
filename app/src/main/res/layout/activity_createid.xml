@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@id/createid_signup_const">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FE4C34"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FE4C34"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FE4C34"/>
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/createid_signup_const"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="#f8f8fa">
+
+        <Button
+            android:id="@+id/createid_back_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/arrow_back_ios"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +64,6 @@
         android:id="@+id/createid_text_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
         android:layout_marginTop="32dp"
         android:text="나만의 Lifolio를 만들어볼까요?"
         android:textColor="#000000"
@@ -37,7 +71,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createid_signup_const"
         app:layout_constraintVertical_bias="0.0" />
@@ -54,6 +88,7 @@
 
 
         <TextView
+            android:id="@+id/test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -68,7 +103,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="100"
-            android:hint="이름을 입력하세요"
+            android:hint="이름을 입력하세요."
+            android:inputType="text"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,6 +139,7 @@
             android:ems="100"
             android:hint="원하시는 닉네임을 입력해주세요."
             android:textSize="12sp"
+            android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -136,10 +173,12 @@
             android:ems="100"
             android:hint="영문,숫자, _만 입력 가능해요."
             android:textSize="12sp"
+            android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -169,6 +208,7 @@
             android:ems="100"
             android:hint="8~30자리 영대/소문자,숫자,특수문자 조합"
             android:textSize="12sp"
+            android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -202,6 +242,7 @@
             android:ems="100"
             android:hint="8~30자리 영대/소문자,숫자,특수문자 조합"
             android:textSize="12sp"
+            android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -220,5 +261,41 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/createid_error_tv"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="비밀번호가 같지 않아요."
+        android:textColor="#e6d7260d"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createid_confirmpassword_const" />
+
+    <TextView
+        android:id="@+id/createid_errorId_tv"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="중복된 아이디입니다."
+        android:textColor="#e6d7260d"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createid_getid_const"/>
+
+    <TextView
+        android:id="@+id/createid_errorNickname_tv"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="중복된 닉네임입니다."
+        android:textColor="#e6d7260d"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createid_getnickname_const"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
