@@ -1,10 +1,11 @@
-package com.example.lifolio
+package com.example.lifolio.Home
 
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.databinding.ActivityHomeBinding
 import com.kakao.sdk.user.UserApiClient
 

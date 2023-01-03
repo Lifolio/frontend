@@ -3,9 +3,8 @@ package com.example.lifolio
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.databinding.ActivityMainBinding
-import com.kakao.sdk.common.util.Utility
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
