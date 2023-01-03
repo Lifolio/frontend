@@ -45,6 +45,8 @@
             android:name=".SingUp.IdentityActivity"
             android:exported="false">
         </activity>
+        <activity android:name=".SingUp.IDFoundActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true" >
