@@ -38,6 +38,10 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".SingUp.CreateIdActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".SingUp.IdentityActivity"
             android:exported="false">
         </activity>
