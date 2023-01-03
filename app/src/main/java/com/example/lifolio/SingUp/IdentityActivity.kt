@@ -1,6 +1,7 @@
 package com.example.lifolio.SingUp
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -43,6 +44,11 @@ class IdentityActivity : AppCompatActivity() {
         request.setOnClickListener {
             binding.identityAgreeRequestBtn.text="다시요청"
             binding.identityRequestNumConst.setVisibility(View.VISIBLE)
+        }
+
+        binding.identityNextBtn.setOnClickListener {
+            val intent = Intent(this,CreateIdActivity::class.java)
+            startActivity(intent)
         }
     }
 }
