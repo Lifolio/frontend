@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".Home.HomeActivity">
 
     <TextView
         android:id="@+id/tx_nickname"
@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:text="카카오 로그아웃(임시)"
         android:textColor="#181600"
+        android:backgroundTint="#FEE500"
         app:layout_constraintBottom_toTopOf="@id/naver_logout_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="네이버 로그아웃(임시)"
         android:textColor="#181600"
+        android:backgroundTint="#03C75A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kakao_logout_button" />
