@@ -30,6 +30,18 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".SingUp.TermsOfServiceActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".SingUp.TosActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".SingUp.IdentityActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
