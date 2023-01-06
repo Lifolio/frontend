@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- X 버튼 & 상단 색상 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="#f8f8fa">
+        <ImageView
+            android:id="@+id/idfound_close_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_baseline_close_24"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="21dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="224dp"
+        android:layout_height="224dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="172dp"
+        android:src="@drawable/check_circle"/>
+
+    <!-- 아이디 보여주기 -->
+    <TextView
+        android:id="@+id/idfound_tx_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="220dp"
+        android:text="회원님의 아이디는"
+        android:textSize="20dp"
+        android:textColor="@color/black"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/idfound_tx_1"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="7dp">
+        <TextView
+            android:id="@+id/userid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text=""
+            android:textColor="#ff4c34"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/userid"
+            android:text="입니다."
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="6dp"/>
+    </LinearLayout>
+
+    <!-- 로그인 하기 버튼 -->
+    <TextView
+        android:id="@+id/idfound_gotologin_btn"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="로그인 하기"
+        android:textColor="@color/white"
+        android:background="#FF4C34"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
