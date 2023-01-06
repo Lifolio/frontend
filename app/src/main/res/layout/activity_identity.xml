@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -33,7 +33,8 @@
         android:id="@+id/identity_signup_const"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#f8f8fa">
+        android:background="#f8f8fa"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/identity_back_btn"
@@ -219,7 +220,7 @@
             android:id="@+id/identity_select_telecom_btn"
             android:layout_width="16dp"
             android:layout_height="10dp"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/expand_more"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/identity_telecom_tv"
@@ -241,7 +242,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
             android:background="@null"
-            android:hint="휴대폰 번호"
+            android:hint="'-'를 제외한 휴대폰 번호"
             android:inputType="textPersonName"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -251,9 +252,9 @@
         <Button
             android:id="@+id/identity_agree_request_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="인증요청"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textColor="#999797"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -322,11 +323,23 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/identity_error_request_num_tv"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="인증번호가 같지 않습니다.."
+        android:textColor="#e6d7260d"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/identity_request_num_const"/>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/identity_next_btn"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#999797"
+        android:background="@drawable/next_btn_status_enable"
         android:text="다음"
         android:textStyle="bold"
         android:textSize="16sp"

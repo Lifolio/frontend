@@ -6,28 +6,45 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lifolio.databinding.ActivityIdentityBinding
 import kotlinx.coroutines.internal.synchronized
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.properties.Delegates
 
 class IdentityActivity : AppCompatActivity() {
     private lateinit var binding : ActivityIdentityBinding
+
+    var imm : InputMethodManager? = null
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIdentityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+
+        val retrofit = Retrofit.Builder()// Retrofit2 사용을 위한 선언
+            .baseUrl("https://www.lifolio.shop/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val apiService = retrofit.create(ApiService::class.java) // Retrofit2 interface 연결
+
         binding.identityBackBtn.setOnClickListener { // 뒤로가기 버튼
             onBackPressed()
-            overridePendingTransition(0,0)
+            overridePendingTransition(0,0) // 화면 전환시 매끄럽게 넘어가게 하는 코드
         }
 
-        val handler = Handler(Looper.getMainLooper()
-        )
+        val handler = Handler(Looper.getMainLooper()) // Thread 를 사용 하기 위한 Handler 선언
 
         val checkBox = binding.identityAgreeCheckbox
         checkBox.setOnClickListener {
@@ -52,19 +69,41 @@ class IdentityActivity : AppCompatActivity() {
                 })
                 .show()
         }
+
+        var totalTime : Int = 300 // 인증번호 전체 시간 저장
         binding.identityRequestNumConst.setVisibility(View.GONE) // 디폴트로 인증번호 입력창 숨기기
-        val request = binding.identityAgreeRequestBtn
-        var status = false
-        var A = false
-        request.setOnClickListener { // 인증시간 타이머(feat.데런) 약 10분소요
-            status = !status
-            var totalTime : Int = 300 // 인증번호 전체 시간 저장
-            binding.identityAgreeRequestBtn.text="다시요청"
-            binding.identityRequestNumConst.setVisibility(View.VISIBLE)
-            if(!status) {
+        val request = binding.identityAgreeRequestBtn // 인증요청 버튼
+        lateinit var serverRequestNumber : String // 서버에서 보낸 인증번호
+        lateinit var contactNumber : String // 연락처 번호
+
+        var status = false // Thread 로 타이머 돌릴때 필요한 변수
+        var A = false // Thread 로 타이머 돌릴때 필요한 변수
+
+        request.setOnClickListener { // 인증 요청 버튼을 눌렀을때
+            contactNumber = binding.identityContactEt.text.toString() // EditText의 연락처를 contactNumber 변수에 저장
+            apiService.getSMS(contactNumber).enqueue(object : Callback<Response> {
+                override fun onResponse(
+                    call: Call<Response>,
+                    response: retrofit2.Response<Response>){
+                    if (response.isSuccessful){
+                        val responseData = response.body()
+                        if (responseData != null){
+                            serverRequestNumber = responseData.result.number.toString()
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<Response>, t: Throwable) {
+                }
+            })
+
+            status = !status // Thread 를 두개 쓰기 위해 필요한 변수 // 인증시간 타이머(feat.데런) 약 10분소요해서 만들었다고 거짓말함
+            totalTime  = 300
+            binding.identityAgreeRequestBtn.text="다시요청" // 인증 요청 버튼 클릭시 text를 "다시 요청" 변경
+            binding.identityRequestNumConst.setVisibility(View.VISIBLE) // 인증번호 입력 창 보여주기
+            if(!status) { // 이하 타이머 설정하는 부분
                 A = !A
                 Thread(){
-                    while (!A && totalTime>0){
+                    while (!A && totalTime>0){ // 첫번째 Thread (번갈아가며 사용)
                         Thread.sleep(1000)
                         totalTime--
                         handler.post{
@@ -77,7 +116,7 @@ class IdentityActivity : AppCompatActivity() {
             }else {
                 A = !A
                 Thread(){
-                    while (A && totalTime>0){
+                    while (A && totalTime>0){ // 두번째 Thread (번갈아가며 사용)
                         Thread.sleep(1000)
                         totalTime--
                         handler.post{
@@ -90,10 +129,41 @@ class IdentityActivity : AppCompatActivity() {
             }
         }
 
-        binding.identityNextBtn.setOnClickListener {
+        binding.identityNextBtn.isEnabled = false
+        binding.identityErrorRequestNumTv.setVisibility(View.GONE) // 디폴트로 인증번호 에러 메시지 숨기기
+        // 인증번호를 입력 받는 editText 에서 엔터키를 누를때 이벤트
+        val getRequestNumber = binding.identityRequestNumEt // 인증번호 EditText
+        lateinit var requestNumber : String // 사용자가 입력한 인증번호
+        requestNumber = getRequestNumber.text.toString()
+        getRequestNumber.setOnKeyListener { v, keyCode, event -> // 인증번호를 입력하는 EditText에서 Enter키를 누를때 이벤트
+            if(event.action == KeyEvent.ACTION_DOWN
+                && keyCode == KeyEvent.KEYCODE_ENTER){
+                requestNumber = getRequestNumber.text.toString()
+                if (requestNumber == serverRequestNumber && totalTime >= 0 && binding.identityAgreeCheckbox.isChecked){ // 작성한 인증번호가 같고 타이머가 유효하면
+                    binding.identityNextBtn.isEnabled = true
+                    binding.identityErrorRequestNumTv.setVisibility(View.GONE) // 에러 메시지 숨기기
+                }
+                else{ // 작성한 인증번호가 같지 않거나 타이머가 유효하지 않을 경우
+                    binding.identityNextBtn.isEnabled = false
+                    binding.identityErrorRequestNumTv.setVisibility(View.VISIBLE) // 에러 메시지 띄우기
+                }
+                true
+            }
+            else{
+                false
+            }
+        }
+
+        binding.identityNextBtn.setOnClickListener { // 회원가입 다음 단계로 가는 버튼
             val intent = Intent(this,CreateIdActivity::class.java)
             startActivity(intent)
             overridePendingTransition(0,0)
+        }
+    }
+
+    fun hideKeyboard(v : View){
+        if(v != null){
+            imm?.hideSoftInputFromWindow(v.windowToken,0)
         }
     }
 

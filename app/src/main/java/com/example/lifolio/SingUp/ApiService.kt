@@ -11,8 +11,13 @@ interface ApiService {
         @Query("userId") userId : String
     ): Call<Response>
 
-    @GET ("/user/check/nickname")
+    @GET ("user/check/nickname")
     fun getCheckUserNickname(
         @Query("nickName") nickName : String
-    ): Call<CheckNicknameResponse>
+    ): Call<Response>
+
+    @GET ("user/check/sendSMS")
+    fun getSMS(
+        @Query("to") to : String
+    ): Call<Response>
 }

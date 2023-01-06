@@ -36,7 +36,8 @@
         android:id="@+id/termsofservice_signup_const"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#f8f8fa">
+        android:background="#f8f8fa"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/termsofservice_back_btn"
@@ -103,7 +104,9 @@
             android:layout_marginStart="13dp"
             android:button="@drawable/identity_agreecheckbox"
             android:text=" 이용약관 동의"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/termsofservice_tos1_btn"
@@ -143,7 +146,9 @@
             android:layout_marginStart="13dp"
             android:button="@drawable/identity_agreecheckbox"
             android:text=" 개인 정보 처리 방침"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/termsofservice_tos2_btn"
@@ -201,7 +206,7 @@
         android:id="@+id/termsofservice_next_btn"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#999797"
+        android:background="@drawable/next_btn_status_enable"
         android:text="다음"
         android:textStyle="bold"
         android:textSize="16sp"
