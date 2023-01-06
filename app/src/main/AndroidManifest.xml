@@ -74,6 +74,10 @@
                     android:scheme="kakaoc532098877712a29086a2a6e681aab54" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
