@@ -19,15 +19,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class IdentityActivity : AppCompatActivity() {
     private lateinit var binding : ActivityIdentityBinding
-
-    var imm : InputMethodManager? = null
-
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIdentityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
 
         val retrofit = Retrofit.Builder()// Retrofit2 사용을 위한 선언
             .baseUrl("https://www.lifolio.shop/")
@@ -44,7 +39,7 @@ class IdentityActivity : AppCompatActivity() {
         val handler = Handler(Looper.getMainLooper()) // Thread 를 사용 하기 위한 Handler 선언
 
         val checkBox = binding.identityAgreeCheckbox
-        checkBox.setOnClickListener {
+        checkBox.setOnClickListener { // 전체동의를 체크할때
             if (checkBox.isChecked()){ // 체크돼있으면 레이아웃 숨기기
                 binding.identityTermsConst.setVisibility(View.GONE)
             }
@@ -52,6 +47,52 @@ class IdentityActivity : AppCompatActivity() {
                 binding.identityTermsConst.setVisibility(View.VISIBLE)
             }
         }
+
+        val tos1Checkbox = binding.identityAgreeTos1Checkbox
+        val tos2Checkbox = binding.identityAgreeTos2Checkbox
+        val tos3Checkbox = binding.identityAgreeTos3Checkbox
+        val tos4Checkbox = binding.identityAgreeTos4Checkbox
+
+        tos1Checkbox.setOnClickListener{ // 전체 다 체크돼있으면 숨기기
+            if (tos1Checkbox.isChecked && tos2Checkbox.isChecked && tos3Checkbox.isChecked && tos4Checkbox.isChecked){
+                binding.identityTermsConst.setVisibility(View.GONE)
+                checkBox.isChecked = true
+            }
+            else{
+                binding.identityTermsConst.setVisibility(View.VISIBLE)
+            }
+        }
+
+        tos2Checkbox.setOnClickListener{ // 전체 다 체크돼있으면 숨기기
+            if (tos1Checkbox.isChecked && tos2Checkbox.isChecked && tos3Checkbox.isChecked && tos4Checkbox.isChecked){
+                binding.identityTermsConst.setVisibility(View.GONE)
+                checkBox.isChecked = true
+            }
+            else{
+                binding.identityTermsConst.setVisibility(View.VISIBLE)
+            }
+        }
+
+        tos3Checkbox.setOnClickListener{ // 전체 다 체크돼있으면 숨기기
+            if (tos1Checkbox.isChecked && tos2Checkbox.isChecked && tos3Checkbox.isChecked && tos4Checkbox.isChecked){
+                binding.identityTermsConst.setVisibility(View.GONE)
+                checkBox.isChecked = true
+            }
+            else{
+                binding.identityTermsConst.setVisibility(View.VISIBLE)
+            }
+        }
+
+        tos4Checkbox.setOnClickListener{ // 전체 다 체크돼있으면 숨기기
+            if (tos1Checkbox.isChecked && tos2Checkbox.isChecked && tos3Checkbox.isChecked && tos4Checkbox.isChecked){
+                binding.identityTermsConst.setVisibility(View.GONE)
+                checkBox.isChecked = true
+            }
+            else{
+                binding.identityTermsConst.setVisibility(View.VISIBLE)
+            }
+        }
+
 
         val selectTelecom = binding.identitySelectTelecomBtn
         val telecom = arrayOf("SKT","KT","LG")
@@ -158,12 +199,6 @@ class IdentityActivity : AppCompatActivity() {
             intent.putExtra("name",name) // 이번 단계에서 입력한 이름 다음 단계로 넘겨주기
             startActivity(intent)
             overridePendingTransition(0,0)
-        }
-    }
-
-    fun hideKeyboard(v : View){
-        if(v != null){
-            imm?.hideSoftInputFromWindow(v.windowToken,0)
         }
     }
 
