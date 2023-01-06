@@ -19,10 +19,10 @@ class CreateIdActivity : AppCompatActivity() {
 
         binding.createidBackBtn.setOnClickListener { //뒤로가기 버튼
             onBackPressed()
-            overridePendingTransition(0,0)
+            overridePendingTransition(0,0) // 화면 전환시 매끄럽게 넘어가게 하는 코드
         }
 
-        val retrofit = Retrofit.Builder()
+        val retrofit = Retrofit.Builder()// Retrofit2 사용을 위한 선언
             .baseUrl("https://www.lifolio.shop/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -30,7 +30,7 @@ class CreateIdActivity : AppCompatActivity() {
         binding.createidErrorNicknameTv.setVisibility(View.GONE) //디폴트로 닉네임 중복 에러 메시지 숨기기
         binding.createidErrorIdTv.setVisibility(View.GONE) // 디폴트로 아이디 중복 에러 메시지 숨기기
         binding.createidErrorTv.setVisibility(View.GONE) // 디폴트로 비밀번호 에러 메시지 숨기기
-        val apiService = retrofit.create(ApiService::class.java)
+        val apiService = retrofit.create(ApiService::class.java) // Retrofit2 interface 연결
 
         lateinit var userName : String // 유저 이름을 저장하는 변수
         lateinit var userNickname : String // 유저 닉네임을 저장하는 변수
@@ -57,10 +57,10 @@ class CreateIdActivity : AppCompatActivity() {
             if (event.action == KeyEvent.ACTION_DOWN
                 && keyCode == KeyEvent.KEYCODE_ENTER){
                 userNickname = getNickname.text.toString()
-                apiService.getCheckUserNickname(userNickname).enqueue(object : Callback<CheckNicknameResponse>{
+                apiService.getCheckUserNickname(userNickname).enqueue(object : Callback<Response>{
                     override fun onResponse(
-                        call: Call<CheckNicknameResponse>,
-                        response: retrofit2.Response<CheckNicknameResponse>){
+                        call: Call<Response>,
+                        response: retrofit2.Response<Response>){
                         if (response.isSuccessful){
                             val responseData = response.body()
                             if (responseData != null){
@@ -74,7 +74,7 @@ class CreateIdActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<CheckNicknameResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<Response>, t: Throwable) {
                     }
                 })
                 true

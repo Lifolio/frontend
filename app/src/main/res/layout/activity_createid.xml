@@ -34,7 +34,8 @@
         android:id="@+id/createid_signup_const"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#f8f8fa">
+        android:background="#f8f8fa"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/createid_back_btn"
@@ -88,7 +89,6 @@
 
 
         <TextView
-            android:id="@+id/test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
