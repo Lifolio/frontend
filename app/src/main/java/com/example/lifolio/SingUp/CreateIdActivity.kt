@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lifolio.ApiService
 import com.example.lifolio.databinding.ActivityCreateidBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,6 +17,11 @@ class CreateIdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateidBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val extras = intent.extras
+        val name = extras!!["name"] as String
+        val getName = binding.createidGetnameTv
+        getName.text = name// 전 단계에서 입력한 이름 전달받기
 
         binding.createidBackBtn.setOnClickListener { //뒤로가기 버튼
             onBackPressed()
@@ -32,30 +38,18 @@ class CreateIdActivity : AppCompatActivity() {
         binding.createidErrorTv.setVisibility(View.GONE) // 디폴트로 비밀번호 에러 메시지 숨기기
         val apiService = retrofit.create(ApiService::class.java) // Retrofit2 interface 연결
 
-        lateinit var userName : String // 유저 이름을 저장하는 변수
         lateinit var userNickname : String // 유저 닉네임을 저장하는 변수
         lateinit var userId : String // 유저 아이디를 저장하는 변수
         lateinit var userPassword : String // 유저 비밀번호를 저장하는 변수
         lateinit var checkPassword : String // 비밀번호 재입력한 값을 저장하는 변수
 
-        // 이름 입력 받는 editText 에서 엔터키를 누를때 이벤트
-        val getName = binding.createidGetnameEt
-        getName.setOnKeyListener { v, keyCode, event ->
-            if(event.action == KeyEvent.ACTION_DOWN
-                && keyCode == KeyEvent.KEYCODE_ENTER){
-                userName = getName.text.toString()
-                true
-            }
-            else{
-                false
-            }
-        }
 
         // 닉네임 입력 받는 editText 에서 엔터키를 누를때 이벤트
         val getNickname = binding.createidGetnicknameEt
         getNickname.setOnKeyListener{ v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN
                 && keyCode == KeyEvent.KEYCODE_ENTER){
+                binding.createidErrorNicknameTv.setVisibility(View.GONE)
                 userNickname = getNickname.text.toString()
                 apiService.getCheckUserNickname(userNickname).enqueue(object : Callback<Response>{
                     override fun onResponse(
@@ -89,6 +83,7 @@ class CreateIdActivity : AppCompatActivity() {
         getId.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN
                 && keyCode == KeyEvent.KEYCODE_ENTER){
+                binding.createidErrorIdTv.setVisibility(View.GONE)
                 userId = getId.text.toString()
                 apiService.getCheckUserId(userId).enqueue(object : Callback<Response>{ // 서버에 입력받은 아이디 중복체크하는 코드
                     override fun onResponse(
@@ -137,6 +132,9 @@ class CreateIdActivity : AppCompatActivity() {
                 checkPassword = getCheckPassword.text.toString()
                 if (userPassword != checkPassword){
                     binding.createidErrorTv.setVisibility(View.VISIBLE)
+                }
+                else{
+                    binding.createidErrorTv.setVisibility(View.GONE)
                 }
                 true
             }

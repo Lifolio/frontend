@@ -39,11 +39,12 @@
         </activity>
         <activity
             android:name=".SingUp.CreateIdActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false">
         </activity>
         <activity
             android:name=".SingUp.IdentityActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false">
         </activity>
         <activity android:name=".SingUp.IDFoundActivity"

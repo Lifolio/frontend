@@ -5,20 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lifolio.ApiService
 import com.example.lifolio.databinding.ActivityIdentityBinding
-import kotlinx.coroutines.internal.synchronized
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.properties.Delegates
 
 class IdentityActivity : AppCompatActivity() {
     private lateinit var binding : ActivityIdentityBinding
@@ -129,7 +126,7 @@ class IdentityActivity : AppCompatActivity() {
             }
         }
 
-        binding.identityNextBtn.isEnabled = false
+//        binding.identityNextBtn.isEnabled = false // 디폴트로 다음단계 버튼 비활성화
         binding.identityErrorRequestNumTv.setVisibility(View.GONE) // 디폴트로 인증번호 에러 메시지 숨기기
         // 인증번호를 입력 받는 editText 에서 엔터키를 누를때 이벤트
         val getRequestNumber = binding.identityRequestNumEt // 인증번호 EditText
@@ -156,6 +153,9 @@ class IdentityActivity : AppCompatActivity() {
 
         binding.identityNextBtn.setOnClickListener { // 회원가입 다음 단계로 가는 버튼
             val intent = Intent(this,CreateIdActivity::class.java)
+            val name : String
+            name = binding.identityNameEt.getText().toString()
+            intent.putExtra("name",name) // 이번 단계에서 입력한 이름 다음 단계로 넘겨주기
             startActivity(intent)
             overridePendingTransition(0,0)
         }
