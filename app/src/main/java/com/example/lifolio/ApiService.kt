@@ -1,5 +1,6 @@
-package com.example.lifolio.SingUp
+package com.example.lifolio
 
+import com.example.lifolio.SingUp.Response
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -7,17 +8,17 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET ("user/check/userId")
-    fun getCheckUserId(
+    fun getCheckUserId( // 아이디 중복체크 (허니)
         @Query("userId") userId : String
     ): Call<Response>
 
     @GET ("user/check/nickname")
-    fun getCheckUserNickname(
+    fun getCheckUserNickname( // 닉네임 중복체크 (허니)
         @Query("nickName") nickName : String
     ): Call<Response>
 
     @GET ("user/check/sendSMS")
-    fun getSMS(
+    fun getSMS( // sms인증 (허니)
         @Query("to") to : String
     ): Call<Response>
 }

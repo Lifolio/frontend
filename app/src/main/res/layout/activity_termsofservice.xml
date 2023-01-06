@@ -187,8 +187,9 @@
             android:layout_marginStart="13dp"
             android:button="@drawable/identity_agreecheckbox"
             android:text=" 마케팅 정보 수집 및 수신동의"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/termsofservice_tos3_btn"

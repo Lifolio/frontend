@@ -5,32 +5,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lifolio.ApiService
 import com.example.lifolio.databinding.ActivityIdentityBinding
-import kotlinx.coroutines.internal.synchronized
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.properties.Delegates
 
 class IdentityActivity : AppCompatActivity() {
     private lateinit var binding : ActivityIdentityBinding
-
-    var imm : InputMethodManager? = null
-
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIdentityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
 
         val retrofit = Retrofit.Builder()// Retrofit2 사용을 위한 선언
             .baseUrl("https://www.lifolio.shop/")
@@ -47,7 +39,7 @@ class IdentityActivity : AppCompatActivity() {
         val handler = Handler(Looper.getMainLooper()) // Thread 를 사용 하기 위한 Handler 선언
 
         val checkBox = binding.identityAgreeCheckbox
-        checkBox.setOnClickListener {
+        checkBox.setOnClickListener { // 전체동의를 체크할때
             if (checkBox.isChecked()){ // 체크돼있으면 레이아웃 숨기기
                 binding.identityTermsConst.setVisibility(View.GONE)
             }
@@ -55,6 +47,52 @@ class IdentityActivity : AppCompatActivity() {
                 binding.identityTermsConst.setVisibility(View.VISIBLE)
             }
         }
+
+        val tos1Checkbox = binding.identityAgreeTos1Checkbox
+        val tos2Checkbox = binding.identityAgreeTos2Checkbox
+        val tos3Checkbox = binding.identityAgreeTos3Checkbox
+        val tos4Checkbox = binding.identityAgreeTos4Checkbox
+
+        tos1Checkbox.setOnClickListener{ // 전체 다 체크돼있으면 숨기기
+            if (tos1Checkbox.isChecked && tos2Checkbox.isChecked && tos3Checkbox.isChecked && tos4Checkbox.isChecked){
+                binding.identityTermsConst.setVisibility(View.GONE)
+                checkBox.isChecked = true
+            }
+            else{
+                binding.identityTermsConst.setVisibility(View.VISIBLE)
+            }
+        }
+
+        tos2Checkbox.setOnClickListener{ // 전체 다 체크돼있으면 숨기기
+            if (tos1Checkbox.isChecked && tos2Checkbox.isChecked && tos3Checkbox.isChecked && tos4Checkbox.isChecked){
+                binding.identityTermsConst.setVisibility(View.GONE)
+                checkBox.isChecked = true
+            }
+            else{
+                binding.identityTermsConst.setVisibility(View.VISIBLE)
+            }
+        }
+
+        tos3Checkbox.setOnClickListener{ // 전체 다 체크돼있으면 숨기기
+            if (tos1Checkbox.isChecked && tos2Checkbox.isChecked && tos3Checkbox.isChecked && tos4Checkbox.isChecked){
+                binding.identityTermsConst.setVisibility(View.GONE)
+                checkBox.isChecked = true
+            }
+            else{
+                binding.identityTermsConst.setVisibility(View.VISIBLE)
+            }
+        }
+
+        tos4Checkbox.setOnClickListener{ // 전체 다 체크돼있으면 숨기기
+            if (tos1Checkbox.isChecked && tos2Checkbox.isChecked && tos3Checkbox.isChecked && tos4Checkbox.isChecked){
+                binding.identityTermsConst.setVisibility(View.GONE)
+                checkBox.isChecked = true
+            }
+            else{
+                binding.identityTermsConst.setVisibility(View.VISIBLE)
+            }
+        }
+
 
         val selectTelecom = binding.identitySelectTelecomBtn
         val telecom = arrayOf("SKT","KT","LG")
@@ -129,7 +167,7 @@ class IdentityActivity : AppCompatActivity() {
             }
         }
 
-        binding.identityNextBtn.isEnabled = false
+//        binding.identityNextBtn.isEnabled = false // 디폴트로 다음단계 버튼 비활성화
         binding.identityErrorRequestNumTv.setVisibility(View.GONE) // 디폴트로 인증번호 에러 메시지 숨기기
         // 인증번호를 입력 받는 editText 에서 엔터키를 누를때 이벤트
         val getRequestNumber = binding.identityRequestNumEt // 인증번호 EditText
@@ -156,14 +194,11 @@ class IdentityActivity : AppCompatActivity() {
 
         binding.identityNextBtn.setOnClickListener { // 회원가입 다음 단계로 가는 버튼
             val intent = Intent(this,CreateIdActivity::class.java)
+            val name : String
+            name = binding.identityNameEt.getText().toString()
+            intent.putExtra("name",name) // 이번 단계에서 입력한 이름 다음 단계로 넘겨주기
             startActivity(intent)
             overridePendingTransition(0,0)
-        }
-    }
-
-    fun hideKeyboard(v : View){
-        if(v != null){
-            imm?.hideSoftInputFromWindow(v.windowToken,0)
         }
     }
 

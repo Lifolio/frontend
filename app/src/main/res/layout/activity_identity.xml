@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -98,45 +99,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/identity_agree_checkbox">
 
-        <TextView
-            android:id="@+id/identity_text2_tv"
+        <CheckBox
+            android:id="@+id/identity_agree_tos1_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="휴대폰 본인 인증 서비스 이용약관 동의 (필수)"
-            android:textSize="13sp"
+            android:layout_marginStart="4dp"
+            android:button="@drawable/identity_agreecheckbox"
+            android:text="개인정보이용동의(필수)"
+            android:textColor="#999797"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/identity_text3_tv"
+        <CheckBox
+            android:id="@+id/identity_agree_tos2_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="휴대폰 통신사 애용약관 동의 (필수)"
-            android:textSize="13sp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:button="@drawable/identity_agreecheckbox"
+            android:text="고유식별정보 처리 동의(필수)"
+            android:textColor="#999797"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/identity_text2_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/identity_agree_tos1_checkbox" />
 
-        <TextView
-            android:id="@+id/identity_text4_tv"
+        <CheckBox
+            android:id="@+id/identity_agree_tos3_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="개인정보 제공 및 이용 동의 (필수)"
-            android:textSize="13sp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:button="@drawable/identity_agreecheckbox"
+            android:text="통신사 이용약관 동의(필수)"
+            android:textColor="#999797"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/identity_text3_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/identity_agree_tos2_checkbox" />
 
-        <TextView
-            android:id="@+id/identity_text5_tv"
+        <CheckBox
+            android:id="@+id/identity_agree_tos4_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="고유식별정보 처리 (필수)"
-            android:textSize="13sp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:button="@drawable/identity_agreecheckbox"
+            android:text="서비스 이용약관 동의(필수)"
+            android:textColor="#999797"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/identity_text4_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/identity_agree_tos3_checkbox" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -170,7 +182,8 @@
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
