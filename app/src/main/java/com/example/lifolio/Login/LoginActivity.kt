@@ -3,6 +3,8 @@ package com.example.lifolio.Login
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +29,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private var checkId = ""
+    private var checkPw = ""
 
     // 서버 연결
     object RequestToServer {
@@ -46,6 +50,45 @@ class LoginActivity : AppCompatActivity() {
         binding.backBtn.setOnClickListener {
             onBackPressed()
             overridePendingTransition(0,0) // 화면 전환시 매끄럽게 넘어가게 하는 코드
+        }
+
+        // 아이디 활성화
+        binding.editId.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                checkId = binding.editId.text.toString()
+                if (checkId == "" || checkPw == "") {
+                    binding.btnLogin.isEnabled = false
+                } else {
+                    binding.btnLogin.isEnabled = true
+                }
+            }
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
+        // 비밀번호 활성화
+        binding.editPw.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                checkPw = binding.editPw.text.toString()
+                if (checkId == "" || checkPw == "") {
+                    binding.btnLogin.isEnabled = false
+                } else {
+                    binding.btnLogin.isEnabled = true
+                }
+            }
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
+
+        binding.btnLogin.isEnabled = false
+
+        if(checkId.length == 0 || checkPw.length == 0) {
+            binding.btnLogin.isEnabled = false
+        } else {
+
         }
 
         // 로그인 버튼
@@ -94,11 +137,6 @@ class LoginActivity : AppCompatActivity() {
                     })
             }
         }
-
-        // addTextChangedListener 값의 변화를 체크하는 이벤트
-        // onTextChanged 값이 변경되면 실행되는 함수
-
-
 
         // 카카오 소셜 로그인
         // 로그인 정보 확인
@@ -209,5 +247,4 @@ class LoginActivity : AppCompatActivity() {
 
         }
     }
-
 }
