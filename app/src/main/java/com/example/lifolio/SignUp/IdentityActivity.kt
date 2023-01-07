@@ -170,7 +170,7 @@ class IdentityActivity : AppCompatActivity() {
         binding.identityErrorRequestNumTv.setVisibility(View.GONE) // 디폴트로 인증번호 에러 메시지 숨기기
         // 인증번호를 입력 받는 editText 에서 엔터키를 누를때 이벤트
         val getRequestNumber = binding.identityRequestNumEt // 인증번호 EditText
-        lateinit var requestNumber : String // 사용자가 입력한 인증번호
+        var requestNumber : String? = null // 사용자가 입력한 인증번호
         requestNumber = getRequestNumber.text.toString()
         getRequestNumber.setOnKeyListener { v, keyCode, event -> // 인증번호를 입력하는 EditText에서 Enter키를 누를때 이벤트
             if(event.action == KeyEvent.ACTION_DOWN
@@ -193,9 +193,10 @@ class IdentityActivity : AppCompatActivity() {
 
         binding.identityNextBtn.setOnClickListener { // 회원가입 다음 단계로 가는 버튼
             val intent = Intent(this,CreateIdActivity::class.java)
-            val name : String
-            name = binding.identityNameEt.getText().toString()
+            val name : String = binding.identityNameEt.getText().toString()
+            val phoneNumber : String = binding.identityRequestNumEt.getText().toString()
             intent.putExtra("name",name) // 이번 단계에서 입력한 이름 다음 단계로 넘겨주기
+            intent.putExtra("phoneNumber",phoneNumber)
             startActivity(intent)
             overridePendingTransition(0,0)
         }

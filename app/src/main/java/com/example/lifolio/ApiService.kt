@@ -2,6 +2,7 @@ package com.example.lifolio
 
 import com.example.lifolio.Login.RequestLogin
 import com.example.lifolio.Login.ResponseLogin
+import com.example.lifolio.SignUp.models.Request
 import com.example.lifolio.SignUp.Response
 import retrofit2.Call
 import retrofit2.http.Body
@@ -24,5 +25,10 @@ interface ApiService {
     @GET ("user/check/sendSMS")
     fun getSMS( // sms인증 (허니)
         @Query("to") to : String
+    ): Call<Response>
+
+    @POST ("user/signup")
+    fun createNewUser(
+        @Body body : Request
     ): Call<Response>
 }
