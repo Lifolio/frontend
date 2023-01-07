@@ -1,12 +1,19 @@
 package com.example.lifolio
 
+import com.example.lifolio.Login.RequestLogin
+import com.example.lifolio.Login.ResponseLogin
 import com.example.lifolio.SingUp.Response
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 
 interface ApiService {
+    @POST("user/login")
+    fun requestLogin(@Body body : RequestLogin) : Call<ResponseLogin>
+
     @GET ("user/check/userId")
     fun getCheckUserId( // 아이디 중복체크 (허니)
         @Query("userId") userId : String
