@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/back_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
@@ -144,7 +145,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/nav_bottom"
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#999797"
@@ -159,10 +160,10 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/nav_bottom"
-            app:layout_constraintEnd_toEndOf="@id/nav_bottom"
-            app:layout_constraintStart_toStartOf="@id/nav_bottom"
-            app:layout_constraintTop_toTopOf="@id/nav_bottom" />
+            app:layout_constraintBottom_toBottomOf="@id/btn_login"
+            app:layout_constraintEnd_toEndOf="@id/btn_login"
+            app:layout_constraintStart_toStartOf="@id/btn_login"
+            app:layout_constraintTop_toTopOf="@id/btn_login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
