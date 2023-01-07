@@ -1,7 +1,6 @@
-package com.example.lifolio.SingUp
+package com.example.lifolio.SignUp
 
 import com.google.gson.annotations.SerializedName
-import java.util.Objects
 
 data class Response(
     @SerializedName("isSuccess")

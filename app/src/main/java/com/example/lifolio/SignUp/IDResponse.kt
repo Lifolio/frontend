@@ -1,4 +1,4 @@
-package com.example.lifolio.SingUp
+package com.example.lifolio.SignUp
 
 // 챠코 - #IDFoundActivity와 연결
 

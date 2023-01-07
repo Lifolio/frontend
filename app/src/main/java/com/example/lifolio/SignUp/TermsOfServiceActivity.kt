@@ -1,9 +1,8 @@
-package com.example.lifolio.SingUp
+package com.example.lifolio.SignUp
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityTermsofserviceBinding
 
 class TermsOfServiceActivity : AppCompatActivity() { //여러 약관들을 동의 받는 Activity
