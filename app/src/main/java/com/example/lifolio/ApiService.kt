@@ -2,7 +2,7 @@ package com.example.lifolio
 
 import com.example.lifolio.Login.RequestLogin
 import com.example.lifolio.Login.ResponseLogin
-import com.example.lifolio.SingUp.Response
+import com.example.lifolio.SignUp.Response
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

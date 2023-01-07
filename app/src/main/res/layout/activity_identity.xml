@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -105,11 +104,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:button="@drawable/identity_agreecheckbox"
-            android:text="개인정보이용동의(필수)"
+            android:text=" 개인정보이용동의(필수)"
             android:textColor="#999797"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <CheckBox
             android:id="@+id/identity_agree_tos2_checkbox"
@@ -118,7 +118,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
             android:button="@drawable/identity_agreecheckbox"
-            android:text="고유식별정보 처리 동의(필수)"
+            android:text=" 고유식별정보 처리 동의(필수)"
             android:textColor="#999797"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +131,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
             android:button="@drawable/identity_agreecheckbox"
-            android:text="통신사 이용약관 동의(필수)"
+            android:text=" 통신사 이용약관 동의(필수)"
             android:textColor="#999797"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +144,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
             android:button="@drawable/identity_agreecheckbox"
-            android:text="서비스 이용약관 동의(필수)"
+            android:text=" 서비스 이용약관 동의(필수)"
             android:textColor="#999797"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -341,7 +341,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:text="인증번호가 같지 않습니다.."
+        android:text="인증번호가 같지 않습니다."
         android:textColor="#e6d7260d"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"

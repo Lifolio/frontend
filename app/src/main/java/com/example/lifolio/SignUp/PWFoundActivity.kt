@@ -1,4 +1,4 @@
-package com.example.lifolio.SingUp
+package com.example.lifolio.SignUp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
