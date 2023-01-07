@@ -1,5 +1,6 @@
 package com.example.lifolio.SignUp
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lifolio.ApiService
+import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.SignUp.models.Request
 import com.example.lifolio.databinding.ActivityCreateidBinding
 import retrofit2.Call
@@ -150,6 +152,7 @@ class CreateIdActivity : AppCompatActivity() {
         })
 
         binding.createidEndSignupBtn.setOnClickListener{
+            val intent = Intent(this,LoginActivity::class.java)
             apiService.createNewUser(
                 Request(
                     binding.createidGetidEt.text.toString(),
@@ -165,7 +168,8 @@ class CreateIdActivity : AppCompatActivity() {
                         val responseData = response.body()
                         if (responseData != null){
                             when(responseData.code){ //예외처리
-                                1000 -> Toast.makeText(this@CreateIdActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                                1000 -> {Toast.makeText(this@CreateIdActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                                startActivity(intent)}
                                 2001 -> Toast.makeText(this@CreateIdActivity, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
                                 2002 -> Toast.makeText(this@CreateIdActivity, "이메일은 30자리 미만으로 입력해주세요.", Toast.LENGTH_SHORT).show()
                                 2003 -> Toast.makeText(this@CreateIdActivity, "이메일의 형식을 정확하게 입력해주세요.", Toast.LENGTH_SHORT).show()
