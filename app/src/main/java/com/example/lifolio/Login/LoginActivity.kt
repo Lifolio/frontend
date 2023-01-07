@@ -52,6 +52,8 @@ class LoginActivity : AppCompatActivity() {
             overridePendingTransition(0,0) // 화면 전환시 매끄럽게 넘어가게 하는 코드
         }
 
+        binding.btnLogin.isEnabled = false // 디폴트로 로그인 버튼 비활성화
+
         // 아이디 활성화
         binding.editId.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
