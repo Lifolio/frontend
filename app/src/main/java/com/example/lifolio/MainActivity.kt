@@ -4,8 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.lifolio.Login.LoginActivity
-import com.example.lifolio.SingUp.IDFoundActivity
-import com.example.lifolio.SingUp.TermsOfServiceActivity
+import com.example.lifolio.SignUp.TermsOfServiceActivity
 import com.example.lifolio.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

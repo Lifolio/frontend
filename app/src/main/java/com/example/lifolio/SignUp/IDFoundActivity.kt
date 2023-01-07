@@ -1,4 +1,4 @@
-package com.example.lifolio.SingUp
+package com.example.lifolio.SignUp
 
 import android.content.Intent
 import android.os.Bundle

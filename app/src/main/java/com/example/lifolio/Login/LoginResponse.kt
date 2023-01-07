@@ -1,6 +1,6 @@
-package com.example.lifolio.SingUp
+package com.example.lifolio.Login
 
-data class Response(
+data class LoginResponse(
     val isSuccess : Boolean,
     val code : Int,
     val message : String

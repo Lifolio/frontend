@@ -1,8 +1,6 @@
-package com.example.lifolio.SingUp
+package com.example.lifolio.SignUp
 
 // 챠코 - #IDFoundActivity와 연결
-
-import retrofit2.http.POST
 
 interface IDRequest {
     //POST("user/find")
