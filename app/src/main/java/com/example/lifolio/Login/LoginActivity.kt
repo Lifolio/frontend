@@ -1,12 +1,12 @@
 package com.example.lifolio.Login
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.lifolio.ApiService
 import com.example.lifolio.Home.HomeActivity
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityLoginBinding
@@ -19,43 +19,88 @@ import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+
+    // 서버 연결
+    object RequestToServer {
+        var retrofit = Retrofit.Builder()
+            .baseUrl("https://www.lifolio.shop/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val apiService = retrofit.create(ApiService::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 로그인 버튼
-        binding.navBottom.setOnClickListener{
-            // editText 로부터 입력된 값을 받아온다
-            val id = binding.editId.text.toString()
-            val pw = binding.editPw.text.toString()
+        // 뒤로가기 버튼
+        binding.backBtn.setOnClickListener {
+            onBackPressed()
+            overridePendingTransition(0,0) // 화면 전환시 매끄럽게 넘어가게 하는 코드
+        }
 
-            if(id == "" || pw == "") {
+        // 로그인 버튼
+        binding.btnLogin.setOnClickListener{
+            val requestToServer = RequestToServer // 서버 요청
+
+            if(binding.editId.text.isNullOrBlank() || binding.editPw.text.isNullOrBlank()) {
                 // 회원정보 입력 전부 안 되어 있으면
                 Toast.makeText(this, "회원정보를 전부 입력해주세요", Toast.LENGTH_SHORT).show()
             }
             else {
-                Toast.makeText(this, "${id}", Toast.LENGTH_SHORT).show()
-                Toast.makeText(this, "${pw}", Toast.LENGTH_SHORT).show()
-                // 쉐어드로부터 저장된 id, pw 가져오기
-                val sharedPreference = getSharedPreferences("user", Context.MODE_PRIVATE)
-                val savedId = sharedPreference.getString("id", "")
-                val savedPw = sharedPreference.getString("pw", "")
+                requestToServer.apiService.requestLogin(
+                    RequestLogin(
+                        username = binding.editId.text.toString(),
+                        password = binding.editPw.text.toString()
+                    )
+                ) // 로그인 정보 전달
+                    .enqueue(object : Callback<ResponseLogin> {
+                        override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+                            Log.d("통신 실패", "${t.message }")
+                        }
 
-                // 유저가 입력한 id, pw 값과 쉐어드로 불러온 id, pw값 비교
-                if(id == savedId && pw == savedPw){
-                    // 로그인 성공
-
-                }
-                else{
-                    // 로그인 실패
-                }
+                        override fun onResponse(
+                            call: Call<ResponseLogin>,
+                            response: Response<ResponseLogin>
+                        ) {
+                            if (response.isSuccessful) {
+                                val responseData = response.body()
+                                if (responseData!!.isSuccess) {
+                                    Log.d("성공", response.body()!!.result.toString())
+                                    var myjwt = response.body()!!.result!!.accessToken
+                                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                                    finish()
+                                } else if(responseData.code == 2027){
+                                    Toast.makeText(this@LoginActivity, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                                } else if (responseData.code == 2024){
+                                    Toast.makeText(this@LoginActivity, "존재하지 않는 유저입니다.", Toast.LENGTH_SHORT).show()
+                                } else if (responseData.code == 2010){
+                                    Toast.makeText(this@LoginActivity, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
+                                } else if (responseData.code == 2011){
+                                    Toast.makeText(this@LoginActivity, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+                                } else if (responseData.code == 4000){
+                                    Toast.makeText(this@LoginActivity, "데이터베이스에러", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    })
             }
-
         }
+
+        // addTextChangedListener 값의 변화를 체크하는 이벤트
+        // onTextChanged 값이 변경되면 실행되는 함수
+
+
 
         // 카카오 소셜 로그인
         // 로그인 정보 확인
