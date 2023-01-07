@@ -256,7 +256,7 @@
         android:id="@+id/createid_end_signup_btn"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#999797"
+        android:background="@drawable/next_btn_status_enable"
         android:text="완료"
         android:textStyle="bold"
         android:textSize="16sp"
