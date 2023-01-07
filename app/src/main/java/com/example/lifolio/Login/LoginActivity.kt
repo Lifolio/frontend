@@ -83,14 +83,6 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-        binding.btnLogin.isEnabled = false
-
-        if(checkId.length == 0 || checkPw.length == 0) {
-            binding.btnLogin.isEnabled = false
-        } else {
-
-        }
-
         // 로그인 버튼
         binding.btnLogin.setOnClickListener{
             val requestToServer = RequestToServer // 서버 요청
