@@ -212,7 +212,7 @@
             android:ems="100"
             android:hint="생년월일 6자리를 입력하세요"
             android:textSize="12sp"
-            android:inputType="text"
+            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -256,7 +256,7 @@
             android:layout_marginStart="7dp"
             android:background="@null"
             android:hint="'-'를 제외한 휴대폰 번호"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/identity_select_telecom_btn"
@@ -329,7 +329,7 @@
             android:background="@null"
             android:hint="인증번호 6자리"
             android:textSize="14sp"
-            android:inputType="text"
+            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
