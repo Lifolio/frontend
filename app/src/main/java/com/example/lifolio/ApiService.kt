@@ -11,9 +11,6 @@ import retrofit2.http.Query
 
 
 interface ApiService {
-    @POST("user/login")
-    fun requestLogin(@Body body : RequestLogin) : Call<ResponseLogin>
-
     @GET ("user/check/userId")
     fun getCheckUserId( // 아이디 중복체크 (허니)
         @Query("userId") userId : String

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lifolio.ApiService
 import com.example.lifolio.Home.HomeActivity
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityLoginBinding
@@ -68,7 +67,6 @@ class LoginActivity : AppCompatActivity() {
                         override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
                             Log.d("통신 실패", "${t.message }")
                         }
-
                         override fun onResponse(
                             call: Call<ResponseLogin>,
                             response: Response<ResponseLogin>

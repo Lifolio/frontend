@@ -16,13 +16,6 @@
         android:theme="@style/Theme.Lifolio"
         tools:targetApi="31">
         <activity
-            android:name=".PostResult"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Home.HomeActivity"
             android:exported="false">
             <meta-data
