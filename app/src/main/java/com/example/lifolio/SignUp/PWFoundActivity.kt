@@ -10,6 +10,10 @@ class PWFoundActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPwfoundBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val extras = intent.extras
+        val userId = extras!!["userId"] as String // 유저 아이디
+        val userName = extras!!["userName"] as String // 유저 이름
     }
 
     // 새 비밀번호 & 비밀번호 확인 text 같으면 자동으로 editText 닫히고 버튼 색상 바뀌게 구현

@@ -1,11 +1,13 @@
 package com.example.lifolio.SignUp
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lifolio.ApiService
+import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.SignUp.models.Request
 import com.example.lifolio.databinding.ActivityCreateidBinding
 import retrofit2.Call
@@ -47,11 +49,13 @@ class CreateIdActivity : AppCompatActivity() {
         lateinit var checkPassword : String // 비밀번호 재입력한 값을 저장하는 변수
 
 
-        // 닉네임 입력 받는 editText 에서 엔터키를 누를때 이벤트
+        // 닉네임 입력 받는 editText 에서 입력할때마다 이벤트 발생
         val getNickname = binding.createidGetnicknameEt
-        getNickname.setOnKeyListener{ v, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN
-                && keyCode == KeyEvent.KEYCODE_ENTER){
+        getNickname.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 binding.createidErrorNicknameTv.setVisibility(View.GONE)
                 userNickname = getNickname.text.toString()
                 apiService.getCheckUserNickname(userNickname).enqueue(object : Callback<Response>{
@@ -70,22 +74,21 @@ class CreateIdActivity : AppCompatActivity() {
                         else{
                         }
                     }
-
                     override fun onFailure(call: Call<Response>, t: Throwable) {
                     }
                 })
-                true
             }
-            else{
-                false
+            override fun afterTextChanged(p0: Editable?) {
             }
-        }
+        })
 
-        // 아이디 입력 받는 editText 에서 엔터키를 누를때 이벤트
+        // 아이디 입력 받는 editText 에서 입력할때마다 이벤트 발생
         val getId = binding.createidGetidEt
-        getId.setOnKeyListener { v, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN
-                && keyCode == KeyEvent.KEYCODE_ENTER){
+        getId.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 binding.createidErrorIdTv.setVisibility(View.GONE)
                 userId = getId.text.toString()
                 apiService.getCheckUserId(userId).enqueue(object : Callback<Response>{ // 서버에 입력받은 아이디 중복체크하는 코드
@@ -107,31 +110,32 @@ class CreateIdActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<Response>, t: Throwable) { // 통신 실패했을때, 에러났을때? 실행되는 코드
                     }
                 })
-                true
             }
-            else{
-                false
+            override fun afterTextChanged(p0: Editable?) {
             }
-        }
+        })
 
-        // 비밀번호 입력 받는 editText 에서 엔터키를 누를때 이벤트
+        // 비밀번호 입력 받는 editText 에서 입력할때마다 이벤트 발생
         val getPassword = binding.createidGetpasswordEt
-        getPassword.setOnKeyListener { v, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN
-                && keyCode == KeyEvent.KEYCODE_ENTER){
-                userPassword = getPassword.text.toString()
-                true
+        getPassword.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-            else{
-                false
-            }
-        }
 
-        // 비밀번호 확인시 입력받는 editText 에서 엔터키를 누를때 이벤트
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                userPassword = getPassword.text.toString()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
+
+        // 비밀번호 확인시 입력받는 editText 에서 입력할때마다 이벤트 발생
         val getCheckPassword = binding.createidConfirmpasswordEt
-        getCheckPassword.setOnKeyListener { v, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN
-                && keyCode == KeyEvent.KEYCODE_ENTER){
+        getCheckPassword.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 checkPassword = getCheckPassword.text.toString()
                 if (userPassword != checkPassword){
                     binding.createidErrorTv.setVisibility(View.VISIBLE)
@@ -139,14 +143,14 @@ class CreateIdActivity : AppCompatActivity() {
                 else{
                     binding.createidErrorTv.setVisibility(View.GONE)
                 }
-                true
             }
-            else{
-                false
+
+            override fun afterTextChanged(p0: Editable?) {
             }
-        }
+        })
 
         binding.createidEndSignupBtn.setOnClickListener{
+            val intent = Intent(this,LoginActivity::class.java)
             apiService.createNewUser(
                 Request(
                     binding.createidGetidEt.text.toString(),
@@ -162,7 +166,8 @@ class CreateIdActivity : AppCompatActivity() {
                         val responseData = response.body()
                         if (responseData != null){
                             when(responseData.code){ //예외처리
-                                1000 -> Toast.makeText(this@CreateIdActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                                1000 -> {Toast.makeText(this@CreateIdActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                                startActivity(intent)}
                                 2001 -> Toast.makeText(this@CreateIdActivity, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
                                 2002 -> Toast.makeText(this@CreateIdActivity, "이메일은 30자리 미만으로 입력해주세요.", Toast.LENGTH_SHORT).show()
                                 2003 -> Toast.makeText(this@CreateIdActivity, "이메일의 형식을 정확하게 입력해주세요.", Toast.LENGTH_SHORT).show()
