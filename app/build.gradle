@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt' // RoomDB 추가 [챠코]
 }
 
 android {
@@ -49,8 +48,7 @@ dependencies {
     // RoomDB [챠코]
     implementation "androidx.room:room-runtime:2.4.3"
     annotationProcessor "androidx.room:room-compiler:2.4.3"
-    // To use Kotlin annotation processing tool (kapt)
-    kapt "androidx.room:room-compiler:2.4.3"
+
 
     // Retrofit [챠코]
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
