@@ -49,6 +49,8 @@
         <activity
             android:name=".SignUp.IDFoundActivity"
             android:exported="false" />
+        <activity android:name=".SignUp.PWFoundActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

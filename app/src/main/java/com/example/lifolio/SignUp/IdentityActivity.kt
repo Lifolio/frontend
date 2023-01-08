@@ -5,11 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.KeyEvent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lifolio.ApiService
 import com.example.lifolio.databinding.ActivityIdentityBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -171,10 +171,13 @@ class IdentityActivity : AppCompatActivity() {
         // 인증번호를 입력 받는 editText 에서 엔터키를 누를때 이벤트
         val getRequestNumber = binding.identityRequestNumEt // 인증번호 EditText
         var requestNumber : String? = null // 사용자가 입력한 인증번호
-        requestNumber = getRequestNumber.text.toString()
-        getRequestNumber.setOnKeyListener { v, keyCode, event -> // 인증번호를 입력하는 EditText에서 Enter키를 누를때 이벤트
-            if(event.action == KeyEvent.ACTION_DOWN
-                && keyCode == KeyEvent.KEYCODE_ENTER){
+
+        // 인증번호를 입력하는 editText 에서 입력할때마다 이벤트 발생
+        getRequestNumber.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 requestNumber = getRequestNumber.text.toString()
                 if (requestNumber == serverRequestNumber && totalTime >= 0 && binding.identityAgreeCheckbox.isChecked){ // 작성한 인증번호가 같고 타이머가 유효하면
                     binding.identityNextBtn.isEnabled = true
@@ -184,12 +187,11 @@ class IdentityActivity : AppCompatActivity() {
                     binding.identityNextBtn.isEnabled = false
                     binding.identityErrorRequestNumTv.setVisibility(View.VISIBLE) // 에러 메시지 띄우기
                 }
-                true
             }
-            else{
-                false
+
+            override fun afterTextChanged(p0: Editable?) {
             }
-        }
+        })
 
         binding.identityNextBtn.setOnClickListener { // 회원가입 다음 단계로 가는 버튼
             val intent = Intent(this,CreateIdActivity::class.java)
