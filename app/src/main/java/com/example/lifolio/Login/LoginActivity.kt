@@ -193,7 +193,6 @@ class LoginActivity : AppCompatActivity() {
                     NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
                         override fun onSuccess(result: NidProfileResponse) {
                             val nickname = result.profile?.nickname.toString()
-
                             Log.e(TAG, "네이버 로그인한 유저 정보 - 이름 : $nickname")
 
 //                            val intent = Intent(this, HomeActivity::class.java)
@@ -218,7 +217,7 @@ class LoginActivity : AppCompatActivity() {
                     //
                 }
             }
-            // 네이버 소셜 로그인 초기화ㅅ
+            // 네이버 소셜 로그인 초기화
             NaverIdLoginSDK.initialize(this@LoginActivity, getString(R.string.naver_client_id), getString(
                 R.string.naver_client_secret
             ), "앱 이름")
