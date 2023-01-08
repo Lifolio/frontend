@@ -60,11 +60,7 @@ class LoginActivity : AppCompatActivity() {
             }
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 checkId = binding.editId.text.toString()
-                if (checkId == "" || checkPw == "") {
-                    binding.btnLogin.isEnabled = false
-                } else {
-                    binding.btnLogin.isEnabled = true
-                }
+                binding.btnLogin.isEnabled = !(checkId == "" || checkPw == "")
             }
             override fun afterTextChanged(p0: Editable?) {
             }
@@ -75,11 +71,7 @@ class LoginActivity : AppCompatActivity() {
             }
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 checkPw = binding.editPw.text.toString()
-                if (checkId == "" || checkPw == "") {
-                    binding.btnLogin.isEnabled = false
-                } else {
-                    binding.btnLogin.isEnabled = true
-                }
+                binding.btnLogin.isEnabled = !(checkId == "" || checkPw == "")
             }
             override fun afterTextChanged(p0: Editable?) {
             }
@@ -98,37 +90,36 @@ class LoginActivity : AppCompatActivity() {
                     RequestLogin(
                         username = binding.editId.text.toString(),
                         password = binding.editPw.text.toString()
-                    )
-                ) // 로그인 정보 전달
-                    .enqueue(object : Callback<ResponseLogin> {
-                        override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
-                            Log.d("통신 실패", "${t.message }")
-                        }
-                        override fun onResponse(
-                            call: Call<ResponseLogin>,
-                            response: Response<ResponseLogin>
-                        ) {
-                            if (response.isSuccessful) {
-                                val responseData = response.body()
-                                if (responseData!!.isSuccess) {
-                                    Log.d("성공", response.body()!!.result.toString())
-                                    var myjwt = response.body()!!.result!!.accessToken
-                                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                                    finish()
-                                } else if(responseData.code == 2027){
-                                    Toast.makeText(this@LoginActivity, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-                                } else if (responseData.code == 2024){
-                                    Toast.makeText(this@LoginActivity, "존재하지 않는 유저입니다.", Toast.LENGTH_SHORT).show()
-                                } else if (responseData.code == 2010){
-                                    Toast.makeText(this@LoginActivity, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
-                                } else if (responseData.code == 2011){
-                                    Toast.makeText(this@LoginActivity, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
-                                } else if (responseData.code == 4000){
-                                    Toast.makeText(this@LoginActivity, "데이터베이스에러", Toast.LENGTH_SHORT).show()
-                                }
+                    ) // 로그인 정보 전달
+                ).enqueue(object : Callback<ResponseLogin> {
+                    override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+                        Log.d("통신 실패", "${t.message }")
+                    }
+                    override fun onResponse(
+                        call: Call<ResponseLogin>,
+                        response: Response<ResponseLogin>
+                    ) {
+                        if (response.isSuccessful) {
+                            val responseData = response.body()
+                            if (responseData!!.isSuccess) {
+                                Log.d("성공", response.body()!!.result.toString())
+                                var myjwt = response.body()!!.result!!.accessToken
+                                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                                finish()
+                            } else if(responseData.code == 2027){
+                                Toast.makeText(this@LoginActivity, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                            } else if (responseData.code == 2024){
+                                Toast.makeText(this@LoginActivity, "존재하지 않는 유저입니다.", Toast.LENGTH_SHORT).show()
+                            } else if (responseData.code == 2010){
+                                Toast.makeText(this@LoginActivity, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
+                            } else if (responseData.code == 2011){
+                                Toast.makeText(this@LoginActivity, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+                            } else if (responseData.code == 4000){
+                                Toast.makeText(this@LoginActivity, "데이터베이스에러", Toast.LENGTH_SHORT).show()
                             }
                         }
-                    })
+                    }
+                })
             }
         }
 
@@ -145,7 +136,7 @@ class LoginActivity : AppCompatActivity() {
                 finish()
                 setContentView(binding.root)}
         }
-
+        // 로그인 됐는지 callback 함수
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 when {
@@ -185,10 +176,8 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-        val kakao_login_button = binding.kakao // 로그인 버튼
-
-        kakao_login_button.setOnClickListener {
+        // 결과값 들고온 카카오 로그인 버튼
+        binding.kakao.setOnClickListener {
             if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
                 LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
             }else{
@@ -197,16 +186,13 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // 네이버 소셜 로그인
-        val naver_login_button = binding.naver // 로그인 버튼
-
-        naver_login_button.setOnClickListener {
+        binding.naver.setOnClickListener {
             val oAuthLoginCallback = object : OAuthLoginCallback {
                 override fun onSuccess() {
                     // 네이버 로그인 API 호출 성공 시 유저 정보를 가져온다
                     NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
                         override fun onSuccess(result: NidProfileResponse) {
                             val nickname = result.profile?.nickname.toString()
-
                             Log.e(TAG, "네이버 로그인한 유저 정보 - 이름 : $nickname")
 
 //                            val intent = Intent(this, HomeActivity::class.java)
@@ -223,17 +209,15 @@ class LoginActivity : AppCompatActivity() {
                         }
                     })
                 }
-
                 override fun onError(errorCode: Int, message: String) {
                     val naverAccessToken = NaverIdLoginSDK.getAccessToken()
                     Log.e(TAG, "naverAccessToken : $naverAccessToken")
                 }
-
                 override fun onFailure(httpStatus: Int, message: String) {
                     //
                 }
             }
-
+            // 네이버 소셜 로그인 초기화
             NaverIdLoginSDK.initialize(this@LoginActivity, getString(R.string.naver_client_id), getString(
                 R.string.naver_client_secret
             ), "앱 이름")
