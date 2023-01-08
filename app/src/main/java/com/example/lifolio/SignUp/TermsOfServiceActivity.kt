@@ -32,21 +32,18 @@ class TermsOfServiceActivity : AppCompatActivity() { //여러 약관들을 동�
 
         binding.termsofserviceTos1Btn.setOnClickListener { // 이용 약관 내용
             val intent = Intent(this,TosActivity::class.java)
-            val tos : String
             intent.putExtra("tos","1")
             startActivity(intent)
         }
 
         binding.termsofserviceTos2Btn.setOnClickListener { // 개인 정보 처리 방침 내용
             val intent = Intent(this,TosActivity::class.java)
-            val tos : String
             intent.putExtra("tos","2")
             startActivity(intent)
         }
 
         binding.termsofserviceTos3Btn.setOnClickListener { // 마케팅 정보 수집 및 수신동의
             val intent = Intent(this,TosActivity::class.java)
-            val tos : String
             intent.putExtra("tos","3")
             startActivity(intent)
         }

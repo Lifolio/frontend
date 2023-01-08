@@ -7,11 +7,9 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lifolio.ApiService
 import com.example.lifolio.databinding.ActivityIdentityBinding
 import retrofit2.Call
 import retrofit2.Callback

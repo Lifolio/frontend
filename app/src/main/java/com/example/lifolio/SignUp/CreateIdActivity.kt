@@ -4,11 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lifolio.ApiService
 import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.SignUp.models.Request
 import com.example.lifolio.databinding.ActivityCreateidBinding
