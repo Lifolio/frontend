@@ -26,7 +26,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var checkId = ""
@@ -52,7 +51,8 @@ class LoginActivity : AppCompatActivity() {
             overridePendingTransition(0,0) // 화면 전환시 매끄럽게 넘어가게 하는 코드
         }
 
-        binding.btnLogin.isEnabled = false // 디폴트로 로그인 버튼 비활성화
+        // 디폴트로 로그인 버튼 비활성화
+        binding.btnLogin.isEnabled = false
 
         // 아이디 활성화
         binding.editId.addTextChangedListener(object : TextWatcher{
@@ -134,7 +134,8 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
-                setContentView(binding.root)}
+                setContentView(binding.root)
+            }
         }
         // 로그인 됐는지 callback 함수
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
@@ -187,6 +188,7 @@ class LoginActivity : AppCompatActivity() {
 
         // 네이버 소셜 로그인
         binding.naver.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
             val oAuthLoginCallback = object : OAuthLoginCallback {
                 override fun onSuccess() {
                     // 네이버 로그인 API 호출 성공 시 유저 정보를 가져온다
@@ -194,10 +196,8 @@ class LoginActivity : AppCompatActivity() {
                         override fun onSuccess(result: NidProfileResponse) {
                             val nickname = result.profile?.nickname.toString()
                             Log.e(TAG, "네이버 로그인한 유저 정보 - 이름 : $nickname")
-
-//                            val intent = Intent(this, HomeActivity::class.java)
-//                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-//                            finish()
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            finish()
                         }
 
                         override fun onError(errorCode: Int, message: String) {
