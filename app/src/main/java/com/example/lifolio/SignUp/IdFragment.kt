@@ -151,6 +151,7 @@ class IdFragment : Fragment() {
         var findUserId : String? = null
 
         binding.idNextBtn.setOnClickListener { // 다음 단계로 가는 버튼
+            val intent = Intent (requireActivity(),IDFoundActivity::class.java)
             apiService.foundUserId(RequestFoundId(
                 binding.idGetNameEt.text.toString(),
                 contactNumber
@@ -162,7 +163,9 @@ class IdFragment : Fragment() {
                         val responseData = response.body()
                         if (responseData != null){
                             when(responseData.code){
-                                1000 -> findUserId = responseData.result.username
+                                1000 -> {findUserId = responseData.result.username
+                                intent.putExtra("userId",findUserId)
+                                    startActivity(intent)}
                                 2029 -> Toast.makeText(requireActivity(), "회원 정보에 일치하는 아이디가 없습니다.", Toast.LENGTH_SHORT).show()
                                 else -> Toast.makeText(requireActivity(), "알 수 없는 에러.", Toast.LENGTH_SHORT).show()
                             }

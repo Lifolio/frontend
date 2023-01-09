@@ -22,8 +22,11 @@ class IDFoundActivity : AppCompatActivity() {
             .build()                                           // API 웹 브라우저 창 열기
         val idRequest = retrofit.create(IDRequest::class.java) // API 요청 (주소 입력)
 
+        val extras = intent.extras
+        val userId = extras!!["userId"] as String
+
         // 서버에서 받은 id로 채우기
-        binding.userid
+        binding.userid.text = userId
 
         // 'X' 버튼 클릭하면 화면 닫힘 > ID/PW 찾기 화면으로 돌아감
         binding.idfoundCloseBtn.setOnClickListener {
