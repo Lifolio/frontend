@@ -1,8 +1,12 @@
 package com.example.lifolio.Login
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -30,6 +34,14 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var checkId = ""
     private var checkPw = ""
+
+    // 자동 로그인 preferences
+    fun saveData( username: String ){
+        val pref = getSharedPreferences("username", MODE_PRIVATE) //shared key 설정
+        val edit = pref.edit() // 수정모드
+        edit.putString("username", username) // 값 넣기
+        edit.apply() // 적용하기
+    }
 
     // 서버 연결
     object RequestToServer {
@@ -77,6 +89,18 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
+        // 자동 로그인
+        binding.autoLoginBtn.setOnClickListener {
+            if (binding.autoLoginBtn.isChecked()) {
+                binding.autoLoginTx.setTextColor(Color.parseColor("#FF4C34"))
+                // 자동 로그인 체크되면 pref 에 username 저장하기
+                val username = binding.editId.toString()
+                saveData(username)
+            } else {
+                binding.autoLoginTx.setTextColor(Color.parseColor("#999797"))
+            }
+        }
+
         // 로그인 버튼
         binding.btnLogin.setOnClickListener{
             val requestToServer = RequestToServer // 서버 요청
@@ -103,6 +127,13 @@ class LoginActivity : AppCompatActivity() {
                             val responseData = response.body()
                             if (responseData!!.isSuccess) {
                                 Log.d("성공", response.body()!!.result.toString())
+
+                                // 자동 로그인 shared 에 있는 "username"이란 데이터를 불러온다는 뜻
+                                val pref = getSharedPreferences("username", 0)
+                                // 1번째는 데이터 키 값이고 2번째는 키 값에 데이터가 존재하지 않을 때 대체 값
+                                val savedUsername = pref.getString("username", "").toString()
+                                Log.d("username", savedUsername)
+
                                 var myjwt = response.body()!!.result!!.accessToken
                                 startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                                 finish()
@@ -225,4 +256,5 @@ class LoginActivity : AppCompatActivity() {
 
         }
     }
+
 }
