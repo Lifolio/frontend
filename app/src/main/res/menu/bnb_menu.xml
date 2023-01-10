@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bnb_my"
+        android:enabled="true"
+        android:icon="@drawable/person_filled"
+        android:title="My" />
+
+    <item
+        android:id="@+id/bnb_goal"
+        android:enabled="true"
+        android:icon="@drawable/flag"
+        android:title="Goal"/>
+
+    <item
+        android:id="@+id/placeholder"
+        android:title=""/>
+
+    <item
+        android:id="@+id/bnb_social"
+        android:enabled="true"
+        android:icon="@drawable/cloud"
+        android:title="Social" />
+
+    <item
+        android:id="@+id/bnb_portfolio"
+        android:enabled="true"
+        android:icon="@drawable/demography"
+        android:title="Portfolio" />
+
+</menu>
