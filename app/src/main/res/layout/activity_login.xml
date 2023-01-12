@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="아이디와 비밀번호를"
         android:textColor="@color/black"
         android:textSize="22sp"
@@ -73,15 +73,57 @@
         app:layout_constraintTop_toBottomOf="@id/edit_id" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_tx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_pw">
+
+        <CheckBox
+            android:id="@+id/auto_login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/auto_login_checkbox"
+            android:button="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/login_tx"
+            app:layout_constraintStart_toStartOf="@id/login_tx"
+            app:layout_constraintTop_toTopOf="@id/login_tx" />
+
+        <TextView
+            android:id="@+id/auto_login_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자동로그인"
+            android:textColor="#999797"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@id/auto_login_btn"
+            app:layout_constraintTop_toTopOf="@id/login_tx"
+            app:layout_constraintBottom_toBottomOf="@id/login_tx"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디·비밀번호 찾기"
+            android:textColor="#999797"
+            app:layout_constraintEnd_toEndOf="@id/login_tx"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/kakao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/kakao_login_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_pw">
+        app:layout_constraintTop_toBottomOf="@id/login_tx">
 
         <ImageView
             android:id="@+id/img_kakao"
@@ -151,9 +193,9 @@
         android:layout_height="56dp"
         android:background="@drawable/next_btn_status_enable"
         android:text="로그인"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
