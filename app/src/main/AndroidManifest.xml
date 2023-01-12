@@ -46,6 +46,8 @@
             android:name=".SignUp.IdentityActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".CustomOfTheYear.CustomOfTheYearActivity"
+            android:exported="false"></activity>
         <activity
             android:name=".SignUp.IDFoundActivity"
             android:exported="false" />
