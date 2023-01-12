@@ -40,8 +40,7 @@ class IDFoundActivity : AppCompatActivity() {
     }
 
     private fun gotoIDFound() { // ID/PW 찾기 화면으로 돌아가기 (ID/PW 찾기 화면은 그대로 유지되어 있어야 함)
-        // ID/PW 찾기 화면 이름이 없어용
-        // startActivity(Intent(this, idpw찾기화면::class.java))
+        onBackPressed()
     }
 
     private fun gotoLogin() { // 로그인 화면으로 가기 함수
