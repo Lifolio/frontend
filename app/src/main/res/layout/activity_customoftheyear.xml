@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -57,12 +58,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/customoftheyear_edit_goal_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="아자 아자 화이팅!"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/customoftheyear_eiit_goal_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="13dp"
             android:background="@drawable/custom_of_the_year_edit_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/customoftheyear_save_goal_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/custom_of_the_year_save_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -156,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="18dp"
-                android:text="1. 2"
+                android:text="3. 2"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/customoftheyear_22year_history_day_tv1" />
@@ -167,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="4dp"
-                android:text="나는 할 수 있다!! 힘내라"
+                android:text="나는 할 수 있다!! 힘내자!!"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -221,6 +245,28 @@
             android:textSize="14sp"
             android:background="#40ffdaaf"
             app:layout_constraintTop_toBottomOf="@+id/customoftheyear_22year_history_const" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/customoftheyear_23year_history_const"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/customoftheyear_23year_btn">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/customoftheyear_23year_history_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/customoftheyear_underline2_const"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:background="#ededed"
+        app:layout_constraintTop_toBottomOf="@+id/customoftheyear_history_goal_const" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
