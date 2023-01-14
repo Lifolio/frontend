@@ -18,7 +18,7 @@
         android:theme="@style/Theme.Lifolio"
         tools:targetApi="31">
         <activity
-            android:name=".Category.NewCategoryActivity"
+            android:name=".Category.AddCategoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
