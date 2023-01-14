@@ -1,7 +1,8 @@
-package com.example.lifolio
+package com.example.lifolio.My
 
 import android.content.Context
 import android.os.Bundle
+import android.text.SpannableString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +14,9 @@ class MyFragment : Fragment() {
 
     companion object {
         const val TAG : String = "로그"
-
         fun newInstance() : MyFragment {
             return MyFragment()
         }
-
     }
 
     // 메모리에 올라갔을때
@@ -40,13 +39,10 @@ class MyFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-
         Log.d(TAG, "HomeFragment - onCreateView() called")
-
         val view = inflater.inflate(R.layout.fragment_my, container, false)
-
         return view
-    }
 
+    }
 
 }
