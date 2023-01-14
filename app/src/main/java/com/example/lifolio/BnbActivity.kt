@@ -3,8 +3,8 @@ package com.example.lifolio
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.lifolio.My.MyFragment
 import com.example.lifolio.databinding.ActivityBnbBinding
-import com.example.lifolio.R
 
 class BnbActivity : AppCompatActivity() {
 
