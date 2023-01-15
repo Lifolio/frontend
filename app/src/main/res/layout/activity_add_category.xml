@@ -137,6 +137,8 @@
     <FrameLayout
         android:id="@+id/add_categoty_frame_fl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/add_category_switchlayout_rel"
+        app:layout_constraintStart_toStartOf="parent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
