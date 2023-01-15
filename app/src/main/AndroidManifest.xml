@@ -56,6 +56,10 @@
             android:exported="false" />
         <activity android:name=".CustomLifolio.CustomLifolioActivity"
             android:exported="false"/>
+        <activity android:name=".BnbActivity"
+            android:exported="false"/>
+        <activity android:name=".EditCategory.EditCategoryActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
