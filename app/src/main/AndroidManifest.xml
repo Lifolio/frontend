@@ -61,6 +61,8 @@
         <activity
             android:name=".SignUp.PWFoundActivity"
             android:exported="false" />
+        <activity android:name=".CustomLifolio.CustomLifolioActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
