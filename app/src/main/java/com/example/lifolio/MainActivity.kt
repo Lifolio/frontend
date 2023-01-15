@@ -3,6 +3,7 @@ package com.example.lifolio
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.lifolio.CustomLifolio.CustomLifolioActivity
 import com.example.lifolio.CustomOfTheYear.CustomOfTheYearActivity
 import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.SignUp.TermsOfServiceActivity
@@ -19,8 +20,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+
+        // 허니가 개발중인 Activity 미리보기 위한 버튼
         binding.btnSignup.setOnClickListener {
-            val intent = Intent(this, CustomOfTheYearActivity::class.java)
+            val intent = Intent(this, CustomLifolioActivity::class.java)
             startActivity(intent)
         }
 
