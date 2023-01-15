@@ -67,6 +67,7 @@
         app:layout_constraintTop_toBottomOf="@id/add_category_title1_tx" />
 
     <TextView
+        android:id="@+id/add_category_switchtitle_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="카테고리 분류"
@@ -79,6 +80,63 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
+    <RelativeLayout
+        android:id="@+id/add_category_switchlayout_rel"
+        android:layout_width="320dp"
+        android:layout_height="36dp"
+        android:background="@drawable/category_switch"
+        android:padding="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_category_switchtitle_tx">
 
 
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/add_category_selectsize_swch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:checked="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:thumb="@drawable/thumb_selector"
+            app:switchMinWidth="140dp"
+            app:track="@drawable/track_selector" />
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/add_category_left_tx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="크게"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/add_category_right_tx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="작게"
+                android:textColor="#707070"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/add_categoty_frame_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
