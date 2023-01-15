@@ -33,7 +33,7 @@
             android:background="@drawable/category_spinner_background"
             android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
-            android:layout_width="300dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
