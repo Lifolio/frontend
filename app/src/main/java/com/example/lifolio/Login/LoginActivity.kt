@@ -1,19 +1,15 @@
 package com.example.lifolio.Login
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lifolio.BnbActivity
-import com.example.lifolio.Home.HomeActivity
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.LoginClient

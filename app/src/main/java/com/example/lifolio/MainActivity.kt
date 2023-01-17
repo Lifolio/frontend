@@ -3,6 +3,8 @@ package com.example.lifolio
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.example.lifolio.CustomLifolio.CustomLifolioActivity
 import com.example.lifolio.CustomOfTheYear.CustomOfTheYearActivity
 import com.example.lifolio.EditCategory.EditCategoryActivity
@@ -17,9 +19,22 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 자동 로그인 pref
+        val pref = getSharedPreferences("username", 0)
+        val savedUsername = pref.getString("username", "").toString()
+
+        // 로그인 버튼
         binding.btnLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            if (savedUsername.equals("")) { // 자동 로그인 아니라면
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            } else { // 자동 로그인 경우
+                val intent = Intent(this, BnbActivity::class.java)
+                startActivity(intent)
+                Log.d("username", savedUsername)
+                Toast.makeText(this, "로그인 하였습니다", Toast.LENGTH_SHORT).show()
+                finish()
+            }
         }
 
         // 허니가 개발중인 Activity 미리보기 위한 버튼
