@@ -2,6 +2,7 @@ package com.example.lifolio.EditCategory
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lifolio.EditCategory.models.BigCategory
 import com.example.lifolio.EditCategory.models.SmallCategory
@@ -19,6 +20,12 @@ class EditCategoryActivity : AppCompatActivity(){
 
         binding.editcategoryRv.adapter = bigCategoryRVAd
         binding.editcategoryRv.layoutManager = LinearLayoutManager(this)
+
+
+        val itemTouchHelperCallback = ItemTouchHelperCallback(bigCategoryRVAd)
+        val helper = ItemTouchHelper(itemTouchHelperCallback)
+        helper.attachToRecyclerView(binding.editcategoryRv)
+
 
         bigCategoryList.add(BigCategory("인생", mutableListOf(SmallCategory("추억"),
             SmallCategory("여행"),

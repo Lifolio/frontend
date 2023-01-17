@@ -9,7 +9,7 @@ import com.example.lifolio.EditCategory.models.BigCategory
 import com.example.lifolio.EditCategory.models.SmallCategory
 import com.example.lifolio.databinding.ItemBigCategoryBinding
 
-class BigCategoryRVAd(val context : Context, private var dataList : MutableList<BigCategory>) : RecyclerView.Adapter<BigCategoryRVAd.DataViewHolder>() {
+class BigCategoryRVAd(val context : Context, private var dataList : MutableList<BigCategory>) : RecyclerView.Adapter<BigCategoryRVAd.DataViewHolder>(),ItemTouchHelperListener {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val binding = ItemBigCategoryBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -31,5 +31,19 @@ class BigCategoryRVAd(val context : Context, private var dataList : MutableList<
             binding.itemBigcategoryRv.adapter = SmallCategoryRVAd(context, dataList[position].innerList)
             binding.itemBigcategoryRv.layoutManager = LinearLayoutManager(context)
         }
+    }
+
+    override fun onItemMove(from_position: Int, to_position: Int): Boolean {
+        val name = dataList[from_position]
+        // 리스트 갱신
+        dataList.removeAt(from_position)
+        dataList.add(to_position, name)
+
+        // fromPosition에서 toPosition으로 아이템 이동 공지
+        notifyItemMoved(from_position, to_position)
+        return true
+    }
+
+    override fun onItemSwipe(position: Int) {
     }
 }
