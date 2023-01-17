@@ -70,4 +70,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/life_count_tx" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
