@@ -32,6 +32,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".BnbActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".SignUp.TermsOfServiceActivity"
             android:exported="false" />
         <activity
@@ -88,5 +95,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>
