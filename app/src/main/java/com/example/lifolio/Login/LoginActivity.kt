@@ -1,18 +1,15 @@
 package com.example.lifolio.Login
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lifolio.Home.HomeActivity
+import com.example.lifolio.BnbActivity
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.LoginClient
@@ -135,7 +132,7 @@ class LoginActivity : AppCompatActivity() {
                                 Log.d("username", savedUsername)
 
                                 var myjwt = response.body()!!.result!!.accessToken
-                                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                                startActivity(Intent(this@LoginActivity, BnbActivity::class.java))
                                 finish()
                             } else if(responseData.code == 2027){
                                 Toast.makeText(this@LoginActivity, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
@@ -162,7 +159,7 @@ class LoginActivity : AppCompatActivity() {
             }
             else if (tokenInfo != null) {
                 Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, BnbActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
                 setContentView(binding.root)
@@ -203,7 +200,7 @@ class LoginActivity : AppCompatActivity() {
             }
             else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, BnbActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             }
@@ -219,7 +216,7 @@ class LoginActivity : AppCompatActivity() {
 
         // 네이버 소셜 로그인
         binding.naver.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, BnbActivity::class.java)
             val oAuthLoginCallback = object : OAuthLoginCallback {
                 override fun onSuccess() {
                     // 네이버 로그인 API 호출 성공 시 유저 정보를 가져온다
