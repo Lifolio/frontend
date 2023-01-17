@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         // 허니가 개발중인 Activity 미리보기 위한 버튼
         binding.btnSignup.setOnClickListener {
-            val intent = Intent(this, BnbActivity::class.java)
+            val intent = Intent(this, EditCategoryActivity::class.java)
             startActivity(intent)
         }
 

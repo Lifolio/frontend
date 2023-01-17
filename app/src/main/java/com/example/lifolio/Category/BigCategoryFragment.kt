@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import com.example.lifolio.PortfolioFragment
 import com.example.lifolio.R
 import com.example.lifolio.databinding.FragmentBigCategoryBinding
-import com.example.lifolio.databinding.ItemCategoryChipBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
