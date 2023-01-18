@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lifolio.BnbActivity
+import com.example.lifolio.MainApplication
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.LoginClient
@@ -131,7 +132,10 @@ class LoginActivity : AppCompatActivity() {
                                 val savedUsername = pref.getString("username", "").toString()
                                 Log.d("username", savedUsername)
 
+                                // SharedPreference 에 accessToken 저장
                                 var myjwt = response.body()!!.result!!.accessToken
+                                MainApplication.prefs.setString("accessToken", myjwt)
+
                                 startActivity(Intent(this@LoginActivity, BnbActivity::class.java))
                                 finish()
                             } else if(responseData.code == 2027){
