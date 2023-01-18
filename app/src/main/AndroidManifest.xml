@@ -33,6 +33,9 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".BnbActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUp.TermsOfServiceActivity"
             android:exported="false" />
         <activity
