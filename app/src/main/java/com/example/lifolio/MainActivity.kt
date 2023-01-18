@@ -11,6 +11,8 @@ import com.example.lifolio.EditCategory.EditCategoryActivity
 import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.SignUp.TermsOfServiceActivity
 import com.example.lifolio.databinding.ActivityMainBinding
+import okhttp3.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -50,5 +52,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         */
+//        setGetFun()
     }
+//    okHttp3 되는지 테스트
+//    private fun setGetFun() {
+//        val url = "https://www.naver.com"
+//        val okHttpClient = OkHttpClient();
+//        val request = Request.Builder().url(url).build()
+//
+//        okHttpClient.newCall(request).enqueue(object : Callback {
+//            override fun onFailure(call: Call, e: IOException) {}
+//
+//            override fun onResponse(call: Call, response: Response) {
+//                Log.d("RESPONSE", response.body!!.string())
+//            }
+//        })
+//    }
 }
