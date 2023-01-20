@@ -3,6 +3,7 @@ package com.example.lifolio
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.lifolio.Home.HomeDialog
 import com.example.lifolio.My.MyFragment
 import com.example.lifolio.databinding.ActivityBnbBinding
 
@@ -19,6 +20,10 @@ class BnbActivity : AppCompatActivity() {
     // 메모리에 올라갔을 때
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //BNB 액티비티에 다이얼로그 띄우기
+        val dialog = HomeDialog(this)
+        dialog.homeDlg()
 
         // 레이아웃과 연결
         //setContentView(R.layout.activity_bnb)
@@ -43,7 +48,6 @@ class BnbActivity : AppCompatActivity() {
             return@setOnItemSelectedListener true
         }
         binding.menuBnb.selectedItemId = R.id.bnb_my
-
 
     }
 
