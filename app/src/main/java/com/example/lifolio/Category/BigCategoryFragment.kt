@@ -3,6 +3,7 @@ package com.example.lifolio.Category
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
@@ -11,11 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.example.lifolio.PortfolioFragment
 import com.example.lifolio.R
 import com.example.lifolio.databinding.FragmentBigCategoryBinding
 import com.example.lifolio.databinding.ItemCategoryChipBinding
+import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
+import com.github.dhaval2404.colorpicker.listener.ColorListener
+import com.github.dhaval2404.colorpicker.model.ColorShape
+import com.github.dhaval2404.colorpicker.model.ColorSwatch
+import com.github.dhaval2404.colorpicker.util.ColorUtil.parseColor
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -64,7 +71,35 @@ class BigCategoryFragment : Fragment() {
             return@setOnKeyListener false
         }
 
+        binding.materialDialogPickerCircleBtn.setOnClickListener() {
+            MaterialColorPickerDialog
+                .Builder(addCategoryActivity)
+                .setTitle("카테고리 색상 선택")
+                .setColorShape(ColorShape.CIRCLE)
+                .setColorSwatch(ColorSwatch._300)
+                .setDefaultColor(parseColor("#ffffff"))
+                .setColors(resources.getStringArray(R.array.themeColorPickerHex))
+                .setTickColorPerCard(true)
+                .setColorListener (object : ColorListener {   // Dialog 확인을 누르면, Color ID 혹은 Hex String 값 반환. colorHex 쓰면 됨
+                    override fun onColorSelected(color: Int, colorHex: String) {
+//                        mMaterialColorCircle = colorHex
+                        setButtonBackground(binding.materialDialogPickerCircleBtn, color)
+
+                        Log.d("TAG", "onColorSelected: $color, $colorHex")
+                    }
+                })
+                .setNegativeButton("취소")
+                .setPositiveButton("확인")
+                .show()
+        }
+
         return binding.root
+    }
+
+    private fun setButtonBackground(btn: AppCompatButton, color: Int) {
+        btn.setBackgroundResource(R.drawable.color_picked_circle)
+        btn.setBackgroundColor(color)
+
     }
 
 }

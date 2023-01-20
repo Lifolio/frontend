@@ -2,17 +2,21 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
+        jcenter()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+        jcenter()
         mavenCentral()
 
         // 카카오 sdk 레포지토리 설정
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "Lifolio"
