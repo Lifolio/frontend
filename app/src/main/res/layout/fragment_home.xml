@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    tools:context=".HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_first"
+        android:layout_width="304dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="83dp"
+        android:background="@drawable/custom_lifolio"
+        android:backgroundTint="#FF4C34"
+        app:cardCornerRadius="10dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/emoji1_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/emoji"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/name1_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="이름(본인설정)"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="@+id/emoji1_pic"
+            app:layout_constraintStart_toEndOf="@+id/emoji1_pic"
+            app:layout_constraintTop_toTopOf="@+id/emoji1_pic" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/open1_btn"
+            android:src="@drawable/home_vector"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="264dp"
+            android:backgroundTint="#FF4C34"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/edit1_btn"
+            android:src="@drawable/edit_dot"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="232dp"
+            android:backgroundTint="#FF4C34"
+            android:visibility="gone"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_first_expand"
+        android:background="@drawable/expand_lifolio"
+        android:backgroundTint="#FF4F34"
+        android:visibility="gone"
+        app:cardCornerRadius="10dp"
+        android:layout_width="304dp"
+        android:layout_height="196dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-12dp"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="272dp"
+            android:layout_height="168dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_lifolio"
+            android:backgroundTint="#FFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" >
+        </View>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_second"
+        android:layout_width="304dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_lifolio"
+        android:backgroundTint="#FFD300"
+        android:focusable="true"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/emoji2_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/emoji"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/name_tx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="이름(본인설정)"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="@+id/emoji2_pic"
+            app:layout_constraintStart_toEndOf="@+id/emoji2_pic"
+            app:layout_constraintTop_toTopOf="@+id/emoji2_pic" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/open2_btn"
+            android:src="@drawable/home_vector"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#FFD300"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/edit2_btn"
+            android:src="@drawable/edit_dot"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="40dp"
+            android:backgroundTint="#FFD300"
+
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/item_second_expand"
+        android:background="@drawable/expand_lifolio"
+        android:backgroundTint="#FFD300"
+
+        android:layout_width="304dp"
+        android:layout_height="196dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-12dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_second">
+
+        <View
+            android:layout_width="272dp"
+            android:layout_height="168dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_lifolio"
+            android:backgroundTint="#FFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" >
+        </View>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_third"
+        android:layout_width="304dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_lifolio"
+        android:backgroundTint="#FFA511"
+        android:focusable="true"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/emoji3_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/emoji"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/name3_tx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="이름(본인설정)"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="@+id/emoji3_pic"
+            app:layout_constraintStart_toEndOf="@+id/emoji3_pic"
+            app:layout_constraintTop_toTopOf="@+id/emoji3_pic" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/open3_btn"
+            android:src="@drawable/home_vector"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#FFA511"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/edit3_btn"
+            android:src="@drawable/edit_dot"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="40dp"
+            android:backgroundTint="#FFA511"
+            android:visibility="gone"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/item_third_expand"
+        android:background="@drawable/expand_lifolio"
+        android:backgroundTint="#FFA511"
+        android:visibility="gone"
+        android:layout_width="304dp"
+        android:layout_height="196dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-12dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_third" >
+
+        <View
+            android:layout_width="272dp"
+            android:layout_height="168dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_lifolio"
+            android:backgroundTint="#FFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" >
+        </View>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_fourth"
+        android:layout_width="304dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_lifolio"
+        android:backgroundTint="#7EC636"
+        android:focusable="true"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/emoji4_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/emoji"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/name4_tx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="이름(본인설정)"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="@+id/emoji4_pic"
+            app:layout_constraintStart_toEndOf="@+id/emoji4_pic"
+            app:layout_constraintTop_toTopOf="@+id/emoji4_pic" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/open4_btn"
+            android:src="@drawable/home_vector"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#7EC636"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/edit4_btn"
+            android:src="@drawable/edit_dot"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="40dp"
+            android:backgroundTint="#7EC636"
+            android:visibility="gone"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/item_fourth_expand"
+        android:background="@drawable/expand_lifolio"
+        android:backgroundTint="#7EC636"
+        android:visibility="gone"
+        android:layout_width="304dp"
+        android:layout_height="196dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-12dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_fourth" >
+
+        <View
+            android:layout_width="272dp"
+            android:layout_height="168dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_lifolio"
+            android:backgroundTint="#FFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" >
+        </View>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/edit_lifolio_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="308dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="#00ff0000"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="@string/edit_lifolio_btn"
+        android:textColor="#999797"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_fourth" />
+
+</LinearLayout>
