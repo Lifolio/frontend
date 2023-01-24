@@ -67,4 +67,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // Gson 변환기
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // google Flexbox-layout [레이]
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+    // color picker [레이]
+    implementation 'com.github.Dhaval2404:ColorPicker:2.3'
 }

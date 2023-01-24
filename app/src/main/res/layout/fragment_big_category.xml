@@ -49,27 +49,37 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-<!--    <com.google.android.material.chip.ChipGroup-->
-<!--        android:id="@+id/big_category_chipgroup_cg"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:minWidth="76dp"-->
-<!--        android:textAlignment="center"-->
-<!--        app:singleSelection="true"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/big_category_subcategorytitle_tx">-->
+    <FrameLayout
+        android:id="@+id/big_category_chip_frmlt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintTop_toBottomOf="@id/big_category_subcategorytitle_tx"
+        app:layout_constraintStart_toStartOf="parent"
+        >
 
-<!--        &lt;!&ndash;        <com.google.android.material.chip.Chip&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--        &lt;!&ndash;            style="@style/Widget.MaterialComponents.Chip.Filter"&ndash;&gt;-->
-<!--        &lt;!&ndash;            app:chipStrokeColor="#F0F"&ndash;&gt;-->
-<!--        &lt;!&ndash;            app:chipStrokeWidth="1dp"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:text="my chip"&ndash;&gt;-->
-<!--        &lt;!&ndash;            app:chipBackgroundColor="#FFF"&ndash;&gt;-->
-<!--        &lt;!&ndash;            />&ndash;&gt;-->
-<!--    </com.google.android.material.chip.ChipGroup>-->
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/big_category_flexboxlt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:alignContent="stretch"
+            app:alignItems="stretch"
+            app:flexWrap="wrap">
+
+            <EditText
+                android:id="@+id/big_category_chip_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="입력"
+                android:imeOptions="actionDone"
+                android:inputType="text|textCapWords"
+                android:maxLines="1"
+                android:singleLine="true"
+                app:layout_flexGrow="1" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/big_category_colortitle_tx"
@@ -81,8 +91,20 @@
         android:textStyle="bold"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/big_category_subcategorytitle_tx"
+        app:layout_constraintTop_toBottomOf="@id/big_category_chip_frmlt"
         app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/materialDialogPickerCircleBtn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/color_unpicked_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/big_category_colortitle_tx"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
