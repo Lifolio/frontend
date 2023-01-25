@@ -101,7 +101,7 @@
         <CheckBox
             android:id="@+id/identity_agree_tos1_checkbox"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:button="@drawable/identity_agreecheckbox"
             android:text="  개인정보이용동의(필수)"
@@ -117,7 +117,7 @@
         <CheckBox
             android:id="@+id/identity_agree_tos2_checkbox"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
             android:button="@drawable/identity_agreecheckbox"
@@ -132,7 +132,7 @@
         <CheckBox
             android:id="@+id/identity_agree_tos3_checkbox"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
             android:button="@drawable/identity_agreecheckbox"
@@ -147,7 +147,7 @@
         <CheckBox
             android:id="@+id/identity_agree_tos4_checkbox"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
             android:button="@drawable/identity_agreecheckbox"
