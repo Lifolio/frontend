@@ -17,7 +17,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
             android:background="#f8f8fa"
             android:minWidth="48dp"
             android:minHeight="48dp"
@@ -25,7 +24,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black"/>
+            app:tint="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
