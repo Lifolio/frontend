@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorFF4C34">#FF4C34</color>
     <color name="color999797">#999797</color>
+    <color name="colorC2C1C1">#C2C1C1</color>
 
     <color name="switch_text_selected">#ffffff</color>
     <color name="switch_text_unselected">#707070</color>
