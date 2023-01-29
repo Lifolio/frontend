@@ -13,17 +13,4 @@
 
     <color name="switch_text_selected">#ffffff</color>
     <color name="switch_text_unselected">#707070</color>
-
-    <string-array name="themeColorPickerHex">
-        <item>#FFFFFF</item>
-        <item>#FF4C35</item>
-        <item>#F59B23</item>
-        <item>#FFDC11</item>
-        <item>#7EC636</item>
-        <item>#89C8FE</item>
-        <item>#007AFF</item>
-        <item>#BE88E8</item>
-        <item>#FF9796</item>
-        <item>#FAE5D4</item>
-    </string-array>
 </resources>
