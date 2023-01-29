@@ -518,6 +518,40 @@
                 app:layout_constraintTop_toTopOf="parent"
                 />
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/record_location_tx"
+                >
+
+                <android.widget.Button
+                    android:id="@+id/record_location_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:hint="지번, 도로명 또는 건물명을 입력하세요"
+                    android:background="@drawable/signup_btn_round"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="9dp"
+                    android:paddingStart="12dp"
+                    android:gravity="left"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_search_24"
+                    android:layout_gravity="right|center"
+                    android:translationZ="100dp"
+                    android:layout_marginEnd="30dp"
+                    />
+
+            </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
