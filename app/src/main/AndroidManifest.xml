@@ -18,6 +18,13 @@
         android:theme="@style/Theme.Lifolio"
         tools:targetApi="31">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".GoogleMap.MapActivity"
             android:exported="false">
             <meta-data
@@ -52,6 +59,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".Category.AddCategoryActivity"
             android:exported="true">
@@ -141,5 +149,4 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
     </application>
-
 </manifest>

@@ -2,13 +2,14 @@ package com.example.lifolio.ViewAllMyLifolio
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.lifolio.EditCategory.EditCategoryActivity
-
+import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityViewAllLifolioBinding
-
+import kotlinx.android.synthetic.main.activity_view_all_lifolio.view.*
 
 
 class ViewAllLifolioActivity : AppCompatActivity(){
@@ -25,6 +26,36 @@ class ViewAllLifolioActivity : AppCompatActivity(){
 
         binding.viewAllLifolioNavi.naviViewAllLifolioHeaderEditBtn.setOnClickListener {
             startActivity(Intent(this,EditCategoryActivity::class.java))
+        }
+
+        binding.viewAllLifolioViewWayGroup.view_all_lifolio_view_way1_btn.isChecked = true // 디폴트값으로 첫번째 보여주기 방식 체크해주기
+        supportFragmentManager
+            .beginTransaction()
+            .replace(binding.viewAllLifolioFragmentViewConst.id, ViewWay1Fragment())
+            .commitAllowingStateLoss()
+
+
+        binding.viewAllLifolioViewWayGroup.setOnCheckedChangeListener { radioGroup, i ->
+            when(i){
+                R.id.view_all_lifolio_view_way1_btn ->{
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(binding.viewAllLifolioFragmentViewConst.id, ViewWay1Fragment())
+                        .commitAllowingStateLoss()
+                }
+                R.id.view_all_lifolio_view_way2_btn ->{
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(binding.viewAllLifolioFragmentViewConst.id, ViewWay2Fragment())
+                        .commitAllowingStateLoss()
+                }
+                R.id.view_all_lifolio_view_way3_btn ->{
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(binding.viewAllLifolioFragmentViewConst.id, ViewWay3Fragment())
+                        .commitAllowingStateLoss()
+                }
+            }
         }
 
     }

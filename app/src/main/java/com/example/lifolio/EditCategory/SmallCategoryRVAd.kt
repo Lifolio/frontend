@@ -1,16 +1,15 @@
 package com.example.lifolio.EditCategory
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lifolio.Category.EditSmallCategoryActivity
 import com.example.lifolio.EditCategory.models.SmallCategory
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ItemSmallCategoryBinding
-import okhttp3.Interceptor.Companion.invoke
-import java.util.*
 
 class SmallCategoryRVAd (context : Context, val smallCategoryList : MutableList<SmallCategory>) : RecyclerView.Adapter<SmallCategoryRVAd.DataViewHolder>(),ItemTouchHelperListener {
     inner class DataViewHolder(var binding : ItemSmallCategoryBinding) :
@@ -28,7 +27,9 @@ class SmallCategoryRVAd (context : Context, val smallCategoryList : MutableList<
                             smallCategoryList.removeAt(adapterPosition)
                             notifyDataSetChanged()
                         }
-                        else -> Toast.makeText(binding.root.context, "수정",Toast.LENGTH_LONG).show()
+                        else -> {
+                            binding.root.context.startActivity(Intent(binding.root.context,EditSmallCategoryActivity::class.java))
+                        }
                     }
                     true
                 }

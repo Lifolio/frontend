@@ -247,6 +247,7 @@
                     android:text="데이브"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
@@ -259,6 +260,7 @@
                     android:text="오스틴"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/list1" />
 
                 <TextView
@@ -271,6 +273,7 @@
                     android:text="브레드"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/list2" />
 
                 <TextView
@@ -283,6 +286,7 @@
                     android:text="지아나"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/list3" />
 
                 <TextView
@@ -295,6 +299,7 @@
                     android:text="허니"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/list4" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
