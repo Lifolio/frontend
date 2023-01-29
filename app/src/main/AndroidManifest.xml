@@ -18,6 +18,13 @@
         android:theme="@style/Theme.Lifolio"
         tools:targetApi="31">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Category.EditSmallCategoryActivity"
             android:exported="true">
             <meta-data
@@ -31,7 +38,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".Category.AddCategoryActivity"
             android:exported="true">
@@ -66,18 +72,21 @@
         <activity
             android:name=".CustomOfTheYear.CustomOfTheYearActivity"
             android:exported="false" />
-        <activity android:name=".ViewAllMyLifolio.ViewAllLifolioActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ViewAllMyLifolio.ViewAllLifolioActivity"
+            android:exported="false" />
         <activity
             android:name=".SignUp.IDFoundActivity"
             android:exported="false" />
         <activity
             android:name=".SignUp.PWFoundActivity"
             android:exported="false" />
-        <activity android:name=".CustomLifolio.CustomLifolioActivity"
-            android:exported="false"/>
-        <activity android:name=".EditCategory.EditCategoryActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".CustomLifolio.CustomLifolioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditCategory.EditCategoryActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -110,4 +119,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>
