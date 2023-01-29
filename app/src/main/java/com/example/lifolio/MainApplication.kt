@@ -13,6 +13,6 @@ class MainApplication : Application() {
         super.onCreate()
         prefs = PreferenceUtil(applicationContext)
 
-        KakaoSdk.init(this, "c532098877712a29086a2a6e681aab54")
+        KakaoSdk.init(this, BuildConfig.KAKAO_APP_KEY)
     }
 }
