@@ -29,20 +29,17 @@ import com.github.dhaval2404.colorpicker.util.ColorUtil.parseColor
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
 
 
 class BigCategoryFragment : Fragment() {
     private lateinit var binding : FragmentBigCategoryBinding
     private lateinit var addCategoryActivity: AddCategoryActivity
-    private lateinit var chipGroup : ChipGroup
 
     var subCategoryNameList: ArrayList<String> = arrayListOf()
     var colorIdSelected: Int = 0
@@ -161,10 +158,7 @@ class BigCategoryFragment : Fragment() {
                         subCategoryNameList,
                         categoryName
                     ), userId).enqueue(MethodCallback.generalCallback<BaseRes, BaseRes, BaseRes> { })
-
-
             }
-
         }
 
         return binding.root

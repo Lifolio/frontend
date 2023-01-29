@@ -1,6 +1,8 @@
 package com.example.lifolio.Record
 
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
@@ -12,11 +14,12 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lifolio.GoogleMap.PlaceSearchActivity
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityRecordBinding
 import com.google.android.flexbox.FlexboxLayout
@@ -36,40 +39,8 @@ class RecordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initSeekbarView()
-
-        binding.recordStartDateBtn.setOnClickListener {
-            val cal = Calendar.getInstance()
-            val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                binding.recordStartDateBtn.text = "${year}-${month+1}-${day}"
-
-            }
-            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
-        }
-
-        binding.recordEndDateBtn.setOnClickListener {
-            val cal = Calendar.getInstance()
-            val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                binding.recordEndDateBtn.text = "${year}-${month+1}-${day}"
-
-            }
-            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
-        }
-
-        // spinner demo TODO: 추후 수정 필요
-        val myAdapter = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordBigCategorySp.adapter = adapter
-        }
-
-        val myAdapter2 = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordSmallCategorySp.adapter = adapter
-        }
-
-        val myAdapter3 = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordGoalOfYearSp.adapter = adapter
-        }
+        initCalendarDialog()
+        initSpinner()
 
         binding.recordWithWhoEt.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -81,6 +52,13 @@ class RecordActivity : AppCompatActivity() {
                 et.text = null
             }
             return@setOnKeyListener false
+        }
+
+        val activityLauncher= openActivityResultLauncher()
+
+        binding.recordLocationBtn.setOnClickListener {
+            val intent = Intent(this, PlaceSearchActivity::class.java)
+            activityLauncher.launch(intent)
         }
 
 
@@ -118,6 +96,61 @@ class RecordActivity : AppCompatActivity() {
         thumbView.layout(0, 0, thumbView.getMeasuredWidth(), thumbView.getMeasuredHeight())
         thumbView.draw(canvas)
         return BitmapDrawable(resources, bitmap)
+    }
+
+    fun initCalendarDialog() {
+        binding.recordStartDateBtn.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                binding.recordStartDateBtn.text = "${year}-${month+1}-${day}"
+
+            }
+            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
+        binding.recordEndDateBtn.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                binding.recordEndDateBtn.text = "${year}-${month+1}-${day}"
+
+            }
+            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
+    }
+
+    // spinner demo TODO: 추후 수정 필요
+    fun initSpinner() {
+        val myAdapter = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.recordBigCategorySp.adapter = adapter
+        }
+
+        val myAdapter2 = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.recordSmallCategorySp.adapter = adapter
+        }
+
+        val myAdapter3 = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.recordGoalOfYearSp.adapter = adapter
+        }
+    }
+
+    // registerForActivityResult() 를 사용하여 ActivityResultLauncher 타입을 반환하는 메소드
+    private fun openActivityResultLauncher(): ActivityResultLauncher<Intent> {
+        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                var lng = result.data?.getFloatExtra("longitude", 0.0F)
+                var lat = result.data?.getFloatExtra("latitude", 0.0F)
+                Toast.makeText(this, "수신 성공 $lng, $lat", Toast.LENGTH_SHORT).show()
+                binding.recordLocationBtn.text = result.data?.getStringExtra("mainAddress")
+            }
+            else {
+                Toast.makeText(this, "수신 실패", Toast.LENGTH_SHORT).show()
+            }
+        }
+        return resultLauncher
     }
 }
 
