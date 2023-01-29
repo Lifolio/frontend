@@ -12,13 +12,17 @@ import java.io.IOException
 object ApiClient {
     private const val BASE_URL = "https://www.lifolio.shop"
 
-    fun retrofit(): ApiClient {
+    val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(this.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    fun retrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient(AppInterceptor())) // okHttpClient 를 Retrofit 빌더에 추가
             .build()
-            .create(ApiClient::class.java)
     }
 
     fun okHttpClient(interceptor: AppInterceptor): OkHttpClient {
