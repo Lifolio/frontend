@@ -4,6 +4,9 @@ plugins {
     id 'kotlin-android-extensions'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.example.lifolio'
     compileSdk 32
@@ -18,6 +21,13 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "GOOGLE_API_KEY", properties['google_api_key']
+        buildConfigField "String", "TMAP_API_KEY", properties['tmap_api_key']
+        buildConfigField "String", "KAKAO_APP_KEY", properties['kakao_app_key']
+        buildConfigField "String", "KAKAO_APP_KEY_MANIFEST", properties['kakao_app_key_manifest']
+        buildConfigField "String", "NAVER_CLIENT_ID", properties['naver_client_id']
+        buildConfigField "String", "NAVER_CLIENT_SECRET", properties['naver_client_secret']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
