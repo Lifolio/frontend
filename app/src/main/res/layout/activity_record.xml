@@ -67,6 +67,7 @@
             android:inputType="text"
             android:hint="제목을 입력해주세요"
             android:background="@null"
+            android:imeOptions="actionDone"
             app:layout_constraintTop_toBottomOf="@id/record_top_bar_const"
             android:paddingStart="20dp"
             />
@@ -231,7 +232,7 @@
 
             <Spinner
                 android:id="@+id/record_big_category_sp"
-                android:background="@drawable/signup_btn_round"
+                android:background="@drawable/record_spinner_background"
                 android:layout_centerHorizontal="true"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
@@ -242,7 +243,7 @@
 
             <Spinner
                 android:id="@+id/record_small_category_sp"
-                android:background="@drawable/signup_btn_round"
+                android:background="@drawable/record_spinner_background"
                 android:layout_marginTop="8dp"
                 android:layout_centerHorizontal="true"
                 android:layout_width="360dp"
@@ -294,7 +295,7 @@
                 android:minHeight="180dp"
                 android:hint="여기에 텍스트를 입력하세요"
                 android:gravity="top"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
@@ -379,6 +380,7 @@
             />
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/record_content_chip_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -390,36 +392,48 @@
                 android:id="@+id/record_with_who_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:textSize="12sp"
                 android:text="함께한 사람"
                 android:checkable="true"
-                app:chipIcon="@drawable/ic_baseline_add_24"
-                android:background="@drawable/signup_btn_round"
+                app:chipStrokeColor="@color/record_chip_stroke"
+                app:chipStrokeWidth="1dp"
                 app:chipCornerRadius="8dp"
+                app:checkedIconTint="#ff4c34"
+                app:rippleColor="#ff4c34"
+                app:chipBackgroundColor="@color/record_chip_background"
                 />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/record_location_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:textSize="12sp"
                 android:text="위치"
                 android:checkable="true"
-                app:chipIcon="@drawable/ic_baseline_add_24"
-                android:background="@drawable/signup_btn_round"
+                app:chipStrokeColor="@color/record_chip_stroke"
+                app:chipStrokeWidth="1dp"
                 app:chipCornerRadius="8dp"
+                app:checkedIconTint="#ff4c34"
+                app:rippleColor="#ff4c34"
+                app:chipBackgroundColor="@color/record_chip_background"
                 />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/record_goal_of_year_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:textSize="12sp"
                 android:text="올해의 목표"
                 android:checkable="true"
-                app:chipIcon="@drawable/ic_baseline_add_24"
-                android:background="@drawable/signup_btn_round"
+                app:chipStrokeColor="@color/record_chip_stroke"
+                app:chipStrokeWidth="1dp"
                 app:chipCornerRadius="8dp"
+                app:checkedIconTint="#ff4c34"
+                app:rippleColor="#ff4c34"
+                app:chipBackgroundColor="@color/record_chip_background"
                 />
         </com.google.android.material.chip.ChipGroup>
 
@@ -436,7 +450,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/record_with_who_const"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
+            android:minHeight="120dp"
             app:layout_constraintTop_toBottomOf="@id/record_section7_const">
 
             <TextView
@@ -467,7 +482,7 @@
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/record_flexboxlt"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     app:alignContent="stretch"
                     app:alignItems="stretch"
                     app:flexWrap="wrap">
@@ -519,6 +534,7 @@
                 />
 
             <FrameLayout
+                android:id="@+id/record_location_flt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -543,6 +559,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/record_location_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_search_24"
@@ -586,7 +603,7 @@
 
             <Spinner
                 android:id="@+id/record_goal_of_year_sp"
-                android:background="@drawable/signup_btn_round"
+                android:background="@drawable/record_spinner_background"
                 android:layout_centerHorizontal="true"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
