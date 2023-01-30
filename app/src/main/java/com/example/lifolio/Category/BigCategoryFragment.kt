@@ -1,6 +1,9 @@
 package com.example.lifolio.Category
 
+import android.app.Activity
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.LightingColorFilter
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,6 +16,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.lifolio.Category.model.PostCategoryReq
 import com.example.lifolio.JWT.ApiClient
@@ -48,9 +53,21 @@ class BigCategoryFragment : Fragment() {
     companion object {
         const val TAG : String = "BIG_CATEGORY_FRAGMENT"
 
-        fun newInstance() : BigCategoryFragment {
-            return BigCategoryFragment()
-        }
+        var CATEGORY_COLOR_RES_ID_LIST = arrayListOf<Int>(
+            R.color.category_color_1,
+            R.color.category_color_2,
+            R.color.category_color_3,
+            R.color.category_color_4,
+            R.color.category_color_5,
+            R.color.category_color_6,
+            R.color.category_color_7,
+            R.color.category_color_8,
+            R.color.category_color_9,
+            R.color.category_color_10,
+            R.color.category_color_11,
+            R.color.category_color_12
+        )
+
 
         val CATEGORY_COLOR_MAP : HashMap<String, Int> = hashMapOf(
             "#FF4C34" to 1,
@@ -62,6 +79,7 @@ class BigCategoryFragment : Fragment() {
             "#89C8FE" to 7,
             "#007AFF" to 8,
             "#BE88E8" to 9,
+            "#A63DF8" to 10,
             "#FF9796" to 11,
             "#FAE5D4" to 12
         )
@@ -128,11 +146,17 @@ class BigCategoryFragment : Fragment() {
                 .setColorListener (object : ColorListener {   // Dialog 확인을 누르면, Color ID 혹은 Hex String 값 반환. colorHex 쓰면 됨
                     override fun onColorSelected(color: Int, colorHex: String) {
 //                        mMaterialColorCircle = colorHex
-                        setButtonBackground(binding.materialDialogPickerCircleBtn, color)
+                        var colorId = CATEGORY_COLOR_MAP.get(colorHex)
+                        var colorResId = colorId?.let { it1 -> CATEGORY_COLOR_RES_ID_LIST.get(it1 - 1) }
+                        if (colorId != null) {
+                            if (colorResId != null) {
+                                setButtonBackground(binding.materialDialogPickerCircleBtn, colorResId)
+                            }
+                        }
                         colorIdSelected = CATEGORY_COLOR_MAP.get(colorHex)!!
                         binding.bigCategorySubmitBtn.isEnabled = (categoryName != "" && colorIdSelected != 0)
 
-                        Log.d("TAG", "onColorSelected: $color, $colorHex, ${CATEGORY_COLOR_MAP.get(colorHex)}]")
+                        Log.d("TAG", "onColorSelected: $color, $colorHex, $colorId, $colorResId]")
                     }
                 })
                 .setNegativeButton("취소")
@@ -166,10 +190,9 @@ class BigCategoryFragment : Fragment() {
         return binding.root
     }
 
-    private fun setButtonBackground(btn: AppCompatButton, color: Int) {
-        btn.setBackgroundResource(R.drawable.color_picked_circle)
-        btn.setBackgroundColor(color)
-
+    private fun setButtonBackground(btn: AppCompatButton, colorId: Int) {
+        btn.background = ResourcesCompat.getDrawable(resources, R.drawable.color_picked_circle, null)
+        btn.backgroundTintList = ContextCompat.getColorStateList(addCategoryActivity, colorId)
     }
 
     private fun FlexboxLayout.addChip(text: String) {
