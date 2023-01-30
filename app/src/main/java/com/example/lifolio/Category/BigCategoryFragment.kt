@@ -102,7 +102,7 @@ class BigCategoryFragment : Fragment() {
 
         })
 
-
+        // EditText 값 입력 시 Chip 생성
         binding.bigCategoryChipEt.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 val et = v as EditText
@@ -115,6 +115,7 @@ class BigCategoryFragment : Fragment() {
             return@setOnKeyListener false
         }
 
+        // ColorPicker Dialog 띄우기
         binding.materialDialogPickerCircleBtn.setOnClickListener() {
             MaterialColorPickerDialog
                 .Builder(addCategoryActivity)
@@ -139,6 +140,7 @@ class BigCategoryFragment : Fragment() {
                 .show()
         }
 
+        // 등록 완료 버튼 클릭 시, POST 요청
         binding.bigCategorySubmitBtn.setOnClickListener {
             if(binding.bigCategoryNameTx.text.isNullOrBlank()) {
                 Toast.makeText(addCategoryActivity, "카테고리명을 작성해주세요", Toast.LENGTH_SHORT).show()
