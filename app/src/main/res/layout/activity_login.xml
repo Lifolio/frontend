@@ -84,8 +84,8 @@
 
         <CheckBox
             android:id="@+id/auto_login_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/auto_login_checkbox"
             android:button="@android:color/transparent"

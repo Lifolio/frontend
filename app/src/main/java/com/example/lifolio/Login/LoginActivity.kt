@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lifolio.BnbActivity
+import com.example.lifolio.BuildConfig
 import com.example.lifolio.MainApplication
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityLoginBinding
@@ -134,7 +135,9 @@ class LoginActivity : AppCompatActivity() {
 
                                 // SharedPreference 에 accessToken 저장
                                 var myjwt = response.body()!!.result!!.accessToken
+                                var userId = response.body()!!.result!!.userId
                                 MainApplication.prefs.setString("accessToken", myjwt)
+                                MainApplication.prefs.setString("userId", userId.toString())
 
                                 startActivity(Intent(this@LoginActivity, BnbActivity::class.java))
                                 finish()
@@ -250,9 +253,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             // 네이버 소셜 로그인 초기화
-            NaverIdLoginSDK.initialize(this@LoginActivity, getString(R.string.naver_client_id), getString(
-                R.string.naver_client_secret
-            ), "앱 이름")
+            NaverIdLoginSDK.initialize(this@LoginActivity, BuildConfig.NAVER_CLIENT_ID, BuildConfig.NAVER_CLIENT_SECRET, "앱 이름")
             NaverIdLoginSDK.authenticate(this@LoginActivity, oAuthLoginCallback)
 
         }

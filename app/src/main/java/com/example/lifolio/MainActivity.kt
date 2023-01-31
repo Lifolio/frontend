@@ -9,7 +9,9 @@ import com.example.lifolio.CustomLifolio.CustomLifolioActivity
 import com.example.lifolio.CustomOfTheYear.CustomOfTheYearActivity
 import com.example.lifolio.EditCategory.EditCategoryActivity
 import com.example.lifolio.Login.LoginActivity
+import com.example.lifolio.OneRecord.OneRecordActivity
 import com.example.lifolio.SignUp.TermsOfServiceActivity
+import com.example.lifolio.ViewAllMyLifolio.ViewAllLifolioActivity
 import com.example.lifolio.databinding.ActivityMainBinding
 import okhttp3.*
 import java.io.IOException
@@ -41,7 +43,13 @@ class MainActivity : AppCompatActivity() {
 
         // 허니가 개발중인 Activity 미리보기 위한 버튼
         binding.btnSignup.setOnClickListener {
-            val intent = Intent(this, EditCategoryActivity::class.java)
+            val intent = Intent(this, ViewAllLifolioActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 박브레드가 개발중인 Activity 미리보기 위한 버튼
+        binding.btnPbread.setOnClickListener {
+            val intent = Intent(this, OneRecordActivity::class.java)
             startActivity(intent)
         }
 

@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Record.RecordActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_top_bar_const"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#f8f8fa"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/record_back_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/arrow_back_ios"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/record_top_bar_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기록하기"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/record_save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FF0000"
+                android:text="저장"
+                android:textColor="@color/colorC2C1C1"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/record_title_et"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:textSize="14sp"
+            android:inputType="text"
+            android:hint="제목을 입력해주세요"
+            android:background="@null"
+            android:imeOptions="actionDone"
+            app:layout_constraintTop_toBottomOf="@id/record_top_bar_const"
+            android:paddingStart="20dp"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_section1_const"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#ededed"
+            app:layout_constraintTop_toBottomOf="@id/record_title_et"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_select_date_const"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toBottomOf="@id/record_section1_const">
+
+            <TextView
+                android:id="@+id/record_select_date_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="날짜 선택"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_calendar_month_24"
+                android:paddingBottom="10dp"
+                android:contentDescription="달력 이미지"
+                app:layout_constraintStart_toEndOf="@id/record_select_date_tx"
+                app:layout_constraintBottom_toBottomOf="@id/record_select_date_tx"/>
+
+            <Button
+                android:id="@+id/record_start_date_btn"
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/white"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/record_select_date_tx"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/record_between_date_tx"
+                />
+
+            <TextView
+                android:id="@+id/record_between_date_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" ~ "
+                android:layout_marginTop="7dp"
+                app:layout_constraintStart_toEndOf="@id/record_start_date_btn"
+                app:layout_constraintTop_toBottomOf="@id/record_select_date_tx"
+                app:layout_constraintEnd_toStartOf="@id/record_end_date_btn"
+                />
+
+            <Button
+                android:id="@+id/record_end_date_btn"
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="12sp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/record_select_date_tx"
+                app:layout_constraintStart_toEndOf="@id/record_between_date_tx"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_section2_const"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#ededed"
+            app:layout_constraintTop_toBottomOf="@id/record_select_date_const"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_photo_const"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            app:layout_constraintTop_toBottomOf="@id/record_section2_const">
+
+            <TextView
+                android:id="@+id/record_photo_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사진"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:background="@drawable/signup_btn_round"
+                android:backgroundTint="#c2c1c1"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginStart="20dp"
+                android:drawableStart="@drawable/ic_baseline_add_24"
+                app:layout_constraintTop_toBottomOf="@id/record_photo_tx"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_section3_const"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#ededed"
+            app:layout_constraintTop_toBottomOf="@id/record_photo_const"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_select_category_const"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            app:layout_constraintTop_toBottomOf="@id/record_section3_const">
+
+            <TextView
+                android:id="@+id/record_category_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="카테고리 선택"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <Spinner
+                android:id="@+id/record_big_category_sp"
+                android:background="@drawable/record_spinner_background"
+                android:layout_centerHorizontal="true"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintTop_toBottomOf="@id/record_category_tx"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <Spinner
+                android:id="@+id/record_small_category_sp"
+                android:background="@drawable/record_spinner_background"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_goneMarginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/record_big_category_sp"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_section4_const"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#ededed"
+            app:layout_constraintTop_toBottomOf="@id/record_select_category_const"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_content_const"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="220dp"
+            app:layout_constraintTop_toBottomOf="@id/record_section4_const">
+
+            <TextView
+                android:id="@+id/record_content_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내용"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:textSize="14sp"
+                android:minHeight="180dp"
+                android:hint="여기에 텍스트를 입력하세요"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@id/record_content_tx"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_section5_const"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#ededed"
+            app:layout_constraintTop_toBottomOf="@id/record_content_const"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_importance_const"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toBottomOf="@id/record_section5_const">
+
+            <TextView
+                android:id="@+id/record_importance_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중요도"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <SeekBar
+                android:id="@+id/record_seekbar_sb"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:max="100"
+                android:progress="50"
+                android:thumb="@drawable/seekbar_thumb"
+                android:progressDrawable="@drawable/seekbar_progress"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/record_importance_tx"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/record_section6_const"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#ededed"
+        app:layout_constraintTop_toBottomOf="@id/record_importance_const"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/record_add_menu_const"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintTop_toBottomOf="@id/record_section6_const">
+
+        <TextView
+            android:id="@+id/record_add_menu_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용 추가"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/record_content_chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/record_add_menu_tx"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/record_with_who_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:textSize="12sp"
+                android:text="함께한 사람"
+                android:checkable="true"
+                app:chipStrokeColor="@color/record_chip_stroke"
+                app:chipStrokeWidth="1dp"
+                app:chipCornerRadius="8dp"
+                app:checkedIconTint="#ff4c34"
+                app:rippleColor="#ff4c34"
+                app:chipBackgroundColor="@color/record_chip_background"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/record_location_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:textSize="12sp"
+                android:text="위치"
+                android:checkable="true"
+                app:chipStrokeColor="@color/record_chip_stroke"
+                app:chipStrokeWidth="1dp"
+                app:chipCornerRadius="8dp"
+                app:checkedIconTint="#ff4c34"
+                app:rippleColor="#ff4c34"
+                app:chipBackgroundColor="@color/record_chip_background"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/record_goal_of_year_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:textSize="12sp"
+                android:text="올해의 목표"
+                android:checkable="true"
+                app:chipStrokeColor="@color/record_chip_stroke"
+                app:chipStrokeWidth="1dp"
+                app:chipCornerRadius="8dp"
+                app:checkedIconTint="#ff4c34"
+                app:rippleColor="#ff4c34"
+                app:chipBackgroundColor="@color/record_chip_background"
+                />
+        </com.google.android.material.chip.ChipGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_section7_const"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#ededed"
+            app:layout_constraintTop_toBottomOf="@id/record_add_menu_const"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_with_who_const"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="120dp"
+            app:layout_constraintTop_toBottomOf="@id/record_section7_const">
+
+            <TextView
+                android:id="@+id/record_with_who_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="함께한 사람"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <FrameLayout
+                android:id="@+id/record_with_who_frmlt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                app:layout_constraintTop_toBottomOf="@id/record_with_who_tx"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/record_flexboxlt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:alignContent="stretch"
+                    app:alignItems="stretch"
+                    app:flexWrap="wrap">
+
+                    <EditText
+                        android:id="@+id/record_with_who_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="입력"
+                        android:textSize="14sp"
+                        android:imeOptions="actionDone"
+                        android:inputType="text|textCapWords"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:backgroundTint="#dbdbdb"
+                        app:layout_flexGrow="1" />
+
+                </com.google.android.flexbox.FlexboxLayout>
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_section8_const"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#ededed"
+            app:layout_constraintTop_toBottomOf="@id/record_with_who_const"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_location_const"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toBottomOf="@id/record_section8_const">
+
+            <TextView
+                android:id="@+id/record_location_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="위치"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <FrameLayout
+                android:id="@+id/record_location_flt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/record_location_tx"
+                >
+
+                <android.widget.Button
+                    android:id="@+id/record_location_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:hint="지번, 도로명 또는 건물명을 입력하세요"
+                    android:background="@drawable/signup_btn_round"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="9dp"
+                    android:paddingStart="12dp"
+                    android:gravity="left"
+                    />
+
+                <ImageView
+                    android:id="@+id/record_location_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_search_24"
+                    android:layout_gravity="right|center"
+                    android:translationZ="100dp"
+                    android:layout_marginEnd="30dp"
+                    />
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_section9_const"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#ededed"
+            app:layout_constraintTop_toBottomOf="@id/record_location_const"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_goal_of_year_const"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toBottomOf="@id/record_section9_const">
+
+            <TextView
+                android:id="@+id/record_goal_of_year_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="올해의 목표"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <Spinner
+                android:id="@+id/record_goal_of_year_sp"
+                android:background="@drawable/record_spinner_background"
+                android:layout_centerHorizontal="true"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintTop_toBottomOf="@id/record_goal_of_year_tx"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
