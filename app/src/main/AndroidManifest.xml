@@ -148,6 +148,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" /> <!-- 네이티브 앱 키 설정 -->
         <service android:name=".MyFirebaseMessagingService"
             android:exported="true">
             <intent-filter>

@@ -11,10 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lifolio.BnbActivity
 import com.example.lifolio.BuildConfig
-import com.example.lifolio.Category.PostCategoryService
 import com.example.lifolio.JWT.ApiClient
 import com.example.lifolio.MainApplication
-import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
@@ -230,10 +228,15 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "앱이 요청 권한이 없음", Toast.LENGTH_SHORT).show()
                     }
                     else -> { // Unknown
+                        Log.d("에러","에러 : $error.toString()")
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else if (token != null) {
+
+                socialLogin(token.accessToken,"kakao")
+
+
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, BnbActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -253,6 +256,7 @@ class LoginActivity : AppCompatActivity() {
         binding.naver.setOnClickListener {
             val intent = Intent(this, BnbActivity::class.java)
             val oAuthLoginCallback = object : OAuthLoginCallback {
+
                 override fun onSuccess() {
                     // 네이버 로그인 API 호출 성공 시 유저 정보를 가져온다
                     NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
@@ -294,6 +298,57 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun socialLogin(accessToken: String, social: String) {
+        val requestToServer = RequestToServer // 서버 요청
+        Log.d("카카오 토큰","토큰 : ${accessToken}")
+
+        val retrofit = ApiClient.retrofit()
+        val service = retrofit.create(ApiService::class.java)
+
+        requestToServer.apiService.requestKakao(
+            RequestKakaoLogin(
+                accessToken = accessToken,
+                social = social)
+        ).enqueue(object : Callback<ResponseLogin> {
+            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+                Log.d("통신 실패", "${t.message}")
+            }
+
+            override fun onResponse(
+                call: Call<ResponseLogin>,
+                response: Response<ResponseLogin>
+            ) {
+                if (response.isSuccessful) {
+                    val responseData = response.body()
+                    if (responseData!!.isSuccess) {
+                        Log.d("성공", response.body()!!.result.toString())
+
+                        // 자동 로그인 shared 에 있는 "username"이란 데이터를 불러온다는 뜻
+                        val pref = getSharedPreferences("username", 0)
+                        // 1번째는 데이터 키 값이고 2번째는 키 값에 데이터가 존재하지 않을 때 대체 값
+                        val savedUsername = pref.getString("username", "").toString()
+                        Log.d("username", savedUsername)
+
+                        // SharedPreference 에 accessToken 저장
+                        var myjwt = response.body()!!.result!!.accessToken
+                        var userId = response.body()!!.result!!.userId
+                        MainApplication.prefs.setString("accessToken", myjwt)
+                        MainApplication.prefs.setString("userId", userId.toString())
+                        val token =MainApplication.prefs.getString("fcmToken", "")
+                        Log.d("fcmToken", "토큰 : $token")
+                        sendRegistrationToServer(
+                            MainApplication.prefs.getString("fcmToken", "")
+                        )
+
+                        startActivity(Intent(this@LoginActivity, BnbActivity::class.java))
+                        finish()
+                    }
+                }
+            }
+        })
+    }
+}
+
     private fun sendRegistrationToServer(token: String) {
         val retrofit = ApiClient.retrofit()
         val service = retrofit.create(ApiService::class.java)
@@ -321,6 +376,6 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
-}
+
 
 
