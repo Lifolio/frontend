@@ -30,5 +30,4 @@
         android:enabled="true"
         android:icon="@drawable/bnb_portfolio_default"
         android:title="Portfolio" />
-
 </menu>

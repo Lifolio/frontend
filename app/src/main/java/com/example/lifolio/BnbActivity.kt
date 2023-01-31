@@ -12,7 +12,7 @@ class BnbActivity : AppCompatActivity() {
     private lateinit var binding : ActivityBnbBinding
 
     private lateinit var myFragment: MyFragment
-    private lateinit var goalFragment: GoalFragment
+    private lateinit var planningFragment: PlanningFragment
     private lateinit var socialFragment: SocialFragment
     private lateinit var portfolioFragment: PortfolioFragment
 
@@ -36,7 +36,7 @@ class BnbActivity : AppCompatActivity() {
                     changeFragment(MyFragment())
                 }
                 R.id.bnb_goal -> {
-                    changeFragment(GoalFragment())
+                    changeFragment(PlanningFragment())
                 }
                 R.id.bnb_social -> {
                     changeFragment(SocialFragment())
