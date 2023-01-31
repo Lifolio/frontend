@@ -1,6 +1,5 @@
 package com.example.lifolio.Login
 
-import com.example.lifolio.SignUp.Response
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,4 +17,12 @@ interface ApiService {
     fun postFcmToken( // sms인증
         @Query("token") token : String
     ): Call<StringResponse>
+
+    @POST("auth/kakao/logIn")
+    fun requestKakao(
+        @Body body: RequestKakaoLogin
+    ) : Call<ResponseLogin>
+
+    @POST("auth/naver/logIn")
+    fun requestNaver(@Body body : RequestKakaoLogin) : Call<ResponseLogin>
 }
