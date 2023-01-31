@@ -179,6 +179,7 @@ class CreateIdActivity : AppCompatActivity() {
                                 2021 -> Toast.makeText(this@CreateIdActivity, "아이디는 최대 20자리입니다.", Toast.LENGTH_SHORT).show()
                                 2022 -> Toast.makeText(this@CreateIdActivity, "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show()
                                 4000 -> Toast.makeText(this@CreateIdActivity, "데이터베이스 에러.", Toast.LENGTH_SHORT).show()
+                                2034 -> Toast.makeText(this@CreateIdActivity, "전화번호를 하이픈(-) 없이 입력해주세요.", Toast.LENGTH_SHORT).show()
                                 else -> Toast.makeText(this@CreateIdActivity, "알 수 없는 에러", Toast.LENGTH_SHORT).show()
                             }
                         }
