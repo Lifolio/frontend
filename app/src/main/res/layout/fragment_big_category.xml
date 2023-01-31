@@ -75,7 +75,10 @@
                 android:imeOptions="actionDone"
                 android:inputType="text|textCapWords"
                 android:maxLines="1"
+                android:textSize="16sp"
                 android:singleLine="true"
+                android:textColorHint="#dbdbdb"
+                android:backgroundTint="#dbdbdb"
                 android:nextFocusDown="@id/big_category_chip_et"
                 android:privateImeOptions=""
                 app:layout_flexGrow="1" />
