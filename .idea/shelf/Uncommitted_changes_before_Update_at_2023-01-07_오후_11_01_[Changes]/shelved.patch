@@ -1,0 +1,17 @@
+Index: app/src/main/java/com/example/lifolio/SingUp/IDRequest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.lifolio.SingUp\r\n\r\n// 챠코 - #IDFoundActivity와 연결\r\n\r\nimport retrofit2.http.POST\r\n\r\ninterface IDRequest {\r\n    //POST(\"user/find\")\r\n}
+===================================================================
+diff --git a/app/src/main/java/com/example/lifolio/SingUp/IDRequest.kt b/app/src/main/java/com/example/lifolio/SingUp/IDRequest.kt
+--- a/app/src/main/java/com/example/lifolio/SingUp/IDRequest.kt	
++++ b/app/src/main/java/com/example/lifolio/SingUp/IDRequest.kt	
+@@ -1,6 +1,7 @@
+ package com.example.lifolio.SingUp
+ 
+-// 챠코 - #IDFoundActivity와 연결
++// 챠코 - IDFoundActivity와 연결
++// 허니 - IDFragment와 연결
+ 
+ import retrofit2.http.POST
+ 
