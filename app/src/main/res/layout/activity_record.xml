@@ -492,10 +492,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="입력"
+                        android:textSize="14sp"
                         android:imeOptions="actionDone"
                         android:inputType="text|textCapWords"
                         android:maxLines="1"
                         android:singleLine="true"
+                        android:backgroundTint="#dbdbdb"
                         app:layout_flexGrow="1" />
 
                 </com.google.android.flexbox.FlexboxLayout>
