@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top"
@@ -55,29 +56,80 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="지금까지 원준님이 담은 Life, 5개!"
-        android:textSize="17dp"
         android:textColor="@color/black"
+        android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/listView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20dp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/life_count_tx" />-->
+
+    <HorizontalScrollView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_height="136.5dp"
+        android:layout_marginTop="16dp"
+        android:scrollbars="none"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/life_count_tx" />
+        app:layout_constraintTop_toBottomOf="@id/life_count_tx">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="343.5dp"
+                android:layout_height="136.5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="30dp"
+                app:layout_constraintStart_toEndOf="parent"
+                android:src="@drawable/life" />
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="343.5dp"
+                android:layout_height="136.5dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintStart_toEndOf="@id/image1"
+                android:src="@drawable/life" />
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="343.5dp"
+                android:layout_height="136.5dp"
+                app:layout_constraintStart_toEndOf="@id/image2"
+                android:src="@drawable/life" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <ImageView
         android:layout_width="360dp"
         android:layout_height="300dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="10dp"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView"
-        android:src="@drawable/calendar" />
+        android:layout_marginTop="15dp"
+        android:src="@drawable/calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listView" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#FF4C34"
+        android:src="@drawable/pencilIcon"
+        app:fabCustomSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

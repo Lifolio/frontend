@@ -33,4 +33,5 @@ class DataRVAdapter(
 
     // 표현할 Item 의 총 개수
     override fun getItemCount(): Int = dataList.size
+
 }
