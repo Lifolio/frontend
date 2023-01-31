@@ -47,11 +47,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // 박브레드가 개발중인 Activity 미리보기 위한 버튼
-        binding.btnPbread.setOnClickListener {
-            val intent = Intent(this, OneRecordActivity::class.java)
-            startActivity(intent)
-        }
 
         // 챠코 테스트 할 때만 임시로 쓰겠습니다
         /*
