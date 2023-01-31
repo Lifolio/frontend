@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BadgeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#F8F8FA"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/badge_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#F8F8FA"
+        tools:ignore="MissingConstraints" >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/badge_back_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/arrow_back_ios"
+            app:layout_constraintBottom_toBottomOf="@id/badge_toolbar"
+            app:layout_constraintStart_toStartOf="@id/badge_toolbar"
+            app:layout_constraintTop_toTopOf="@id/badge_toolbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:text="나의 배지"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/badge_percent">
+    </View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:layout_marginTop="270dp"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:textStyle="normal"
+        android:layout_gravity="center_horizontal"
+        android:text="획득 가능 배지의 4%를 채웠어요!"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="320dp"
+        android:textStyle="normal"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="10sp"
+        android:gravity="center_horizontal"
+        android:text="배지 분류 1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="364dp"
+        android:gravity="center">
+
+        <View
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/badge_image">
+        </View>
+
+        <View
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="63dp"
+            android:background="@drawable/badge_image">
+        </View>
+
+        <View
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="63dp"
+            android:background="@drawable/badge_image">
+        </View>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginTop="428dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="배지 이름"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="72dp"
+            android:text="배지 이름"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="72dp"
+            android:text="배지 이름"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="484dp"
+        android:textStyle="normal"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="10sp"
+        android:gravity="center_horizontal"
+        android:text="배지 분류 2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="524dp"
+        android:gravity="center">
+
+        <View
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/badge_image">
+        </View>
+
+        <View
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="63dp"
+            android:background="@drawable/badge_image">
+        </View>
+
+        <View
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="63dp"
+            android:background="@drawable/badge_image">
+        </View>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginTop="588dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="배지 이름"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="72dp"
+            android:text="배지 이름"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="72dp"
+            android:text="배지 이름"/>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetNotificationFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#F8F8FA"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/calendar_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#F8F8FA"
+        tools:ignore="MissingConstraints" >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/calendar_back_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/arrow_back_ios"
+            app:layout_constraintBottom_toBottomOf="@id/calendar_toolbar"
+            app:layout_constraintStart_toStartOf="@id/calendar_toolbar"
+            app:layout_constraintTop_toTopOf="@id/calendar_toolbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:text="알림 설정"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/roboto_bold"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="9sp"
+                android:text="앱 푸쉬 알림"
+                android:textColor="#ff4c34"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="모두 끄기"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="252dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="18dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/roboto_bold"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="9sp"
+                android:text="MY"
+                android:textColor="#ff4c34"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="모두 끄기"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="252dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="일주일동안 기록되지 않을 때"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="140dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="뱃지 획득 시 알림"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="205dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="18dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/roboto_bold"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="9sp"
+                android:text="Planning"
+                android:textColor="#ff4c34"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="모두 받지 않기"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="222dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="To-do 알림"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="241dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="목표 달성 관련 날짜"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="191.5dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="18dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/roboto_bold"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="9sp"
+                android:text="Social"
+                android:textColor="#ff4c34"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="모두 받지 않기"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="222dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="팔로우 한 친구 업로드"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="179dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="팔로우 한 친구 관심분야"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="166dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="18dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/roboto_bold"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="9sp"
+                android:text="Branding"
+                android:textColor="#ff4c34"
+                android:textSize="15sp" />
+
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:fontFamily="@font/roboto_medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="9sp"
+                android:text="좋아요"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="268dp"
+                android:checked="false"
+                android:thumb="@drawable/selector_switch_thumb"
+                app:track="@drawable/selector_switch_track"
+                app:switchMinWidth="34dp" />
+
+        </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="18dp"
+                android:background="#ededed" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="9sp"
+                    android:text="마케팅 수신 동의"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="209dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    app:track="@drawable/selector_switch_track"
+                    app:switchMinWidth="34dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

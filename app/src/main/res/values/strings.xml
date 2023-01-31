@@ -5,4 +5,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_lifolio_btn"><u>커스텀 Lifolio 편집</u></string>
+    <string name="dialog_ok_btn"><u>추가하기</u></string>
 </resources>

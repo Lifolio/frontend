@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TodayTodoFragment">
+
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/todo_checkbox"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp">
+
+            <CheckBox
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/todo_checkbox_shape"
+                android:button="@android:color/transparent"
+                tools:ignore="MissingConstraints">
+
+            </CheckBox>
+
+            <TextView
+                android:id="@+id/todo_timepicker_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="11:00"
+                android:textColor="#c2c1c1"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/todo_tx"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="오늘의 할 일 1"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/edit_dot_plan">
+
+            </androidx.appcompat.widget.AppCompatImageButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <CheckBox
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/todo_checkbox_shape"
+                android:button="@android:color/transparent"
+                tools:ignore="MissingConstraints">
+
+            </CheckBox>
+
+            <TextView
+                android:id="@+id/todo_timepicker_tx2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="14:00"
+                android:textColor="#c2c1c1"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/todo_tx2"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="오늘의 할 일 2"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/edit_dot_plan">
+
+            </androidx.appcompat.widget.AppCompatImageButton>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
