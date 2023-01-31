@@ -6,13 +6,13 @@
     <item
         android:id="@+id/bnb_my"
         android:enabled="true"
-        android:icon="@drawable/person_filled"
+        android:icon="@drawable/bnb_my_default"
         android:title="My" />
 
     <item
         android:id="@+id/bnb_goal"
         android:enabled="true"
-        android:icon="@drawable/flag"
+        android:icon="@drawable/bnb_goal_default"
         android:title="Goal"/>
 
     <item
@@ -22,13 +22,13 @@
     <item
         android:id="@+id/bnb_social"
         android:enabled="true"
-        android:icon="@drawable/cloud"
+        android:icon="@drawable/bnb_social_default"
         android:title="Social" />
 
     <item
         android:id="@+id/bnb_portfolio"
         android:enabled="true"
-        android:icon="@drawable/demography"
+        android:icon="@drawable/bnb_portfolio_default"
         android:title="Portfolio" />
 
 </menu>

@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlanningFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:id="@+id/header_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:text="목표ㆍ계획"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/planning_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:layout_weight="1"
+        tools:ignore="UselessParent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="앞으로의 삶을\n미리 그려보아요!"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="320dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/percent_view">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="올해의 목표 달성율"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="38dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="총"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/total_count_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="38dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="51dp"
+                    android:layout_marginTop="38dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="l"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/success_count_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="38dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="달성" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="85dp"
+                    android:layout_marginTop="38dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="15" />
+
+                <TextView
+                    android:id="@+id/comment_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="85dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="잘 하고 있어요!" />
+
+                <ProgressBar
+                    android:id="@+id/circle_progressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="211dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/progresscircle_bg"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progressbar_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:progress="75" />
+
+                <TextView
+                    android:id="@+id/progress_tx"
+                    android:layout_width="27dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="244dp"
+                    android:layout_marginTop="52dp"
+                    android:textColor="#fff"
+                    app:layout_constraintBottom_toBottomOf="@+id/circle_progressbar"
+                    app:layout_constraintEnd_toEndOf="@+id/circle_progressbar"
+                    app:layout_constraintStart_toStartOf="@+id/circle_progressbar"
+                    app:layout_constraintTop_toTopOf="@+id/circle_progressbar"
+                    tools:text="75%" />
+
+            </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="43dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="2023년 올해 안에 이룰 목표"
+                                android:textAlignment="viewStart"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/this_year_goal_add_btn"
+                                android:layout_width="51dp"
+                                android:layout_height="26dp"
+                                android:layout_marginStart="269dp"
+                                android:layout_marginTop="43dp"
+                                android:background="@drawable/year_goal_btn_background"
+                                android:text="추가"
+                                android:textColor="#ffffff"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="320dp"
+                android:layout_height="131dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/this_year_goal_checkbox">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="16dp">
+
+                    <CheckBox
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/this_year_goal_checkbox_shape"
+                        android:button="@android:color/transparent"
+                        tools:ignore="MissingConstraints">
+
+                    </CheckBox>
+
+                    <TextView
+                        android:id="@+id/this_year_goal_tx"
+                        android:layout_width="237dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="책 5권 읽기"
+                        android:textColor="#000000"
+                        android:textSize="14sp">
+
+                    </TextView>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/edit_dot_plan">
+
+                    </androidx.appcompat.widget.AppCompatImageButton>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="148dp"
+                    android:layout_marginTop="107dp"
+                    android:background="@drawable/this_year_goal_open_btn">
+
+                </androidx.appcompat.widget.AppCompatImageButton>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_bold"
+                android:text="이번달의 To-Do"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/calendar_pre_btn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="#ffffff"
+                    android:src="@drawable/todo_calendar_left_btn"/>
+
+                <TextView
+                    android:id="@+id/item_month_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="116dp"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="1월"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/calendar_next_btn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="116dp"
+                    android:background="#ffffff"
+                    android:src="@drawable/todo_calendar_right_btn"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="일"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="#ff4c34"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="월"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="화"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="수"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="목"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="금"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="토"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="#3430ff"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/todo_calendar_custom"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                tools:listitem="@layout/list_item_day" />
+
+<!--            <CalendarView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+
+<!--            </CalendarView>-->
+
+            <RelativeLayout
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/frame_tabs_goal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tabRippleColor="@android:color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabMode="fixed"
+                    app:tabGravity="center"
+                    app:tabPaddingStart="6dp"
+                    app:tabPaddingEnd="6dp"
+                    app:tabIndicatorColor="#ff4c34"
+                    app:tabIndicatorHeight="6dp"
+                    app:tabIndicator="@drawable/goal_tab_selector"
+                    app:tabTextColor="#c2c1c1"
+                    app:tabSelectedTextColor="#000"
+                    app:tabTextAppearance="@style/goalTabTextSizeBold"
+                    android:clipToPadding="false"
+                    tools:ignore="MissingConstraints">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="오늘" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="이번 주" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="이번 달" />
+
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/todo_add_btn"
+                    android:layout_width="69dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="250dp"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:background="@drawable/todo_btn_background"
+                    android:text="할 일 추가"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_todo_tab"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/todo_checkbox">
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_bold"
+                android:text="연간 계획 세우기"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="320dp"
+                android:layout_height="183dp"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="36dp"
+                android:background="@drawable/this_year_goal_view">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="27dp"
+                    android:background="#ffffff">
+                </View>
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginStart="42dp"
+                    android:backgroundTint="#fff"
+                    android:background="@drawable/this_year_goal_circle">
+                </View>
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginStart="150dp"
+                    android:backgroundTint="#fff"
+                    android:background="@drawable/this_year_goal_circle">
+                </View>
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginStart="258dp"
+                    android:backgroundTint="#fff"
+                    android:background="@drawable/this_year_goal_circle">
+                </View>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="29dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="37dp"
+                        android:layout_marginTop="43dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="2022"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="29dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="80dp"
+                        android:layout_marginTop="43dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="2023"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="29dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="78dp"
+                        android:layout_marginTop="43dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="2024"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="109dp"
+                    android:background="#ffc781"
+                    android:src="@drawable/this_year_goal_left_btn" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="109dp"
+                    android:layout_marginStart="295dp"
+                    android:background="#ffc781"
+                    android:src="@drawable/this_year_goal_right_btn"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/this_year_goal_recycler"
+                    android:layout_width="272dp"
+                    android:layout_height="124dp"
+                    android:layout_marginTop="59dp"
+                    android:layout_marginStart="24dp"
+                    tools:listitem="@layout/list_item_this_year_goal">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/annual_goal_add_btn"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="81dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="144dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:background="#00ff0000"
+                    android:gravity="center"
+                    android:text="@string/dialog_ok_btn"
+                    android:textColor="#a6ffffff"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+</FrameLayout>
