@@ -106,13 +106,13 @@ class IdentityActivity : AppCompatActivity() {
 
         binding.identityAgreeTos3Btn.setOnClickListener {
             val intent = Intent(this,TosActivity::class.java)
-            intent.putExtra("tos","5")
+            intent.putExtra("tos","6")
             startActivity(intent)
         }
 
         binding.identityAgreeTos4Btn.setOnClickListener {
             val intent = Intent(this,TosActivity::class.java)
-            intent.putExtra("tos","5")
+            intent.putExtra("tos","7")
             startActivity(intent)
         }
 
@@ -220,7 +220,7 @@ class IdentityActivity : AppCompatActivity() {
         binding.identityNextBtn.setOnClickListener { // 회원가입 다음 단계로 가는 버튼
             val intent = Intent(this,CreateIdActivity::class.java)
             val name : String = binding.identityNameEt.getText().toString()
-            val phoneNumber : String = binding.identityRequestNumEt.getText().toString()
+            val phoneNumber : String = binding.identityContactEt.getText().toString()
             intent.putExtra("name",name) // 이번 단계에서 입력한 이름 다음 단계로 넘겨주기
             intent.putExtra("phoneNumber",phoneNumber)
             startActivity(intent)
