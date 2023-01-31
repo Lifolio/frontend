@@ -13,6 +13,8 @@ import com.example.lifolio.OneRecord.OneRecordActivity
 import com.example.lifolio.SignUp.TermsOfServiceActivity
 import com.example.lifolio.ViewAllMyLifolio.ViewAllLifolioActivity
 import com.example.lifolio.databinding.ActivityMainBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import okhttp3.*
 import java.io.IOException
 
@@ -22,6 +24,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (task.isSuccessful) {
+                }
+                if (!task.isSuccessful) {
+                    Log.w("FCM Log", "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+                val token = task.result?:""
+                MainApplication.prefs.setString("fcmToken",token)
+                Log.d("FCM Log", "FCM 토큰: $token")
+            })
 
         // 자동 로그인 pref
         val pref = getSharedPreferences("username", 0)
