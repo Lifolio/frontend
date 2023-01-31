@@ -23,7 +23,7 @@
         app:backgroundTint="#FFFFFF"
         app:fabAlignmentMode="center"
         app:fabCradleMargin="0dp"
-        app:fabCradleRoundedCornerRadius="10dp" >
+        app:fabCradleRoundedCornerRadius="0dp" >
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -32,8 +32,9 @@
         android:background="@android:color/transparent"
         app:menu="@menu/bnb_menu"
         app:elevation="0dp"
+        app:tint="@null"
         app:labelVisibilityMode="unlabeled"
-        app:itemIconSize="28dp"
+        app:itemIconSize="30dp"
         app:itemIconTint="@color/bottom_item_color"
         app:itemTextColor="@color/bottom_item_color"/>
 
@@ -46,6 +47,7 @@
         android:src="@drawable/bnb_home"
         app:maxImageSize="60dp"
         app:borderWidth="0dp"
+        app:tint="@null"
         app:layout_anchor="@id/bottom_app_bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
