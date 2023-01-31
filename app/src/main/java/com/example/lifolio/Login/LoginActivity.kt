@@ -261,6 +261,11 @@ class LoginActivity : AppCompatActivity() {
                     // 네이버 로그인 API 호출 성공 시 유저 정보를 가져온다
                     NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
                         override fun onSuccess(result: NidProfileResponse) {
+                            val naverAccessToken = NaverIdLoginSDK.getAccessToken()
+
+                            if (naverAccessToken != null) {
+                                socialLogin(naverAccessToken,"naver")
+                            }
                             val nickname = result.profile?.nickname.toString()
                             Log.e(TAG, "네이버 로그인한 유저 정보 - 이름 : $nickname")
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
