@@ -92,6 +92,30 @@ class IdentityActivity : AppCompatActivity() {
             }
         }
 
+        binding.identityAgreeTos1Btn.setOnClickListener {
+            val intent = Intent(this,TosActivity::class.java)
+            intent.putExtra("tos","4")
+            startActivity(intent)
+        }
+
+        binding.identityAgreeTos2Btn.setOnClickListener {
+            val intent = Intent(this,TosActivity::class.java)
+            intent.putExtra("tos","5")
+            startActivity(intent)
+        }
+
+        binding.identityAgreeTos3Btn.setOnClickListener {
+            val intent = Intent(this,TosActivity::class.java)
+            intent.putExtra("tos","5")
+            startActivity(intent)
+        }
+
+        binding.identityAgreeTos4Btn.setOnClickListener {
+            val intent = Intent(this,TosActivity::class.java)
+            intent.putExtra("tos","5")
+            startActivity(intent)
+        }
+
 
         val selectTelecom = binding.identitySelectTelecomBtn
         val telecom = arrayOf("SKT","KT","LG")

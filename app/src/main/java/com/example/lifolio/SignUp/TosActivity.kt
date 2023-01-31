@@ -33,5 +33,29 @@ class TosActivity : AppCompatActivity() { // 약관 각각의 내용을 보여�
                 .replace(binding.tosConstraint.id,TosthirdFragment())
                 .commit()
         }
+        else if (tos == "4"){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.tosConstraint.id,IdentityTos1Fragment())
+                .commit()
+        }
+        else if (tos == "5"){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.tosConstraint.id,IdentityTos2Fragment())
+                .commit()
+        }
+        else if (tos == "6"){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.tosConstraint.id,IdentityTos3Fragment())
+                .commit()
+        }
+        else if (tos == "7"){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.tosConstraint.id,IdentityTos4Fragment())
+                .commit()
+        }
     }
 }
