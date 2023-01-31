@@ -9,7 +9,7 @@
         android:id="@+id/customoftheyear_edit_const"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#f8f8fa"
+        android:background="#ecfaff"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
@@ -38,13 +38,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/customoftheyear_edit_goal_const"
-        android:layout_width="302dp"
-        android:layout_height="103dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/custom_of_the_year_cloud"
+        android:layout_width="match_parent"
+        android:layout_height="289dp"
+        android:background="@drawable/customoftheyear_edit_const_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customoftheyear_edit_const">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/custom_of_the_year_cloud"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/customoftheyear_edit_goal_et"
@@ -56,7 +64,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8" />
 
         <TextView
             android:id="@+id/customoftheyear_edit_goal_tv"
@@ -69,43 +78,38 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/customoftheyear_eiit_goal_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="13dp"
+            android:layout_marginEnd="66dp"
             android:background="@drawable/custom_of_the_year_edit_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.81" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/customoftheyear_save_goal_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="13dp"
+            android:layout_marginEnd="66dp"
             android:background="@drawable/custom_of_the_year_save_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.81" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/customoftheyear_underline_const"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_marginTop="28dp"
-        android:background="#ededed"
-        app:layout_constraintTop_toBottomOf="@+id/customoftheyear_edit_goal_const" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/customoftheyear_history_goal_const"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/customoftheyear_underline_const">
+        app:layout_constraintTop_toBottomOf="@+id/customoftheyear_edit_goal_const">
 
         <TextView
             android:id="@+id/customoftheyear_tv1"
@@ -114,11 +118,11 @@
             android:layout_marginTop="36dp"
             android:text="지난 날의 '나'"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
+            android:background="@drawable/custom_of_the_year_text_underline"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -265,7 +269,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/customoftheyear_underline2_const"
         android:layout_width="match_parent"
-        android:layout_height="256dp"
+        android:layout_height="1000dp"
         android:background="#ededed"
         app:layout_constraintTop_toBottomOf="@+id/customoftheyear_history_goal_const" />
 
