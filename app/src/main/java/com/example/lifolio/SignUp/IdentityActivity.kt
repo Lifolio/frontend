@@ -190,7 +190,7 @@ class IdentityActivity : AppCompatActivity() {
             }
         }
 
-//        binding.identityNextBtn.isEnabled = false // 디폴트로 다음단계 버튼 비활성화
+        binding.identityNextBtn.isEnabled = false // 디폴트로 다음단계 버튼 비활성화
         binding.identityErrorRequestNumTv.setVisibility(View.GONE) // 디폴트로 인증번호 에러 메시지 숨기기
         // 인증번호를 입력 받는 editText 에서 엔터키를 누를때 이벤트
         val getRequestNumber = binding.identityRequestNumEt // 인증번호 EditText
