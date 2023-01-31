@@ -7,7 +7,7 @@
     tools:context=".Category.EditSmallCategoryActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/edit_big_category_const"
+        android:id="@+id/edit_small_category_const"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="#f8f8fa"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/edit_big_category_back_btn"
+            android:id="@+id/edit_small_category_back_btn"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="16dp"
@@ -40,7 +40,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/edit_big_category_switchtitle_tx"
+        android:id="@+id/edit_small_category_switchtitle_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="카테고리 분류"
@@ -49,12 +49,12 @@
         android:textStyle="bold"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_big_category_const"
+        app:layout_constraintTop_toBottomOf="@id/edit_small_category_const"
         app:layout_constraintStart_toStartOf="parent"
         />
 
     <RelativeLayout
-        android:id="@+id/edit_big_category_switchlayout_rel"
+        android:id="@+id/edit_small_category_switchlayout_rel"
         android:layout_width="320dp"
         android:layout_height="36dp"
         android:background="@drawable/category_switch"
@@ -62,11 +62,11 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_big_category_switchtitle_tx">
+        app:layout_constraintTop_toBottomOf="@id/edit_small_category_switchtitle_tx">
 
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/edit_big_category_selectsize_swch"
+            android:id="@+id/edit_small_category_selectsize_swch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -84,7 +84,7 @@
             android:weightSum="2">
 
             <TextView
-                android:id="@+id/edit_big_category_left_tx"
+                android:id="@+id/edit_small_category_left_tx"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -95,7 +95,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/edit_big_category_right_tx"
+                android:id="@+id/edit_small_category_right_tx"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -108,15 +108,15 @@
     </RelativeLayout>
 
     <FrameLayout
-        android:id="@+id/add_categoty_frame_fl"
+        android:id="@+id/edit_small_categoty_frame_fl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_big_category_switchlayout_rel"
+        app:layout_constraintTop_toBottomOf="@id/edit_small_category_switchlayout_rel"
         app:layout_constraintStart_toStartOf="parent"
         />
 
     <TextView
-        android:id="@+id/small_category_surcategorytitle_tx"
+        android:id="@+id/edit_small_category_surcategorytitle_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="상위 카테고리"
@@ -125,21 +125,21 @@
         android:textStyle="bold"
         android:layout_marginStart="28dp"
         android:layout_marginTop="42dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_big_category_switchlayout_rel"
+        app:layout_constraintTop_toBottomOf="@id/edit_small_category_switchlayout_rel"
         app:layout_constraintStart_toStartOf="parent"
         />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/small_category_spinnerLay_rel"
+    <RelativeLayout
+        android:id="@+id/edit_small_category_spinnerLay_rel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/small_category_surcategorytitle_tx"
+        app:layout_constraintTop_toBottomOf="@+id/edit_small_category_surcategorytitle_tx"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
 
         <Spinner
-            android:id="@+id/small_category_spinner_sp"
+            android:id="@+id/edit_small_category_spinner_sp"
             android:background="@drawable/category_spinner_background"
             android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
@@ -149,7 +149,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/small_category_name_tx"
+        android:id="@+id/edit_small_category_name_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="카테고리명"
@@ -158,12 +158,12 @@
         android:textStyle="bold"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/small_category_spinnerLay_rel"
+        app:layout_constraintTop_toBottomOf="@+id/edit_small_category_spinnerLay_rel"
         app:layout_constraintStart_toStartOf="parent"
         />
 
     <EditText
-        android:id="@+id/small_category_name_et"
+        android:id="@+id/edit_small_category_name_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="40dp"
@@ -175,11 +175,11 @@
         android:layout_marginLeft="28dp"
         android:layout_marginRight="28dp"
         android:textColorHint="#dbdbdb"
-        app:layout_constraintTop_toBottomOf="@id/small_category_name_tx"
+        app:layout_constraintTop_toBottomOf="@id/edit_small_category_name_tx"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/big_category_submit_btn"
+        android:id="@+id/edit_small_category_submit_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/common_submit_round_button"

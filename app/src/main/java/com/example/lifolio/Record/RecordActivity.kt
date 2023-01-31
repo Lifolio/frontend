@@ -2,46 +2,81 @@ package com.example.lifolio.Record
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.renderscript.ScriptGroup.Input
 import android.util.Log
 import android.util.TypedValue
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.View.OnClickListener
+import android.view.View.OnTouchListener
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import com.example.lifolio.GoogleMap.PlaceSearchActivity
 import com.example.lifolio.R
 import com.example.lifolio.databinding.ActivityRecordBinding
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 
 class RecordActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRecordBinding
+
     private lateinit var thumbView: View
+    private lateinit var withWhoLayout: ConstraintLayout
+    private lateinit var locationLayout: ConstraintLayout
+    private lateinit var goalOfYearLayout: ConstraintLayout
+
+    private lateinit var bigCategorySpinner: Spinner
+    private lateinit var smallCategorySpinner: Spinner
+    private lateinit var goalOfYearSpinner: Spinner
+
+    private lateinit var inputMethodManager: InputMethodManager
+
     private var importanceScore = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+
         binding = ActivityRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        withWhoLayout = binding.recordWithWhoConst
+        locationLayout = binding.recordLocationConst
+        goalOfYearLayout = binding.recordGoalOfYearConst
+
+
+        withWhoLayout.setVisibility(View.GONE)
+        locationLayout.setVisibility(View.GONE)
+        goalOfYearLayout.setVisibility(View.GONE)
+
+        hideOrDisplayOptionIconsButton(withWhoLayout, binding.recordWithWhoChip)
+        hideOrDisplayOptionIconsButton(locationLayout, binding.recordLocationChip)
+        hideOrDisplayOptionIconsButton(goalOfYearLayout, binding.recordGoalOfYearChip)
+
 
         initSeekbarView()
         initCalendarDialog()
         initSpinner()
 
+        // 함께한 사람 EditText 입력 시 chip 동적 추가
         binding.recordWithWhoEt.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 val et = v as EditText
@@ -56,13 +91,40 @@ class RecordActivity : AppCompatActivity() {
 
         val activityLauncher= openActivityResultLauncher()
 
+        // 위치 activity 전환
         binding.recordLocationBtn.setOnClickListener {
             val intent = Intent(this, PlaceSearchActivity::class.java)
             activityLauncher.launch(intent)
         }
 
+        // actionDone 시, 키보드 내리기
+        binding.recordTitleEt.setOnKeyListener { view, keyCode, event ->
+            var handled = false
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(binding.recordTitleEt.windowToken, 0)
+                handled = true
+            }
+            handled
+        }
 
+    }
 
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        var focusView: View? = currentFocus
+        if(focusView != null) {
+            val rect: Rect = Rect()
+            val x: Int = (ev?.x?.toInt() ?: Int) as Int
+            val y: Int = (ev?.x?.toInt() ?: Int) as Int
+            if(!rect.contains(x, y)) {
+                var manager: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                if(manager != null) {
+                    manager.hideSoftInputFromWindow(focusView.windowToken, 0)
+                }
+                focusView.clearFocus()
+            }
+        }
+        return super.dispatchTouchEvent(ev)
     }
 
     fun initSeekbarView() {
@@ -120,20 +182,35 @@ class RecordActivity : AppCompatActivity() {
 
     // spinner demo TODO: 추후 수정 필요
     fun initSpinner() {
-        val myAdapter = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordBigCategorySp.adapter = adapter
-        }
+        bigCategorySpinner = binding.recordBigCategorySp
+        smallCategorySpinner = binding.recordSmallCategorySp
+        goalOfYearSpinner = binding.recordGoalOfYearSp
 
-        val myAdapter2 = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordSmallCategorySp.adapter = adapter
-        }
+        var bigCateogyDummyList: ArrayList<String> = arrayListOf()
+        bigCateogyDummyList.add("큰 카테고리 선택")
+        bigCateogyDummyList.add("일상")
+        bigCateogyDummyList.add("취미")
+        bigCateogyDummyList.add("동아리")
+        bigCateogyDummyList.add("여행")
+        bigCateogyDummyList.add("기타")
 
-        val myAdapter3 = ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordGoalOfYearSp.adapter = adapter
-        }
+        bigCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, bigCateogyDummyList)
+
+        var smallCateogyDummyList: ArrayList<String> = arrayListOf()
+        smallCateogyDummyList.add("작은 카테고리 선택")
+        smallCateogyDummyList.add("넷플릭스")
+        smallCateogyDummyList.add("클라이밍")
+        smallCateogyDummyList.add("방탈출")
+
+        smallCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, smallCateogyDummyList)
+
+        var goalOfYearDummyList: ArrayList<String> = arrayListOf()
+        goalOfYearDummyList.add("올해의 목표 선택")
+        goalOfYearDummyList.add("라이폴리오 앱 출시")
+        goalOfYearDummyList.add("일주일에 4번 헬스장")
+        goalOfYearDummyList.add("매일 영어 단어 암기")
+
+        goalOfYearSpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, goalOfYearDummyList)
     }
 
     // registerForActivityResult() 를 사용하여 ActivityResultLauncher 타입을 반환하는 메소드
@@ -152,32 +229,54 @@ class RecordActivity : AppCompatActivity() {
         }
         return resultLauncher
     }
-}
 
-private fun FlexboxLayout.addChip(text: String) {
-    val chip = LayoutInflater.from(context).inflate(R.layout.item_category_chip, null) as Chip
-    chip.text = text
-
-    val layoutParams = ViewGroup.MarginLayoutParams(ViewGroup.MarginLayoutParams.WRAP_CONTENT, ViewGroup.MarginLayoutParams.WRAP_CONTENT)
-    layoutParams.rightMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4F, resources.displayMetrics).roundToInt()
-
-    chip.setOnCloseIconClickListener {
-        removeView(chip as View)
+    private fun hideOrDisplayOptionIconsButton(v: ConstraintLayout, chip: Chip) {
+        chip.setOnClickListener {
+            if(v.visibility == View.VISIBLE) {
+                v.setVisibility(View.GONE)
+            } else {
+                v.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
-    addView(chip, childCount - 1, layoutParams)
-}
+    fun hideKeyboard() {
+        if(this.currentFocus != null) {
+            val inputManager: InputMethodManager =
+                this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(
+                this.currentFocus!!.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
+    }
 
-private fun FlexboxLayout.getAllChips(): List<Chip> {
-    return (0 until childCount).mapNotNull { index ->
-        getChildAt(index) as? Chip
+    private fun FlexboxLayout.addChip(text: String) {
+        val chip = LayoutInflater.from(context).inflate(R.layout.item_category_chip, null) as Chip
+        chip.text = text
+
+        val layoutParams = ViewGroup.MarginLayoutParams(ViewGroup.MarginLayoutParams.WRAP_CONTENT, ViewGroup.MarginLayoutParams.WRAP_CONTENT)
+        layoutParams.rightMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4F, resources.displayMetrics).roundToInt()
+
+        chip.setOnCloseIconClickListener {
+            removeView(chip as View)
+        }
+
+        addView(chip, childCount - 1, layoutParams)
+    }
+
+    private fun FlexboxLayout.getAllChips(): List<Chip> {
+        return (0 until childCount).mapNotNull { index ->
+            getChildAt(index) as? Chip
+        }
+    }
+
+    private fun FlexboxLayout.clearChips() {
+        val chipViews = (0 until childCount).mapNotNull { index ->
+            val view = getChildAt(index)
+            if (view is Chip) view else null
+        }
+        chipViews.forEach { removeView(it) }
     }
 }
 
-private fun FlexboxLayout.clearChips() {
-    val chipViews = (0 until childCount).mapNotNull { index ->
-        val view = getChildAt(index)
-        if (view is Chip) view else null
-    }
-    chipViews.forEach { removeView(it) }
-}

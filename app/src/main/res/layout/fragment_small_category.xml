@@ -30,7 +30,7 @@
         >
 
         <Spinner
-            android:id="@+id/small_category_spinner_sp"
+            android:id="@+id/small_category_sup_category_sp"
             android:background="@drawable/category_spinner_background"
             android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/big_category_submit_btn"
+        android:id="@+id/small_category_submit_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/common_submit_round_button"
