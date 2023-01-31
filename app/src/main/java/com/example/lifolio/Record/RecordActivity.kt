@@ -37,14 +37,19 @@ import kotlin.math.roundToInt
 
 class RecordActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRecordBinding
-    private lateinit var thumbView: View
-    private var importanceScore = ""
 
-    private var constraintSet: ConstraintSet = ConstraintSet()
+    private lateinit var thumbView: View
     private lateinit var withWhoLayout: ConstraintLayout
     private lateinit var locationLayout: ConstraintLayout
     private lateinit var goalOfYearLayout: ConstraintLayout
+
+    private lateinit var bigCategorySpinner: Spinner
+    private lateinit var smallCategorySpinner: Spinner
+    private lateinit var goalOfYearSpinner: Spinner
+
     private lateinit var inputMethodManager: InputMethodManager
+
+    private var importanceScore = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -177,20 +182,35 @@ class RecordActivity : AppCompatActivity() {
 
     // spinner demo TODO: 추후 수정 필요
     fun initSpinner() {
-        ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordBigCategorySp.adapter = adapter
-        }
+        bigCategorySpinner = binding.recordBigCategorySp
+        smallCategorySpinner = binding.recordSmallCategorySp
+        goalOfYearSpinner = binding.recordGoalOfYearSp
 
-        ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordSmallCategorySp.adapter = adapter
-        }
+        var bigCateogyDummyList: ArrayList<String> = arrayListOf()
+        bigCateogyDummyList.add("큰 카테고리 선택")
+        bigCateogyDummyList.add("일상")
+        bigCateogyDummyList.add("취미")
+        bigCateogyDummyList.add("동아리")
+        bigCateogyDummyList.add("여행")
+        bigCateogyDummyList.add("기타")
 
-        ArrayAdapter.createFromResource(this@RecordActivity, R.array.spinner_array, R.layout.item_category_spinner).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.recordGoalOfYearSp.adapter = adapter
-        }
+        bigCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, bigCateogyDummyList)
+
+        var smallCateogyDummyList: ArrayList<String> = arrayListOf()
+        smallCateogyDummyList.add("작은 카테고리 선택")
+        smallCateogyDummyList.add("넷플릭스")
+        smallCateogyDummyList.add("클라이밍")
+        smallCateogyDummyList.add("방탈출")
+
+        smallCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, smallCateogyDummyList)
+
+        var goalOfYearDummyList: ArrayList<String> = arrayListOf()
+        goalOfYearDummyList.add("올해의 목표 선택")
+        goalOfYearDummyList.add("라이폴리오 앱 출시")
+        goalOfYearDummyList.add("일주일에 4번 헬스장")
+        goalOfYearDummyList.add("매일 영어 단어 암기")
+
+        goalOfYearSpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, goalOfYearDummyList)
     }
 
     // registerForActivityResult() 를 사용하여 ActivityResultLauncher 타입을 반환하는 메소드
