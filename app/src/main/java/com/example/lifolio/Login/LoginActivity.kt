@@ -9,10 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lifolio.BnbActivity
-import com.example.lifolio.BuildConfig
-import com.example.lifolio.MainApplication
-import com.example.lifolio.R
+import com.example.lifolio.*
 import com.example.lifolio.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
@@ -156,6 +153,11 @@ class LoginActivity : AppCompatActivity() {
                     }
                 })
             }
+        }
+
+        binding.btnFindIdpw.setOnClickListener {
+            val intent = Intent(this, IdpwFindActivity::class.java)
+            startActivity(intent)
         }
 
         // 카카오 소셜 로그인

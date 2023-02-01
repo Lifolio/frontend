@@ -57,4 +57,16 @@ class BnbActivity : AppCompatActivity() {
             .replace(R.id.fragments_frame, fragment)
             .commit()
     }
+
+    // 챠코 추가
+    fun changeMyFragment(index: Int) {
+        when(index) {
+            1 -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragments_frame, ProfileFragment())
+                    .commit()
+            }
+        }
+    }
 }
