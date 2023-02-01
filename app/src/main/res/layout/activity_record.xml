@@ -185,6 +185,7 @@
                 />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/record_add_photo_btn"
                 android:layout_width="68dp"
                 android:layout_height="68dp"
                 android:background="@drawable/signup_btn_round"
@@ -198,6 +199,14 @@
                 app:layout_constraintTop_toBottomOf="@id/record_photo_tx"
                 app:layout_constraintStart_toStartOf="parent"
                 />
+            
+            <ImageView
+                android:id="@+id/record_photo_imgv"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintTop_toBottomOf="@id/record_photo_tx"
+                app:layout_constraintStart_toEndOf="@id/record_add_photo_btn"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
