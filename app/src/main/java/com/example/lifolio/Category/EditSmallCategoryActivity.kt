@@ -27,12 +27,10 @@ class EditSmallCategoryActivity : AppCompatActivity() {
 
         supCategorySpinner = binding.editSmallCategorySpinnerSp
         var supCateogyDummyList: ArrayList<String> = arrayListOf()
-        supCateogyDummyList.add("상위 카테고리 선택")
-        supCateogyDummyList.add("일상")
-        supCateogyDummyList.add("취미")
+//        supCateogyDummyList.add("상위 카테고리 선택")
         supCateogyDummyList.add("동아리")
-        supCateogyDummyList.add("여행")
-        supCateogyDummyList.add("기타")
+        supCateogyDummyList.add("업무")
+
 
         supCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, supCateogyDummyList)
 

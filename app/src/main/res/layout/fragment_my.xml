@@ -16,32 +16,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/category_icon"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginVertical="25dp"
-            android:layout_marginLeft="25dp"
-            android:src="@drawable/category"
-            app:layout_constraintBottom_toBottomOf="@id/top"
-            app:layout_constraintStart_toStartOf="@id/top"
-            app:layout_constraintTop_toTopOf="@id/top" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginVertical="25dp"
+            android:layout_marginStart="30dp"
             android:text="My"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/top"
-            app:layout_constraintStart_toEndOf="@id/category_icon"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/top" />
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/profile_btn"
+            android:layout_width="23dp"
+            android:layout_height="26dp"
             android:layout_marginEnd="25dp"
             android:src="@drawable/profile"
             app:layout_constraintBottom_toBottomOf="@id/top"
@@ -62,14 +53,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top" />
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/listView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="20dp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/life_count_tx" />-->
+    <!--        <androidx.recyclerview.widget.RecyclerView-->
+    <!--            android:id="@+id/listView"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="20dp"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/life_count_tx" />-->
 
     <HorizontalScrollView
         android:id="@+id/listView"
@@ -82,30 +73,48 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/image1"
                 android:layout_width="343.5dp"
                 android:layout_height="136.5dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="30dp"
-                app:layout_constraintStart_toEndOf="parent"
-                android:src="@drawable/life" />
+                android:layout_marginStart="20dp"
+                android:src="@drawable/life"
+                app:layout_constraintStart_toEndOf="parent" />
 
             <ImageView
                 android:id="@+id/image2"
                 android:layout_width="343.5dp"
                 android:layout_height="136.5dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintStart_toEndOf="@id/image1"
-                android:src="@drawable/life" />
+                android:layout_marginStart="20dp"
+                android:src="@drawable/life"
+                app:layout_constraintStart_toEndOf="@id/image1" />
 
             <ImageView
                 android:id="@+id/image3"
                 android:layout_width="343.5dp"
                 android:layout_height="136.5dp"
-                app:layout_constraintStart_toEndOf="@id/image2"
-                android:src="@drawable/life" />
+                android:layout_marginStart="20dp"
+                android:src="@drawable/life"
+                app:layout_constraintStart_toEndOf="@id/image2" />
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="343.5dp"
+                android:layout_height="136.5dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/life"
+                app:layout_constraintStart_toEndOf="@id/image3" />
+
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_width="343.5dp"
+                android:layout_height="136.5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/life"
+                app:layout_constraintStart_toEndOf="@id/image4" />
         </LinearLayout>
 
     </HorizontalScrollView>

@@ -188,26 +188,24 @@ class RecordActivity : AppCompatActivity() {
 
         var bigCateogyDummyList: ArrayList<String> = arrayListOf()
         bigCateogyDummyList.add("큰 카테고리 선택")
-        bigCateogyDummyList.add("일상")
-        bigCateogyDummyList.add("취미")
-        bigCateogyDummyList.add("동아리")
-        bigCateogyDummyList.add("여행")
-        bigCateogyDummyList.add("기타")
+        bigCateogyDummyList.add("인생")
+        bigCateogyDummyList.add("학교")
+        bigCateogyDummyList.add("업무")
 
         bigCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, bigCateogyDummyList)
 
         var smallCateogyDummyList: ArrayList<String> = arrayListOf()
         smallCateogyDummyList.add("작은 카테고리 선택")
-        smallCateogyDummyList.add("넷플릭스")
-        smallCateogyDummyList.add("클라이밍")
-        smallCateogyDummyList.add("방탈출")
+        smallCateogyDummyList.add("추억")
+        smallCateogyDummyList.add("여행")
+        smallCateogyDummyList.add("친구")
 
         smallCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, smallCateogyDummyList)
 
         var goalOfYearDummyList: ArrayList<String> = arrayListOf()
         goalOfYearDummyList.add("올해의 목표 선택")
-        goalOfYearDummyList.add("라이폴리오 앱 출시")
-        goalOfYearDummyList.add("일주일에 4번 헬스장")
+        goalOfYearDummyList.add("해외로 여행")
+        goalOfYearDummyList.add("일주일에 2번 이상 운동하기")
         goalOfYearDummyList.add("매일 영어 단어 암기")
 
         goalOfYearSpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, goalOfYearDummyList)

@@ -130,83 +130,115 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customlifolio_tv2" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/customlifolio_category_btn1"
             android:layout_width="88dp"
             android:layout_height="28dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
+            android:text="추억"
+            android:textSize="12sp"
             android:background="@drawable/customlifolio_category_btn"
             app:layout_constraintEnd_toStartOf="@+id/customlifolio_category_btn2"
             app:layout_constraintTop_toBottomOf="@+id/customlifolio_tv3">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="카테고리"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="추억"-->
+<!--                android:textSize="12sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.AppCompatButton>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/customlifolio_category_btn2"
             android:layout_width="88dp"
             android:layout_height="28dp"
             android:layout_marginTop="12dp"
+            android:text="여행"
+            android:textSize="12sp"
             android:background="@drawable/customlifolio_category_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customlifolio_tv3">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="카테고리"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="여행"-->
+<!--                android:textSize="12sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.AppCompatButton>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/customlifolio_category_btn3"
             android:layout_width="88dp"
             android:layout_height="28dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
+            android:text="친구"
+            android:textSize="12sp"
             android:background="@drawable/customlifolio_category_btn"
             app:layout_constraintStart_toEndOf="@+id/customlifolio_category_btn2"
             app:layout_constraintTop_toBottomOf="@+id/customlifolio_tv3">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="카테고리"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="친구"-->
+<!--                android:textSize="12sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.AppCompatButton>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/customlifolio_view_const"
             android:layout_width="304dp"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
+            android:orientation="vertical"
             android:background="@drawable/signup_btn_round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customlifolio_category_btn2">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/customlifolio_chart1"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/customlifolio_chart2"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/customlifolio_chart3"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="280dp"

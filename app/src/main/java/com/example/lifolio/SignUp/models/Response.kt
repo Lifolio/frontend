@@ -18,13 +18,16 @@ data class Response(
 
 data class Result(
     @SerializedName("number")
-    val number: Int,
+    val number : Int,
 
     @SerializedName("userId")
     val userId : Long,
 
     @SerializedName("accessToken")
     val accessToken : String,
+
+    @SerializedName("refreshToken")
+    val refreshToken : String,
 
     @SerializedName("username")
     val username : String

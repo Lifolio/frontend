@@ -23,7 +23,7 @@
         android:layout_height="26dp"
         android:layout_marginTop="12dp"
         android:layout_marginStart="12dp"
-        tools:text="2월 목표"
+        tools:text="데모데이 나가기"
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:textStyle="bold"/>
