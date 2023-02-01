@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -11,7 +12,7 @@
         android:layout_marginStart="46dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="14dp"
-        android:background="@drawable/fragment_view_way2_content"
+        android:background="@drawable/chacco_pic1"
         app:layout_constraintEnd_toStartOf="@+id/fragment_view_way2_content2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +24,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
-        android:background="@drawable/fragment_view_way2_content"
+        android:background="@drawable/chacco_pic2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +36,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="46dp"
-        android:background="@drawable/fragment_view_way2_content"
+        android:background="@drawable/chacco_pic3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fragment_view_way2_content2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="14dp"
-        android:background="@drawable/fragment_view_way2_content"
+        android:background="@drawable/chacco_pic4"
         app:layout_constraintEnd_toStartOf="@+id/fragment_view_way2_content5"
         app:layout_constraintTop_toBottomOf="@+id/fragment_view_way2_content2" />
 
@@ -55,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/fragment_view_way2_content"
+        android:background="@drawable/chacco_pic5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_view_way2_content2" />
@@ -66,40 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/fragment_view_way2_content"
+        android:background="@drawable/chacco_pic6"
         app:layout_constraintStart_toEndOf="@+id/fragment_view_way2_content5"
         app:layout_constraintTop_toBottomOf="@+id/fragment_view_way2_content2" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_view_way2_content7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="14dp"
-        android:background="@drawable/fragment_view_way2_content"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_view_way2_content8"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_view_way2_content5" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_view_way2_content8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/fragment_view_way2_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_view_way2_content5" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_view_way2_content9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/fragment_view_way2_content"
-        app:layout_constraintStart_toEndOf="@+id/fragment_view_way2_content8"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_view_way2_content5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
