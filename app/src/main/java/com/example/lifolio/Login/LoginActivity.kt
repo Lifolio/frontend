@@ -184,6 +184,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnFindIdpw.setOnClickListener {
+            val intent = Intent(this, IdpwFindActivity::class.java)
+            startActivity(intent)
+        }
+
         // 카카오 소셜 로그인
         // 로그인 정보 확인
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->

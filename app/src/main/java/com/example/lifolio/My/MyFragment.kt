@@ -1,6 +1,7 @@
 package com.example.lifolio.My
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.util.Log
@@ -8,9 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.lifolio.BnbActivity
+import com.example.lifolio.IdpwFindActivity
 import com.example.lifolio.R
+import com.example.lifolio.databinding.FragmentMyBinding
 
 class MyFragment : Fragment() {
+    private lateinit var binding : FragmentMyBinding
 
     companion object {
         const val TAG : String = "로그"
@@ -39,10 +44,18 @@ class MyFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
+        binding = FragmentMyBinding.inflate(layoutInflater)
+        return binding.root
+
         Log.d(TAG, "HomeFragment - onCreateView() called")
         val view = inflater.inflate(R.layout.fragment_my, container, false)
         return view
 
+        // 챠코 추가
+        val bActivity = activity as BnbActivity
+        binding.profileBtn.setOnClickListener {
+            bActivity.changeMyFragment(1)
+        }
     }
 
 }
