@@ -31,6 +31,7 @@
         android:textColorHint="#dbdbdb"
         android:backgroundTint="#dbdbdb"
         android:layout_marginLeft="28dp"
+        android:nextFocusDown="@id/record_with_who_et"
         android:layout_marginRight="28dp"
         app:layout_constraintTop_toBottomOf="@id/big_category_name_tx"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -72,7 +73,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="입력"
-                android:imeOptions="actionDone"
                 android:inputType="text|textCapWords"
                 android:maxLines="1"
                 android:textSize="16sp"
@@ -80,7 +80,6 @@
                 android:textColorHint="#dbdbdb"
                 android:backgroundTint="#dbdbdb"
                 android:nextFocusDown="@id/big_category_chip_et"
-                android:privateImeOptions=""
                 app:layout_flexGrow="1" />
 
         </com.google.android.flexbox.FlexboxLayout>

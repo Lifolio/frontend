@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/fragment_view_way3_content"
+        android:background="@drawable/chacco_card1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +21,7 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:background="@drawable/fragment_view_way3_content"
+        android:background="@drawable/chacco_card2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fragment_view_way3_content1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/fragment_view_way3_content"
+        android:background="@drawable/chacco_card3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_view_way3_content1"/>
 
@@ -43,7 +43,7 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:background="@drawable/fragment_view_way3_content"
+        android:background="@drawable/chacco_card4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fragment_view_way3_content3"
         app:layout_constraintTop_toBottomOf="@+id/fragment_view_way3_content1" />
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/fragment_view_way3_content"
+        android:background="@drawable/chacco_card5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_view_way3_content3"/>
 
@@ -65,31 +65,9 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:background="@drawable/fragment_view_way3_content"
+        android:background="@drawable/chacco_card6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fragment_view_way3_content5"
         app:layout_constraintTop_toBottomOf="@+id/fragment_view_way3_content3" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_view_way3_content7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/fragment_view_way3_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_view_way3_content6"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/fragment_view_way3_content8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/fragment_view_way3_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fragment_view_way3_content7"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_view_way3_content6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
