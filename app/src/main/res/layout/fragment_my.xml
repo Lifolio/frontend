@@ -60,8 +60,21 @@
                 android:text="지금까지 원준님이 담은 Life, 5개!"
                 android:textColor="@color/black"
                 android:textSize="17dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="25dp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top" />
+
+            <TextView
+                android:id="@+id/btn_goto_mylifolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="20dp"
+                android:text="전체보기"
+                android:textColor="#ff4c3d"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/life_count_tx"
                 app:layout_constraintTop_toBottomOf="@id/top" />
 
             <HorizontalScrollView
@@ -165,6 +178,7 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_record"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"
