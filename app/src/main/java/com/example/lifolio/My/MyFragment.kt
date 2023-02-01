@@ -1,6 +1,7 @@
 package com.example.lifolio.My
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.lifolio.BnbActivity
 import com.example.lifolio.R
+import com.example.lifolio.Record.RecordActivity
+import com.example.lifolio.ViewAllMyLifolio.ViewAllLifolioActivity
 import com.example.lifolio.databinding.FragmentMyBinding
 
 class MyFragment : Fragment() {
@@ -46,6 +49,16 @@ class MyFragment : Fragment() {
         binding = FragmentMyBinding.inflate(layoutInflater)
         binding.profileBtn.setOnClickListener {
             bnbActivity.changeMyFragment(MyFragment.newInstance())
+        }
+
+        // 챠코 기능 추가
+        binding.btnGotoMylifolio.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllLifolioActivity::class.java)
+            startActivity(intent)
+        }
+        binding.fabRecord.setOnClickListener {
+            val intent = Intent(requireContext(), RecordActivity::class.java)
+            startActivity(intent)
         }
         return binding.root
 //

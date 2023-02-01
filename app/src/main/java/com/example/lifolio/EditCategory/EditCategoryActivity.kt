@@ -1,9 +1,11 @@
 package com.example.lifolio.EditCategory
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lifolio.Category.AddCategoryActivity
 import com.example.lifolio.EditCategory.models.BigCategory
 import com.example.lifolio.EditCategory.models.SmallCategory
 import com.example.lifolio.databinding.ActivityEditCategoryBinding
@@ -35,5 +37,10 @@ class EditCategoryActivity : AppCompatActivity(){
         bigCategoryList.add(BigCategory("업무", mutableListOf(SmallCategory("프로젝트"),
             SmallCategory("Lifolio"))))
 
+        // 챠코 기능 추가
+        binding.btnAddCategory.setOnClickListener {
+            val intent = Intent(this, AddCategoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
