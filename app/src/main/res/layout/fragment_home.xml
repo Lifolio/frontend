@@ -70,7 +70,7 @@
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    tools:text="올해의 목표" />
+                    android:text="올해의 목표" />
 
                 <View
                     android:layout_width="110dp"
@@ -89,7 +89,7 @@
                     android:gravity="center_horizontal"
                     android:textColor="#000000"
                     android:textSize="16sp"
-                    tools:text="라이폴리오 앱 출시" />
+                    android:text="라이폴리오 앱 출시" />
 
                 <ImageView
                     android:layout_width="47.8dp"
@@ -116,7 +116,7 @@
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    tools:text="그래프 제목" />
+                    android:text="그래프 제목" />
 
                 <View
                     android:layout_width="110dp"
@@ -319,7 +319,6 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/custom_lifolio"
-                    android:backgroundTint="#FFF"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" >
