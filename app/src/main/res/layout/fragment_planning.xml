@@ -167,7 +167,7 @@
 
                 <TextView
                     android:id="@+id/progress_tx"
-                    android:layout_width="27dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginStart="292dp"
                     android:layout_marginTop="52dp"
@@ -569,7 +569,7 @@
                     <TextView
                         android:layout_width="29dp"
                         android:layout_height="16dp"
-                        android:layout_marginStart="80dp"
+                        android:layout_marginStart="83dp"
                         android:layout_marginTop="43dp"
                         android:fontFamily="@font/roboto_medium"
                         android:text="2023"
@@ -579,7 +579,7 @@
                     <TextView
                         android:layout_width="29dp"
                         android:layout_height="16dp"
-                        android:layout_marginStart="83dp"
+                        android:layout_marginStart="80dp"
                         android:layout_marginTop="43dp"
                         android:fontFamily="@font/roboto_medium"
                         android:text="2024"
@@ -603,15 +603,47 @@
                     android:background="#ffc781"
                     android:src="@drawable/this_year_goal_right_btn"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/this_year_goal_recycler"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="124dp"
+                    android:background="#ffc781"
                     android:layout_marginTop="59dp"
-                    android:layout_marginHorizontal="24dp"
-                    tools:listitem="@layout/list_item_this_year_goal">
+                    android:layout_marginHorizontal="26dp"
+                    android:orientation="horizontal">
 
-                </androidx.recyclerview.widget.RecyclerView>
+                    <TextView
+                        android:id="@+id/month_tx"
+                        android:layout_width="48dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:background="@drawable/this_year_goal_month"
+                        android:text="2월"
+                        android:textColor="#ffc781"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="12dp"
+                        android:text="lifolio 팀과 데모데이 나가기"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/this_year_goal_recycler"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="124dp"-->
+<!--                    android:layout_marginTop="59dp"-->
+<!--                    android:layout_marginHorizontal="24dp"-->
+<!--                    tools:listitem="@layout/list_item_this_year_goal">-->
+
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/annual_goal_add_btn"

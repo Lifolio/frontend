@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="운히"
+                    android:text="세연"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="16sp"
