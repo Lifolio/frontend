@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import com.example.lifolio.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lifolio.BnbActivity
