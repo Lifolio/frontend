@@ -31,7 +31,7 @@ class BnbActivity : AppCompatActivity() {
         binding = ActivityBnbBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomAppBar.setOnClickListener{
+        binding.bnbHomeBtn.setOnClickListener{
             changeFragment(HomeFragment())
         }
 
@@ -57,7 +57,7 @@ class BnbActivity : AppCompatActivity() {
     }
 
     // bnbActivity
-    private fun changeFragment(fragment: Fragment) {
+    fun changeFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragments_frame, fragment)
