@@ -13,6 +13,7 @@ class BnbActivity : AppCompatActivity() {
 
     private lateinit var myFragment: MyFragment
     private lateinit var planningFragment: PlanningFragment
+    private lateinit var homeFragment: HomeFragment
     private lateinit var socialFragment: SocialFragment
     private lateinit var portfolioFragment: PortfolioFragment
 
@@ -29,6 +30,10 @@ class BnbActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_bnb)
         binding = ActivityBnbBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.bottomAppBar.setOnClickListener{
+            changeFragment(HomeFragment())
+        }
 
         binding.menuBnb.setOnItemSelectedListener() {
             when(it.itemId) {
@@ -47,7 +52,7 @@ class BnbActivity : AppCompatActivity() {
             }
             return@setOnItemSelectedListener true
         }
-        binding.menuBnb.selectedItemId = R.id.bnb_my
+//        binding.menuBnb.selectedItemId = R.id.bnb_my
 
     }
 
