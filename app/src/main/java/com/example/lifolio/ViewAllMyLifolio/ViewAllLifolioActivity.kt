@@ -84,7 +84,7 @@ class ViewAllLifolioActivity : AppCompatActivity(){
             "2023-05"
         )
 
-        lineChart = binding.dayTimeChart
+        lineChart = binding.viewAllLifolioStarChart
 
         val xAxis: XAxis = lineChart.xAxis
         // x축 설정
