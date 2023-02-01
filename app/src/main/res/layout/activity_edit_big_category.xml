@@ -183,7 +183,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="입력"
-                android:imeOptions="actionDone"
                 android:inputType="text|textCapWords"
                 android:maxLines="1"
                 android:textSize="16sp"
@@ -191,7 +190,6 @@
                 android:textColorHint="#dbdbdb"
                 android:backgroundTint="#dbdbdb"
                 android:nextFocusDown="@id/edit_big_category_chip_et"
-                android:privateImeOptions=""
                 app:layout_flexGrow="1" />
 
         </com.google.android.flexbox.FlexboxLayout>
