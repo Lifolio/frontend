@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/day_time_chart"
+                android:id="@+id/view_all_lifolio_star_chart"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_gravity="center"
