@@ -18,7 +18,7 @@ class TosActivity : AppCompatActivity() { // 약관 각각의 내용을 보여�
         if (tos == "1"){ //'이용 약관 동의(필수)'를 눌렀을때
             supportFragmentManager
                 .beginTransaction()
-                .replace(binding.tosConstraint.id,IdFragment())
+                .replace(binding.tosConstraint.id,TosfirstFragment())
                 .commit()
         }
         else if (tos == "2"){//'개인 정보 처리 방침(필수)'를 눌렀을때
