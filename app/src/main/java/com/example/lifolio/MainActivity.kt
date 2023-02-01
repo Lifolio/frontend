@@ -13,6 +13,8 @@ import com.example.lifolio.OneRecord.OneRecordActivity
 import com.example.lifolio.SignUp.TermsOfServiceActivity
 import com.example.lifolio.ViewAllMyLifolio.ViewAllLifolioActivity
 import com.example.lifolio.databinding.ActivityMainBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import okhttp3.*
 import java.io.IOException
 
@@ -22,6 +24,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (task.isSuccessful) {
+                }
+                if (!task.isSuccessful) {
+                    Log.w("FCM Log", "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+                val token = task.result?:""
+                MainApplication.prefs.setString("fcmToken",token)
+                Log.d("FCM Log", "FCM 토큰: $token")
+            })
 
         // 자동 로그인 pref
         val pref = getSharedPreferences("username", 0)
@@ -43,15 +58,10 @@ class MainActivity : AppCompatActivity() {
 
         // 허니가 개발중인 Activity 미리보기 위한 버튼
         binding.btnSignup.setOnClickListener {
-            val intent = Intent(this, ViewAllLifolioActivity::class.java)
+            val intent = Intent(this, TermsOfServiceActivity::class.java)
             startActivity(intent)
         }
 
-        // 박브레드가 개발중인 Activity 미리보기 위한 버튼
-        binding.btnPbread.setOnClickListener {
-            val intent = Intent(this, OneRecordActivity::class.java)
-            startActivity(intent)
-        }
 
         // 챠코 테스트 할 때만 임시로 쓰겠습니다
         /*

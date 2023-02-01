@@ -168,7 +168,7 @@
         android:layout_height="wrap_content"
         android:minHeight="40dp"
         android:ems="100"
-        android:hint="카테고리 이름"
+        android:hint="UMC"
         android:backgroundTint="#dbdbdb"
         android:textSize="16sp"
         android:inputType="text"

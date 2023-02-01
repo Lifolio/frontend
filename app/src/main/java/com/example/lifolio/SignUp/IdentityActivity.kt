@@ -92,6 +92,30 @@ class IdentityActivity : AppCompatActivity() {
             }
         }
 
+        binding.identityAgreeTos1Btn.setOnClickListener {
+            val intent = Intent(this,TosActivity::class.java)
+            intent.putExtra("tos","4")
+            startActivity(intent)
+        }
+
+        binding.identityAgreeTos2Btn.setOnClickListener {
+            val intent = Intent(this,TosActivity::class.java)
+            intent.putExtra("tos","5")
+            startActivity(intent)
+        }
+
+        binding.identityAgreeTos3Btn.setOnClickListener {
+            val intent = Intent(this,TosActivity::class.java)
+            intent.putExtra("tos","6")
+            startActivity(intent)
+        }
+
+        binding.identityAgreeTos4Btn.setOnClickListener {
+            val intent = Intent(this,TosActivity::class.java)
+            intent.putExtra("tos","7")
+            startActivity(intent)
+        }
+
 
         val selectTelecom = binding.identitySelectTelecomBtn
         val telecom = arrayOf("SKT","KT","LG")
@@ -166,7 +190,7 @@ class IdentityActivity : AppCompatActivity() {
             }
         }
 
-//        binding.identityNextBtn.isEnabled = false // 디폴트로 다음단계 버튼 비활성화
+        binding.identityNextBtn.isEnabled = false // 디폴트로 다음단계 버튼 비활성화
         binding.identityErrorRequestNumTv.setVisibility(View.GONE) // 디폴트로 인증번호 에러 메시지 숨기기
         // 인증번호를 입력 받는 editText 에서 엔터키를 누를때 이벤트
         val getRequestNumber = binding.identityRequestNumEt // 인증번호 EditText
@@ -196,7 +220,7 @@ class IdentityActivity : AppCompatActivity() {
         binding.identityNextBtn.setOnClickListener { // 회원가입 다음 단계로 가는 버튼
             val intent = Intent(this,CreateIdActivity::class.java)
             val name : String = binding.identityNameEt.getText().toString()
-            val phoneNumber : String = binding.identityRequestNumEt.getText().toString()
+            val phoneNumber : String = binding.identityContactEt.getText().toString()
             intent.putExtra("name",name) // 이번 단계에서 입력한 이름 다음 단계로 넘겨주기
             intent.putExtra("phoneNumber",phoneNumber)
             startActivity(intent)

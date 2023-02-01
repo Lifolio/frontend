@@ -18,7 +18,7 @@ class TosActivity : AppCompatActivity() { // 약관 각각의 내용을 보여�
         if (tos == "1"){ //'이용 약관 동의(필수)'를 눌렀을때
             supportFragmentManager
                 .beginTransaction()
-                .replace(binding.tosConstraint.id,IdFragment())
+                .replace(binding.tosConstraint.id,TosfirstFragment())
                 .commit()
         }
         else if (tos == "2"){//'개인 정보 처리 방침(필수)'를 눌렀을때
@@ -31,6 +31,30 @@ class TosActivity : AppCompatActivity() { // 약관 각각의 내용을 보여�
             supportFragmentManager
                 .beginTransaction()
                 .replace(binding.tosConstraint.id,TosthirdFragment())
+                .commit()
+        }
+        else if (tos == "4"){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.tosConstraint.id,IdentityTos1Fragment())
+                .commit()
+        }
+        else if (tos == "5"){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.tosConstraint.id,IdentityTos2Fragment())
+                .commit()
+        }
+        else if (tos == "6"){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.tosConstraint.id,IdentityTos3Fragment())
+                .commit()
+        }
+        else if (tos == "7"){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.tosConstraint.id,IdentityTos4Fragment())
                 .commit()
         }
     }
