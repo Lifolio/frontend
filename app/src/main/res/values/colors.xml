@@ -27,6 +27,7 @@
     <color name="category_color_11">#FF9796</color>
     <color name="category_color_12">#FAE5D4</color>
 
-
+    <color name="graph_start_color">#FF4C35</color>
+    <color name="graph_end_color">#FFDC11</color>
 
 </resources>
