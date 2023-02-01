@@ -6,8 +6,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_view_way1_content1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="116dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
@@ -18,8 +18,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_view_way1_content2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="116dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/chacco_2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +28,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_view_way1_content3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="116dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/chacco_3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +38,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_view_way1_content4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="116dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/chacco_4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,8 +48,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_view_way1_content5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="116dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/chacco_5"
