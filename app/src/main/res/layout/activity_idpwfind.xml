@@ -55,9 +55,9 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/frame_tabs"
-            android:layout_width="304dp"
+            android:layout_width="360dp"
             android:layout_height="48dp"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="75dp"
             app:tabRippleColor="@android:color/transparent"
             android:background="@drawable/border_bottom"
             app:layout_constraintStart_toStartOf="parent"
