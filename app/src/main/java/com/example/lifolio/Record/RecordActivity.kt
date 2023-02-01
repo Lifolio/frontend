@@ -204,7 +204,7 @@ class RecordActivity : AppCompatActivity() {
 
         var goalOfYearDummyList: ArrayList<String> = arrayListOf()
         goalOfYearDummyList.add("올해의 목표 선택")
-        goalOfYearDummyList.add("라이폴리오 앱 출시")
+        goalOfYearDummyList.add("해외로 여행")
         goalOfYearDummyList.add("일주일에 2번 이상 운동하기")
         goalOfYearDummyList.add("매일 영어 단어 암기")
 

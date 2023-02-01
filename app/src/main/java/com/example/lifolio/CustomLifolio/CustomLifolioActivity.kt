@@ -71,7 +71,7 @@ class CustomLifolioActivity : AppCompatActivity() {
         binding.customlifolioChart2.visibility = View.GONE
         binding.customlifolioChart3.visibility = View.GONE
 
-        var category = arrayOf("인생", "동아리", "업무") // 추후에 서버에서 받아올 카테고리 배열
+        var category = arrayOf("추억", "여행", "친구") // 추후에 서버에서 받아올 카테고리 배열
         binding.customlifolioCategorySelectConst.setOnClickListener{ // 카테고리 선택을 눌렀을때 발생할 이벤트
             AlertDialog.Builder(this)
                 .setTitle("카테고리 선택")
