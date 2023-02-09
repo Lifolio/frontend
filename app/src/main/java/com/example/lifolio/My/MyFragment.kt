@@ -1,18 +1,22 @@
 package com.example.lifolio.My
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import com.example.lifolio.BnbActivity
-import com.example.lifolio.R
 import com.example.lifolio.Record.RecordActivity
 import com.example.lifolio.ViewAllMyLifolio.ViewAllLifolioActivity
 import com.example.lifolio.databinding.FragmentMyBinding
+
 
 class MyFragment : Fragment() {
     private lateinit var binding: FragmentMyBinding
@@ -47,6 +51,7 @@ class MyFragment : Fragment() {
 
     ): View? {
         binding = FragmentMyBinding.inflate(layoutInflater)
+
         binding.profileBtn.setOnClickListener {
             bnbActivity.changeMyFragment(MyFragment.newInstance())
         }
@@ -60,12 +65,38 @@ class MyFragment : Fragment() {
             val intent = Intent(requireContext(), RecordActivity::class.java)
             startActivity(intent)
         }
+
+        makeMyScrollSmart()
         return binding.root
 //
 //        Log.d(TAG, "HomeFragment - onCreateView() called")
 //        val view = inflater.inflate(R.layout.fragment_my, container, false)
 //        return view
 
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun makeMyScrollSmart() {
+        binding.innerScroll.setOnTouchListener(OnTouchListener { __v, __event ->
+            if (__event.action == MotionEvent.ACTION_DOWN) {
+                //  Disallow the touch request for parent scroll on touch of child view
+                requestDisallowParentInterceptTouchEvent(__v, true)
+            } else if (__event.action == MotionEvent.ACTION_UP || __event.action == MotionEvent.ACTION_CANCEL) {
+                // Re-allows parent events
+                requestDisallowParentInterceptTouchEvent(__v, false)
+            }
+            false
+        })
+    }
+
+    private fun requestDisallowParentInterceptTouchEvent(__v: View, __disallowIntercept: Boolean) {
+        var __v = __v
+        while (__v.parent != null && __v.parent is View) {
+            if (__v.parent is ScrollView) {
+                __v.parent.requestDisallowInterceptTouchEvent(__disallowIntercept)
+            }
+            __v = __v.parent as View
+        }
     }
 
 }

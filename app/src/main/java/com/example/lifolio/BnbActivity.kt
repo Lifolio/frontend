@@ -71,4 +71,12 @@ class BnbActivity : AppCompatActivity() {
             .replace(R.id.fragments_frame, ProfileFragment())
             .commit()
     }
+
+    // badgeNewActivity
+//    fun changeBadgeFragment(fragment: Fragment) {
+//        supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.fragments_frame, BadgeFragment())
+//            .commit()
+//    }
 }
