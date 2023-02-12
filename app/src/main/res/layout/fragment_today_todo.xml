@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/todo_tx"
-                android:layout_width="272dp"
+                android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="2dp"
@@ -90,7 +90,7 @@
 
             <TextView
                 android:id="@+id/todo_tx2"
-                android:layout_width="272dp"
+                android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="2dp"

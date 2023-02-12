@@ -60,17 +60,20 @@
 
                 </ImageView>
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/goto_custom_of_the_year_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginStart="158dp"
                     android:layout_marginTop="79dp"
+                    android:background="#00ff0000"
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="center_horizontal"
+                    android:text="올해의 목표"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="올해의 목표" />
+                    tools:ignore="MissingClass" />
 
                 <View
                     android:layout_width="110dp"
@@ -207,7 +210,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="232dp"
+                    android:layout_marginEnd="40dp"
                     android:backgroundTint="#ff1834"
                     android:visibility="gone"
                     android:scaleType="center"
@@ -218,22 +221,23 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/item_first_expand"
                 android:background="@drawable/expand_lifolio"
                 android:backgroundTint="#ff183e"
                 android:visibility="gone"
                 app:cardCornerRadius="10dp"
-                android:layout_width="304dp"
+                android:layout_width="match_parent"
                 android:layout_height="196dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="-12dp"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="vertical" >
 
                 <View
-                    android:layout_width="272dp"
+                    android:layout_width="match_parent"
                     android:layout_height="168dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/custom_lifolio"
                     android:backgroundTint="#FFF"
@@ -242,7 +246,7 @@
                     tools:ignore="MissingConstraints" >
                 </View>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/item_second"
@@ -256,7 +260,8 @@
                 android:focusable="true"
                 android:clickable="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="MissingClass">
 
                 <ImageView
                     android:id="@+id/emoji2_pic"
@@ -299,7 +304,7 @@
                     android:layout_height="32dp"
                     android:layout_marginEnd="40dp"
                     android:backgroundTint="#58d3ff"
-
+                    android:visibility="gone"
                     android:scaleType="center"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -312,7 +317,7 @@
                 android:id="@+id/item_second_expand"
                 android:background="@drawable/expand_lifolio"
                 android:backgroundTint="#58d3ff"
-
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="196dp"
                 android:layout_gravity="center"
@@ -408,19 +413,18 @@
                 android:background="@drawable/expand_lifolio"
                 android:backgroundTint="#ff6f1d"
                 android:visibility="gone"
-                android:layout_width="304dp"
+                app:cardCornerRadius="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="196dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="-12dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_third" >
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical" >
 
                 <View
-                    android:layout_width="272dp"
+                    android:layout_width="match_parent"
                     android:layout_height="168dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/custom_lifolio"
                     android:backgroundTint="#FFF"
@@ -500,19 +504,18 @@
                 android:background="@drawable/expand_lifolio"
                 android:backgroundTint="#ffcd00"
                 android:visibility="gone"
-                android:layout_width="304dp"
+                app:cardCornerRadius="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="196dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="-12dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_fourth" >
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical" >
 
                 <View
-                    android:layout_width="272dp"
+                    android:layout_width="match_parent"
                     android:layout_height="168dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/custom_lifolio"
                     android:backgroundTint="#FFF"

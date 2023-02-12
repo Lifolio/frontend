@@ -1,6 +1,7 @@
 package com.example.lifolio
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Bundle
@@ -12,10 +13,10 @@ import androidx.core.view.isVisible
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.lifolio.CustomOfTheYear.CustomOfTheYearActivity
 import com.example.lifolio.Home.ApiService
 import com.example.lifolio.Home.ResponseHome
 import com.example.lifolio.My.MyFragment
-import com.example.lifolio.databinding.ActivityMainBinding
 import com.example.lifolio.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -74,74 +75,6 @@ class HomeFragment : Fragment() {
 //            }
 //        })
 
-        //item 1 클릭 이벤트
-        binding.open1Btn.setOnClickListener{
-            if(binding.itemFirstExpand.visibility == View.VISIBLE) {
-                binding.itemFirstExpand.visibility = View.GONE
-                binding.open1Btn.animate().apply {
-                    duration = 300
-                    rotation(0f)
-                }
-            } else {
-                binding.itemFirstExpand.visibility = View.VISIBLE
-                binding.open1Btn.animate().apply {
-                    duration = 300
-                    rotation(180f)
-                }
-            }
-        }
-
-        //item 2 클릭 이벤트
-        binding.open2Btn.setOnClickListener{
-            if(binding.itemSecondExpand.visibility == View.VISIBLE) {
-                binding.itemSecondExpand.visibility = View.GONE
-                binding.open2Btn.animate().apply {
-                    duration = 300
-                    rotation(0f)
-                }
-            } else {
-                binding.itemSecondExpand.visibility = View.VISIBLE
-                binding.open2Btn.animate().apply {
-                    duration = 300
-                    rotation(180f)
-                }
-            }
-        }
-
-        //item 3 클릭 이벤트
-        binding.open3Btn.setOnClickListener{
-            if(binding.itemThirdExpand.visibility == View.VISIBLE) {
-                binding.itemThirdExpand.visibility = View.GONE
-                binding.open3Btn.animate().apply {
-                    duration = 300
-                    rotation(0f)
-                }
-            } else {
-                binding.itemThirdExpand.visibility = View.VISIBLE
-                binding.open3Btn.animate().apply {
-                    duration = 300
-                    rotation(180f)
-                }
-            }
-        }
-
-        //item 4 클릭 이벤트
-        binding.open4Btn.setOnClickListener{
-            if(binding.itemFourthExpand.visibility == View.VISIBLE) {
-                binding.itemFourthExpand.visibility = View.GONE
-                binding.open4Btn.animate().apply {
-                    duration = 300
-                    rotation(0f)
-                }
-            } else {
-                binding.itemFourthExpand.visibility = View.VISIBLE
-                binding.open4Btn.animate().apply {
-                    duration = 300
-                    rotation(180f)
-                }
-            }
-        }
-
         binding.editLifolioBtn.setOnClickListener{
 
         }
@@ -154,6 +87,89 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
+
+        //item 1 클릭 이벤트
+        binding.open1Btn.setOnClickListener{
+            if(binding.itemFirstExpand.visibility == View.VISIBLE) {
+                binding.itemFirstExpand.visibility = View.GONE
+                binding.edit1Btn.visibility = View.GONE
+                binding.open1Btn.animate().apply {
+                    duration = 300
+                    rotation(0f)
+                }
+            } else {
+                binding.itemFirstExpand.visibility = View.VISIBLE
+                binding.edit1Btn.visibility = View.VISIBLE
+                binding.open1Btn.animate().apply {
+                    duration = 300
+                    rotation(180f)
+                }
+            }
+        }
+
+        //item 2 클릭 이벤트
+        binding.open2Btn.setOnClickListener{
+            if(binding.itemSecondExpand.visibility == View.VISIBLE) {
+                binding.itemSecondExpand.visibility = View.GONE
+                binding.edit2Btn.visibility = View.GONE
+                binding.open2Btn.animate().apply {
+                    duration = 300
+                    rotation(0f)
+                }
+            } else {
+                binding.itemSecondExpand.visibility = View.VISIBLE
+                binding.edit2Btn.visibility = View.VISIBLE
+                binding.open2Btn.animate().apply {
+                    duration = 300
+                    rotation(180f)
+                }
+            }
+        }
+
+        //item 3 클릭 이벤트
+        binding.open3Btn.setOnClickListener{
+            if(binding.itemThirdExpand.visibility == View.VISIBLE) {
+                binding.itemThirdExpand.visibility = View.GONE
+                binding.edit3Btn.visibility = View.GONE
+                binding.open3Btn.animate().apply {
+                    duration = 300
+                    rotation(0f)
+                }
+            } else {
+                binding.itemThirdExpand.visibility = View.VISIBLE
+                binding.edit3Btn.visibility = View.VISIBLE
+                binding.open3Btn.animate().apply {
+                    duration = 300
+                    rotation(180f)
+                }
+            }
+        }
+
+        //item 4 클릭 이벤트
+        binding.open4Btn.setOnClickListener{
+            if(binding.itemFourthExpand.visibility == View.VISIBLE) {
+                binding.itemFourthExpand.visibility = View.GONE
+                binding.edit4Btn.visibility = View.GONE
+                binding.open4Btn.animate().apply {
+                    duration = 300
+                    rotation(0f)
+                }
+            } else {
+                binding.itemFourthExpand.visibility = View.VISIBLE
+                binding.edit4Btn.visibility = View.VISIBLE
+                binding.open4Btn.animate().apply {
+                    duration = 300
+                    rotation(180f)
+                }
+            }
+        }
+
+        //올해의 목표 텍스트 버튼 클릭 이벤트 - #1-1로 이동
+        binding.gotoCustomOfTheYearBtn.setOnClickListener{
+            val intent = Intent(getActivity(), CustomOfTheYearActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
 
         allChart = binding.homeAllChart
         categoryChart2 = binding.homeCategoryChart2
