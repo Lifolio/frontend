@@ -1,26 +1,14 @@
 package com.example.lifolio
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.example.lifolio.GoalFragment.Companion.newInstance
-import com.example.lifolio.My.MyFragment
-import com.example.lifolio.My.MyFragment.Companion.newInstance
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.databinding.FragmentProfileBinding
-import org.w3c.dom.Text
 
 class ProfileFragment : Fragment() {
 
@@ -43,6 +31,20 @@ class ProfileFragment : Fragment() {
 
         binding.btnGotoBadges.setOnClickListener {
             val intent = Intent(requireContext(), BadgeNewActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 회원 탈퇴
+        binding.Withdrawal.setOnClickListener{
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
+
+        // 로그아웃
+        binding.logout.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
         }
     }
