@@ -19,11 +19,11 @@
             android:layout_marginBottom="12dp">
 
             <CheckBox
-                android:layout_width="19dp"
-                android:layout_height="19dp"
-                android:layout_marginStart="12dp"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="3dp"
-                android:background="@drawable/todo_checkbox_shape"
+                android:background="@drawable/todo_state_checked"
                 android:button="@android:color/transparent"
                 tools:ignore="MissingConstraints">
 
@@ -33,7 +33,7 @@
                 android:id="@+id/todo_timepicker_tx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="1dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="11:00"
@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/todo_tx"
-                android:layout_width="272dp"
+                android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="2dp"
@@ -90,7 +90,7 @@
 
             <TextView
                 android:id="@+id/todo_tx2"
-                android:layout_width="272dp"
+                android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="2dp"

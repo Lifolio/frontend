@@ -29,9 +29,11 @@ class ProfileFragment : Fragment() {
 
         binding = FragmentProfileBinding.inflate(layoutInflater)
 
+        //배지 더보기 클릭 시 배지 화면으로 이동
         binding.btnGotoBadges.setOnClickListener {
-            val intent = Intent(requireContext(), BadgeNewActivity::class.java)
+            val intent = Intent(getActivity(), BadgeNewActivity::class.java)
             startActivity(intent)
+            activity?.finish()
         }
 
         // 회원 탈퇴

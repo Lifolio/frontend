@@ -31,6 +31,9 @@ class BnbActivity : AppCompatActivity() {
         binding = ActivityBnbBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //홈화면을 기본으로 설정
+        changeFragment(HomeFragment())
+
         binding.bnbHomeBtn.setOnClickListener{
             changeFragment(HomeFragment())
         }
