@@ -3,7 +3,7 @@ package com.example.lifolio.Record.model
 
 import com.google.gson.annotations.SerializedName
 
-data class BigCategoryList(
+data class BigCategory(
     @SerializedName("categoryId")
     val categoryId: Int,
     @SerializedName("categoryName")

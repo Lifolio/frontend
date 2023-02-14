@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:background="#00FF0000"
                 android:text="저장"
-                android:textColor="@color/colorC2C1C1"
+                android:textColor="@drawable/color_enable_selector"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:minHeight="0dp"

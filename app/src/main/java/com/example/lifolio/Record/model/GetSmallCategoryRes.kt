@@ -3,7 +3,7 @@ package com.example.lifolio.Record.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GetBigCategoryRes(
+data class GetSmallCategoryRes(
     @SerializedName("code")
     val code: Int,
     @SerializedName("isSuccess")
@@ -11,5 +11,5 @@ data class GetBigCategoryRes(
     @SerializedName("message")
     val message: String,
     @SerializedName("result")
-    val bigCategoryList: List<BigCategory?>?
+    val smallCategory: SmallCategory?
 )

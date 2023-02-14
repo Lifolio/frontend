@@ -32,12 +32,15 @@ import com.example.lifolio.GoogleMap.PlaceSearchActivity
 import com.example.lifolio.JWT.ApiClient
 import com.example.lifolio.MainApplication
 import com.example.lifolio.R
-import com.example.lifolio.Record.model.BigCategoryList
+import com.example.lifolio.Record.model.BigCategory
 import com.example.lifolio.Record.model.GetBigCategoryRes
+import com.example.lifolio.Record.model.GetSmallCategoryRes
+import com.example.lifolio.Record.model.SmallCategory
 import com.example.lifolio.databinding.ActivityRecordBinding
 import com.example.lifolio.util.model.MethodCallback
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
+import kotlinx.android.synthetic.main.activity_record.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -72,11 +75,22 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
     private var startDate = ""
     private var endDate = ""
     private lateinit var filePath: String
+    private var bigCategoryId: Int = 0
+    private var smallCategoryName = ""
 
-    private var bigCategoryList: ArrayList<BigCategoryList> = arrayListOf()
+    private var bigCategoryList: ArrayList<BigCategory> = arrayListOf()
     private var bigCateogySpinnerItems: ArrayList<String> = arrayListOf()
-    private var smallCateogyDummyList: ArrayList<String> = arrayListOf()
+    private lateinit var smallCategory: SmallCategory
+    private var smallCategorySpinnerItems: ArrayList<String> = arrayListOf()
 
+    private lateinit var bigSpinnerAdapter: ArrayAdapter<String>
+    private lateinit var smallSpinnerAdapter: ArrayAdapter<String>
+
+    companion object {
+        val retrofit = ApiClient.retrofit()
+        val service = retrofit.create(RecordService::class.java)
+        val userId = MainApplication.prefs.getString("userId", "").toInt()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,8 +105,7 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
         setViewVisibility()
 
         bigCateogySpinnerItems.add("큰 카테고리 선택")
-        smallCateogyDummyList.add("작은 카테고리 선택")
-
+        smallCategorySpinnerItems.add("작은 카테고리 선택")
 
         getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
@@ -108,19 +121,14 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
             }
         }
 
-        var userId = MainApplication.prefs.getString("userId", "").toInt()
-
-        val retrofit = ApiClient.retrofit()
-        val service = retrofit.create(RecordService::class.java)
-
         // 큰 카테고리 선택 스피너 아이템 GET
         launch(coroutineContext) {
             try {
                 val response = service.getBigCategoryList(userId).enqueue(
                     MethodCallback.generalCallback<GetBigCategoryRes, GetBigCategoryRes, GetBigCategoryRes> {
                         response ->
-                        if(response != null) {
-                            bigCategoryList = response.bigCategoryList as ArrayList<BigCategoryList>
+                        if(response!!.bigCategoryList?.isNotEmpty() == true) {
+                            bigCategoryList = response.bigCategoryList as ArrayList<BigCategory>
                             bigCategoryList.forEach {
                                 bigCateogySpinnerItems.add(it.categoryName)
                             }
@@ -227,7 +235,10 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
 //        bigCateogyDummyList.add("학교")
 //        bigCateogyDummyList.add("업무")
 
-        bigCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, bigCateogySpinnerItems)
+
+        bigSpinnerAdapter = ArrayAdapter(this, R.layout.item_record_spinner, bigCateogySpinnerItems)
+        bigSpinnerAdapter.setNotifyOnChange(true)
+        bigCategorySpinner.adapter = bigSpinnerAdapter
 
 //        var smallCateogyDummyList: ArrayList<String> = arrayListOf()
 //        smallCateogyDummyList.add("작은 카테고리 선택")
@@ -235,7 +246,10 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
 //        smallCateogyDummyList.add("여행")
 //        smallCateogyDummyList.add("친구")
 
-        smallCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, smallCateogyDummyList)
+        smallCategorySpinner.adapter
+        smallSpinnerAdapter = ArrayAdapter(this, R.layout.item_record_spinner, smallCategorySpinnerItems)
+        smallSpinnerAdapter.setNotifyOnChange(true)
+        smallCategorySpinner.adapter = smallSpinnerAdapter
 
         var goalOfYearDummyList: ArrayList<String> = arrayListOf()
         goalOfYearDummyList.add("올해의 목표 선택")
@@ -336,14 +350,40 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
         // 스피너 선택 리스너
         bigCategorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                var bigCategoryId: Int = bigCategoryList.get(p2 - 1).categoryId
-                if(p2 != 0 || p3.toInt() != 0) {
-                    Log.d("TAG", "onItemSelected: " + p2 + " "+ bigCategoryList.get(p2 - 1).categoryId)
-                    Log.d("TAG", "onItemSelected: " + bigCategoryList.toString())
+                Log.d("TAG", "onItemSelected: p2 is $p2")
+                if(p2 == 0 || p3.toInt() == 0) {
+                    Log.d("TAG", "onItemSelected: index 0??")
+                } else {
+                    bigCategoryId = bigCategoryList.get(p2 - 1).categoryId
+                    Log.d("TAG", "onItemSelected: " + " bigId is "+ bigCategoryId)
 
+                    // GET 큰 카테고리를 부모로 가지는 작은 카테고리 값 가져오기
+                    launch(coroutineContext) {
+                        try {
+                            val response = service.getSmallCategoryList(bigCategoryId).enqueue(
+                                    MethodCallback.generalCallback<GetSmallCategoryRes, GetSmallCategoryRes, GetSmallCategoryRes> {
+                                        response ->
+                                        if(response != null) {
+                                            smallCategory = response.smallCategory!!
+                                            smallCategorySpinnerItems = smallCategory.subCategoryList as ArrayList<String>
+                                            Log.d("TAG", "small " + smallCategorySpinnerItems.toString())
 
+                                            smallSpinnerAdapter.clear()
+                                            smallCategorySpinnerItems.add(0, "작은 카테고리 선택")
+                                            smallSpinnerAdapter.addAll(smallCategorySpinnerItems)
+                                            smallSpinnerAdapter.notifyDataSetChanged()
+                                        }
+                                    }
+                            )
 
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+//                    smallCategorySpinner.adapter
+//                    smallSpinnerAdapter = ArrayAdapter(this@RecordActivity, R.layout.item_record_spinner, smallCategorySpinnerItems)
                 }
+
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -351,6 +391,39 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
             }
 
         }
+
+        smallCategorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                smallCategoryName = smallCategorySpinnerItems.get(p2)
+                Log.d("TAG", "onItemSelected: " + p2 + " "+ smallCategoryName)
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
+
+        // 저장 버튼 시 값 체크
+        binding.recordSaveBtn.setOnClickListener {
+            if(binding.recordTitleEt.text.isNullOrBlank()) {
+                Log.d("TAG", "setListener: clickclikc 제목을")
+                Toast.makeText(this@RecordActivity, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
+            } else if(binding.recordStartDateBtn.text.isNullOrEmpty()) {
+                Log.d("TAG", "setListener: clickclikc 시작")
+                Toast.makeText(this@RecordActivity, "시작 날짜를 입력해주세요", Toast.LENGTH_SHORT).show()
+            } else if(binding.recordEndDateBtn.text.isNullOrEmpty()) {
+                Log.d("TAG", "setListener: clickclikc 종료")
+                Toast.makeText(this@RecordActivity, "종료 날짜를 입력해주세요", Toast.LENGTH_SHORT).show()
+            } else if(bigCategoryId == 0) {
+                Toast.makeText(this@RecordActivity, "큰 카테고리를 선택해주세요", Toast.LENGTH_SHORT).show()
+            } else if(importanceScore.isNullOrEmpty()) {
+                Toast.makeText(this@RecordActivity, "중요도를 설정해주세요", Toast.LENGTH_SHORT).show()
+            } else {        // POST api 연결 / 액티비티 피니시
+                finish()
+            }
+        }
+
     }
 
     fun getRealPathFromURI(uri: Uri): String {
