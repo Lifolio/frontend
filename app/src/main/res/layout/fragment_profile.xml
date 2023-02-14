@@ -42,8 +42,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginTop="32dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -118,8 +118,8 @@
                     android:id="@+id/btn_goto_badges"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
                     android:layout_marginStart="210dp"
+                    android:layout_marginTop="18dp"
                     android:letterSpacing="0.02"
                     android:lineSpacingExtra="6sp"
                     android:text="더보기"
@@ -147,34 +147,34 @@
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:text="회원가입 완료"
                     android:drawableTop="@drawable/join_complete_badge_size"
                     android:drawablePadding="8dp"
+                    android:text="회원가입 완료"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="58dp"
+                    android:drawableTop="@drawable/badge_empty_image"
+                    android:drawablePadding="8dp"
                     android:text="첫 카테고리"
-                    android:drawableTop="@drawable/badge_empty_image"
-                    android:drawablePadding="8dp"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="58dp"
-                    android:text="10번째 기록"
                     android:drawableTop="@drawable/badge_empty_image"
                     android:drawablePadding="8dp"
+                    android:text="10번째 기록"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -207,8 +207,8 @@
                     android:layout_height="24dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="318dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
@@ -234,8 +234,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
@@ -265,8 +265,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
@@ -292,8 +292,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
@@ -319,8 +319,8 @@
                     android:layout_height="24dp"
                     android:layout_marginStart="304dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
@@ -350,8 +350,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
@@ -376,14 +376,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/withdrawal"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="20dp">
 
@@ -402,16 +404,18 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/logout"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="20dp">
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="70dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -429,8 +433,8 @@
                     android:layout_height="24dp"
                     android:layout_marginStart="291dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/navigate_next" />
+                    android:background="@drawable/navigate_next"
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 

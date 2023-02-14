@@ -19,16 +19,6 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = FragmentProfileBinding.inflate(layoutInflater)
-
         //배지 더보기 클릭 시 배지 화면으로 이동
         binding.btnGotoBadges.setOnClickListener {
             val intent = Intent(getActivity(), BadgeNewActivity::class.java)
@@ -37,17 +27,28 @@ class ProfileFragment : Fragment() {
         }
 
         // 회원 탈퇴
-        binding.Withdrawal.setOnClickListener{
-            val intent = Intent(requireContext(), LoginActivity::class.java)
+        binding.withdrawal.setOnClickListener{
+            val intent = Intent(getActivity(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            activity?.finish()
         }
 
         // 로그아웃
         binding.logout.setOnClickListener {
-            val intent = Intent(requireContext(), LoginActivity::class.java)
+            val intent = Intent(getActivity(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
+            activity?.finish()
         }
+
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_profile, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = FragmentProfileBinding.inflate(layoutInflater)
     }
 }
