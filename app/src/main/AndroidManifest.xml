@@ -94,6 +94,8 @@
         <activity
             android:name=".SignUp.TermsOfServiceActivity"
             android:exported="false" />
+        <activity android:name=".ViewSmallCategory.ViewSmallCategoryActivity"
+            android:exported="false"/>
         <activity
             android:name=".SignUp.TosActivity"
             android:exported="false" />

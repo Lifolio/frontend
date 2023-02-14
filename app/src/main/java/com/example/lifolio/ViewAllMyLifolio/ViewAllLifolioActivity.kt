@@ -5,13 +5,13 @@ import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.lifolio.EditCategory.EditCategoryActivity
 import com.example.lifolio.R
+import com.example.lifolio.ViewSmallCategory.ViewSmallCategoryActivity
 import com.example.lifolio.databinding.ActivityViewAllLifolioBinding
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -37,8 +37,12 @@ class ViewAllLifolioActivity : AppCompatActivity(){
             toggleDrawerLayout(binding.root)
         }
 
-        binding.viewAllLifolioNavi.naviViewAllLifolioHeaderEditBtn.setOnClickListener {
+        binding.viewAllLifolioNavi.naviViewAllLifolioHeaderEditBtn.setOnClickListener { // navi에서 톱니바퀴 수정버튼 눌렀을때
             startActivity(Intent(this,EditCategoryActivity::class.java))
+        }
+
+        binding.viewAllLifolioNavi.naviViewAllLifolioSmallcategory2.setOnClickListener{
+            startActivity(Intent(this, ViewSmallCategoryActivity::class.java))
         }
 
         binding.viewAllLifolioViewWayGroup.view_all_lifolio_view_way1_btn.isChecked = true // 디폴트값으로 첫번째 보여주기 방식 체크해주기
