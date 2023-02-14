@@ -2,7 +2,6 @@ package com.example.lifolio.Record
 
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -15,14 +14,10 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.renderscript.ScriptGroup.Input
 import android.text.TextUtils
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
-import android.view.View.OnClickListener
-import android.view.View.OnTouchListener
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.activity.result.ActivityResult
@@ -30,23 +25,36 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.lifolio.GoogleMap.PlaceSearchActivity
+import com.example.lifolio.JWT.ApiClient
+import com.example.lifolio.MainApplication
 import com.example.lifolio.R
+import com.example.lifolio.Record.model.BigCategoryList
+import com.example.lifolio.Record.model.GetBigCategoryRes
 import com.example.lifolio.databinding.ActivityRecordBinding
+import com.example.lifolio.util.model.MethodCallback
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
 
 
-class RecordActivity : AppCompatActivity() {
+class RecordActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var binding: ActivityRecordBinding
+
+    private lateinit var job : Job
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     private lateinit var thumbView: View
     private lateinit var withWhoLayout: ConstraintLayout
@@ -61,39 +69,36 @@ class RecordActivity : AppCompatActivity() {
     lateinit var getResult: ActivityResultLauncher<Intent>
 
     private var importanceScore = ""
+    private var startDate = ""
+    private var endDate = ""
     private lateinit var filePath: String
+
+    private var bigCategoryList: ArrayList<BigCategoryList> = arrayListOf()
+    private var bigCateogySpinnerItems: ArrayList<String> = arrayListOf()
+    private var smallCateogyDummyList: ArrayList<String> = arrayListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        job = Job()
         inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
         binding = ActivityRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        withWhoLayout = binding.recordWithWhoConst
-        locationLayout = binding.recordLocationConst
-        goalOfYearLayout = binding.recordGoalOfYearConst
-
-
-        withWhoLayout.setVisibility(View.GONE)
-        locationLayout.setVisibility(View.GONE)
-        goalOfYearLayout.setVisibility(View.GONE)
-
-        hideOrDisplayOptionIconsButton(withWhoLayout, binding.recordWithWhoChip)
-        hideOrDisplayOptionIconsButton(locationLayout, binding.recordLocationChip)
-        hideOrDisplayOptionIconsButton(goalOfYearLayout, binding.recordGoalOfYearChip)
-
-
         initSeekbarView()
         initCalendarDialog()
-        initSpinner()
+        setViewVisibility()
+
+        bigCateogySpinnerItems.add("큰 카테고리 선택")
+        smallCateogyDummyList.add("작은 카테고리 선택")
+
 
         getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 filePath = getRealPathFromURI(it.data?.data!!)
 
                 val file = File(filePath)
-
 
                 Log.d("TAG", "onCreate: 갤러리에서 돌아옴")
                 Glide.with(applicationContext)
@@ -103,76 +108,38 @@ class RecordActivity : AppCompatActivity() {
             }
         }
 
-        // 갤러리에서 이미지 가져오기
-        binding.recordAddPhotoBtn.setOnClickListener {
-            // 현재 기기에 설정된 쓰기 권한을 가져오기 위한 변수
-            var writePermission = ContextCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            // 현재 기기에 설정된 읽기 권한을 가져오기 위한 변수
-            var readPermission = ContextCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-            // 읽기 권한과 쓰기 권한에 대해서 설정이 되어있지 않다면
-            if (writePermission == PackageManager.PERMISSION_DENIED || readPermission == PackageManager.PERMISSION_DENIED) {
-                // 읽기, 쓰기 권한을 요청
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(
-                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        android.Manifest.permission.READ_EXTERNAL_STORAGE
-                    ),
-                    1
+        var userId = MainApplication.prefs.getString("userId", "").toInt()
+
+        val retrofit = ApiClient.retrofit()
+        val service = retrofit.create(RecordService::class.java)
+
+        // 큰 카테고리 선택 스피너 아이템 GET
+        launch(coroutineContext) {
+            try {
+                val response = service.getBigCategoryList(userId).enqueue(
+                    MethodCallback.generalCallback<GetBigCategoryRes, GetBigCategoryRes, GetBigCategoryRes> {
+                        response ->
+                        if(response != null) {
+                            bigCategoryList = response.bigCategoryList as ArrayList<BigCategoryList>
+                            bigCategoryList.forEach {
+                                bigCateogySpinnerItems.add(it.categoryName)
+                            }
+                            Log.d("TAG", "big " + bigCategoryList.toString())
+                            Log.d("TAG", "big name" + bigCateogySpinnerItems.toString())
+                            Log.d("TAG", "onCreate: " + bigCategoryList.get(1).categoryId)
+                        }
+                    }
                 )
-            }
+                Toast.makeText(this@RecordActivity, "retro" + response.toString(), Toast.LENGTH_SHORT).show()
 
-            // 위 경우가 아니라면 권한에 대해서 설정이 되어 있으므로
-            else {
-                var state = Environment.getExternalStorageState()
-
-                // 갤러리를 열어서 파일을 선택
-                if (TextUtils.equals(state, Environment.MEDIA_MOUNTED)) {
-                    val intent = Intent(Intent.ACTION_PICK)
-                    intent.type = "image/*"
-                    getResult.launch(intent)
-                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
+        initSpinner()
+        setListener()
 
 
-        // 함께한 사람 EditText 입력 시 chip 동적 추가
-        binding.recordWithWhoEt.setOnKeyListener { v, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                val et = v as EditText
-                val name = et.text.toString()
-
-                binding.recordFlexboxlt.addChip(name)
-
-                et.text = null
-            }
-            return@setOnKeyListener false
-        }
-
-        val activityLauncher= openActivityResultLauncher()
-
-        // 위치 activity 전환
-        binding.recordLocationBtn.setOnClickListener {
-            val intent = Intent(this, PlaceSearchActivity::class.java)
-            activityLauncher.launch(intent)
-        }
-
-        // actionDone 시, 키보드 내리기
-//        binding.recordTitleEt.setOnKeyListener { view, keyCode, event ->
-//            var handled = false
-//            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-//                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//                inputMethodManager.hideSoftInputFromWindow(binding.recordTitleEt.windowToken, 0)
-//                handled = true
-//            }
-//            handled
-//        }
 
     }
 
@@ -230,7 +197,8 @@ class RecordActivity : AppCompatActivity() {
         binding.recordStartDateBtn.setOnClickListener {
             val cal = Calendar.getInstance()
             val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                binding.recordStartDateBtn.text = "${year}-${month+1}-${day}"
+                startDate = "${year}-${month+1}-${day}"
+                binding.recordStartDateBtn.text = startDate
 
             }
             DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
@@ -239,7 +207,8 @@ class RecordActivity : AppCompatActivity() {
         binding.recordEndDateBtn.setOnClickListener {
             val cal = Calendar.getInstance()
             val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                binding.recordEndDateBtn.text = "${year}-${month+1}-${day}"
+                endDate = "${year}-${month+1}-${day}"
+                binding.recordEndDateBtn.text = endDate
 
             }
             DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
@@ -252,19 +221,19 @@ class RecordActivity : AppCompatActivity() {
         smallCategorySpinner = binding.recordSmallCategorySp
         goalOfYearSpinner = binding.recordGoalOfYearSp
 
-        var bigCateogyDummyList: ArrayList<String> = arrayListOf()
-        bigCateogyDummyList.add("큰 카테고리 선택")
-        bigCateogyDummyList.add("인생")
-        bigCateogyDummyList.add("학교")
-        bigCateogyDummyList.add("업무")
 
-        bigCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, bigCateogyDummyList)
+//        bigCateogyDummyList.add("큰 카테고리 선택")
+//        bigCateogyDummyList.add("인생")
+//        bigCateogyDummyList.add("학교")
+//        bigCateogyDummyList.add("업무")
 
-        var smallCateogyDummyList: ArrayList<String> = arrayListOf()
-        smallCateogyDummyList.add("작은 카테고리 선택")
-        smallCateogyDummyList.add("추억")
-        smallCateogyDummyList.add("여행")
-        smallCateogyDummyList.add("친구")
+        bigCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, bigCateogySpinnerItems)
+
+//        var smallCateogyDummyList: ArrayList<String> = arrayListOf()
+//        smallCateogyDummyList.add("작은 카테고리 선택")
+//        smallCateogyDummyList.add("추억")
+//        smallCateogyDummyList.add("여행")
+//        smallCateogyDummyList.add("친구")
 
         smallCategorySpinner.adapter = ArrayAdapter(this, R.layout.item_record_spinner, smallCateogyDummyList)
 
@@ -284,11 +253,11 @@ class RecordActivity : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 var lng = result.data?.getFloatExtra("longitude", 0.0F)
                 var lat = result.data?.getFloatExtra("latitude", 0.0F)
-                Toast.makeText(this, "수신 성공 $lng, $lat", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "수신 성공 $lng, $lat", Toast.LENGTH_SHORT).show()
                 binding.recordLocationBtn.text = result.data?.getStringExtra("mainAddress")
             }
             else {
-                Toast.makeText(this, "수신 실패", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "수신 실패", Toast.LENGTH_SHORT).show()
             }
         }
         return resultLauncher
@@ -304,14 +273,83 @@ class RecordActivity : AppCompatActivity() {
         }
     }
 
-    fun hideKeyboard() {
-        if(this.currentFocus != null) {
-            val inputManager: InputMethodManager =
-                this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputManager.hideSoftInputFromWindow(
-                this.currentFocus!!.windowToken,
-                InputMethodManager.HIDE_NOT_ALWAYS
+    fun setListener() {
+        // 갤러리에서 이미지 가져오기
+        binding.recordAddPhotoBtn.setOnClickListener {
+            // 현재 기기에 설정된 쓰기 권한을 가져오기 위한 변수
+            var writePermission = ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
             )
+            // 현재 기기에 설정된 읽기 권한을 가져오기 위한 변수
+            var readPermission = ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            // 읽기 권한과 쓰기 권한에 대해서 설정이 되어있지 않다면
+            if (writePermission == PackageManager.PERMISSION_DENIED || readPermission == PackageManager.PERMISSION_DENIED) {
+                // 읽기, 쓰기 권한을 요청
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    ),
+                    1
+                )
+            }
+
+            // 위 경우가 아니라면 권한에 대해서 설정이 되어 있으므로
+            else {
+                var state = Environment.getExternalStorageState()
+
+                // 갤러리를 열어서 파일을 선택
+                if (TextUtils.equals(state, Environment.MEDIA_MOUNTED)) {
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    getResult.launch(intent)
+                }
+            }
+        }
+
+        // 함께한 사람 EditText 입력 시 chip 동적 추가
+        binding.recordWithWhoEt.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                val et = v as EditText
+                val name = et.text.toString()
+
+                binding.recordFlexboxlt.addChip(name)
+
+                et.text = null
+            }
+            return@setOnKeyListener false
+        }
+
+        val activityLauncher= openActivityResultLauncher()
+
+        // 위치 activity 전환
+        binding.recordLocationBtn.setOnClickListener {
+            val intent = Intent(this, PlaceSearchActivity::class.java)
+            activityLauncher.launch(intent)
+        }
+
+        // 스피너 선택 리스너
+        bigCategorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                var bigCategoryId: Int = bigCategoryList.get(p2 - 1).categoryId
+                if(p2 != 0 || p3.toInt() != 0) {
+                    Log.d("TAG", "onItemSelected: " + p2 + " "+ bigCategoryList.get(p2 - 1).categoryId)
+                    Log.d("TAG", "onItemSelected: " + bigCategoryList.toString())
+
+
+
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                Log.d("TAG", "onNothingSelected: ")
+            }
+
         }
     }
 
@@ -330,6 +368,21 @@ class RecordActivity : AppCompatActivity() {
         }
 
         return cursor.getString(columnIndex)
+    }
+
+    fun setViewVisibility() {
+        withWhoLayout = binding.recordWithWhoConst
+        locationLayout = binding.recordLocationConst
+        goalOfYearLayout = binding.recordGoalOfYearConst
+
+
+        withWhoLayout.setVisibility(View.GONE)
+        locationLayout.setVisibility(View.GONE)
+        goalOfYearLayout.setVisibility(View.GONE)
+
+        hideOrDisplayOptionIconsButton(withWhoLayout, binding.recordWithWhoChip)
+        hideOrDisplayOptionIconsButton(locationLayout, binding.recordLocationChip)
+        hideOrDisplayOptionIconsButton(goalOfYearLayout, binding.recordGoalOfYearChip)
     }
 
     private fun FlexboxLayout.addChip(text: String) {
