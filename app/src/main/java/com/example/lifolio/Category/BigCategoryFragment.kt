@@ -1,9 +1,7 @@
 package com.example.lifolio.Category
 
-import android.app.Activity
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.LightingColorFilter
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.lifolio.Category.model.PostCategoryReq
+import com.example.lifolio.EditCategory.EditCategoryActivity
 import com.example.lifolio.JWT.ApiClient
 import com.example.lifolio.MainApplication
 import com.example.lifolio.R
@@ -33,22 +32,26 @@ import com.github.dhaval2404.colorpicker.model.ColorSwatch
 import com.github.dhaval2404.colorpicker.util.ColorUtil.parseColor
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
-import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
 
 
-class BigCategoryFragment : Fragment() {
+class BigCategoryFragment : Fragment(), CoroutineScope {
+    private lateinit var job : Job
+
     private lateinit var binding : FragmentBigCategoryBinding
     private lateinit var addCategoryActivity: AddCategoryActivity
 
     var subCategoryNameList: ArrayList<String> = arrayListOf()
     var colorIdSelected: Int = 0
     var categoryName: String = ""
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     companion object {
         const val TAG : String = "BIG_CATEGORY_FRAGMENT"
@@ -67,7 +70,6 @@ class BigCategoryFragment : Fragment() {
             R.color.category_color_11,
             R.color.category_color_12
         )
-
 
         val CATEGORY_COLOR_MAP : HashMap<String, Int> = hashMapOf(
             "#FF4C34" to 1,
@@ -89,6 +91,8 @@ class BigCategoryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        job = Job()
     }
 
     override fun onAttach(context: Context) {
@@ -176,14 +180,27 @@ class BigCategoryFragment : Fragment() {
                 var userId = MainApplication.prefs.getString("userId", "").toInt()
 
                 val retrofit = ApiClient.retrofit()
-                val service = retrofit.create(PostCategoryService::class.java)
+                val service = retrofit.create(CategoryService::class.java)
 
-                service.addBigCategory(
-                    PostCategoryReq(
-                        colorIdSelected,
-                        subCategoryNameList,
-                        categoryName
-                    ), userId).enqueue(MethodCallback.generalCallback<BaseRes, BaseRes, BaseRes> { })
+                launch(coroutineContext) {
+                    try {
+                        service.addBigCategory(
+                            PostCategoryReq(
+                                colorIdSelected,
+                                subCategoryNameList,
+                                categoryName
+                            ), userId).enqueue(MethodCallback.generalCallback<BaseRes, BaseRes, BaseRes> { response ->
+                            if(response!!.isSuccess == true) {
+                                val intent = Intent(addCategoryActivity, EditCategoryActivity::class.java)
+                                startActivity(intent)
+                            }
+                        })
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+
+
             }
         }
 

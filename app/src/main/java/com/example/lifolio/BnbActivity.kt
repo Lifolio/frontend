@@ -2,6 +2,7 @@ package com.example.lifolio
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.lifolio.Home.HomeDialog
 import com.example.lifolio.My.MyFragment
@@ -21,41 +22,48 @@ class BnbActivity : AppCompatActivity() {
     // 메모리에 올라갔을 때
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //BNB 액티비티에 다이얼로그 띄우기
-        val dialog = HomeDialog(this)
-        dialog.homeDlg()
-
-        // 레이아웃과 연결
-        //setContentView(R.layout.activity_bnb)
         binding = ActivityBnbBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //홈화면을 기본으로 설정
-        changeFragment(HomeFragment())
+        // 기록하기 저장 시, MyFragment로 전환 (시연용)
+        val fragmentName = intent.getStringExtra("fragmentName")
+        if(fragmentName.equals("MY")) {
+            changeFragment(MyFragment())
+        } else {
+            //BNB 액티비티에 다이얼로그 띄우기
+            val dialog = HomeDialog(this)
+            dialog.homeDlg()
 
-        binding.bnbHomeBtn.setOnClickListener{
+            // 레이아웃과 연결
+            //setContentView(R.layout.activity_bnb)
+
+
+            //홈화면을 기본으로 설정
             changeFragment(HomeFragment())
+
+            binding.bnbHomeBtn.setOnClickListener{
+                changeFragment(HomeFragment())
+            }
+
+            binding.menuBnb.setOnItemSelectedListener() {
+                when(it.itemId) {
+                    R.id.bnb_my -> {
+                        changeFragment(MyFragment())
+                    }
+                    R.id.bnb_goal -> {
+                        changeFragment(PlanningFragment())
+                    }
+                    R.id.bnb_social -> {
+                        changeFragment(SocialFragment())
+                    }
+                    R.id.bnb_portfolio -> {
+                        changeFragment(PortfolioFragment())
+                    }
+                }
+                return@setOnItemSelectedListener true
+            }
         }
 
-        binding.menuBnb.setOnItemSelectedListener() {
-            when(it.itemId) {
-                R.id.bnb_my -> {
-                    changeFragment(MyFragment())
-                }
-                R.id.bnb_goal -> {
-                    changeFragment(PlanningFragment())
-                }
-                R.id.bnb_social -> {
-                    changeFragment(SocialFragment())
-                }
-                R.id.bnb_portfolio -> {
-                    changeFragment(PortfolioFragment())
-                }
-            }
-            return@setOnItemSelectedListener true
-        }
-//        binding.menuBnb.selectedItemId = R.id.bnb_my
 
     }
 
