@@ -18,7 +18,9 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
+
+        binding = FragmentProfileBinding.inflate(layoutInflater)
 
         //배지 더보기 클릭 시 배지 화면으로 이동
         binding.btnGotoBadges.setOnClickListener {
@@ -43,8 +45,7 @@ class ProfileFragment : Fragment() {
             activity?.finish()
         }
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

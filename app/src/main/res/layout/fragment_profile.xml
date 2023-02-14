@@ -123,9 +123,8 @@
                     android:letterSpacing="0.02"
                     android:lineSpacingExtra="6sp"
                     android:text="더보기"
-                    android:textAlignment="textEnd"
                     android:textColor="#707070"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <ImageButton
@@ -206,7 +205,6 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="318dp"
                     android:background="@drawable/navigate_next"
                     android:scaleType="fitCenter" />
 
@@ -317,7 +315,6 @@
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="304dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/navigate_next"
                     android:scaleType="fitCenter" />
