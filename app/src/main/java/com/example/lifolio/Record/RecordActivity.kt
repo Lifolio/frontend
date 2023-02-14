@@ -26,28 +26,31 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.lifolio.BnbActivity
 import com.example.lifolio.GoogleMap.PlaceSearchActivity
 import com.example.lifolio.JWT.ApiClient
 import com.example.lifolio.MainApplication
-import com.example.lifolio.My.MyFragment
 import com.example.lifolio.R
-import com.example.lifolio.Record.model.BigCategory
-import com.example.lifolio.Record.model.GetBigCategoryRes
-import com.example.lifolio.Record.model.GetSmallCategoryRes
-import com.example.lifolio.Record.model.SmallCategory
+import com.example.lifolio.Record.model.*
 import com.example.lifolio.databinding.ActivityRecordBinding
+import com.example.lifolio.util.model.BaseRes
 import com.example.lifolio.util.model.MethodCallback
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.activity_record.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.parse
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
@@ -77,9 +80,14 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
     private var importanceScore = ""
     private var startDate = ""
     private var endDate = ""
-    private lateinit var filePath: String
+    private var filePath: String = ""   // list로 변경 필요
     private var bigCategoryId: Int = 0
     private var smallCategoryName = ""
+    private var latitude = 0.0F
+    private var longitude = 0.0F
+    private var realaddress = ""
+    var withWhoNameList: ArrayList<String> = arrayListOf()
+//    private lateinit var imageFile: File
 
     private var bigCategoryList: ArrayList<BigCategory> = arrayListOf()
     private var bigCateogySpinnerItems: ArrayList<String> = arrayListOf()
@@ -113,8 +121,6 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
         getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 filePath = getRealPathFromURI(it.data?.data!!)
-
-                val file = File(filePath)
 
                 Log.d("TAG", "onCreate: 갤러리에서 돌아옴")
                 Glide.with(applicationContext)
@@ -268,10 +274,11 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
-                var lng = result.data?.getFloatExtra("longitude", 0.0F)
-                var lat = result.data?.getFloatExtra("latitude", 0.0F)
+                longitude  = result.data!!.getFloatExtra("longitude", 0.0F)
+                latitude = result.data!!.getFloatExtra("latitude", 0.0F)
 //                Toast.makeText(this, "수신 성공 $lng, $lat", Toast.LENGTH_SHORT).show()
-                binding.recordLocationBtn.text = result.data?.getStringExtra("mainAddress")
+                realaddress = result.data!!.getStringExtra("mainAddress").toString()
+                binding.recordLocationBtn.text = realaddress
             }
             else {
 //                Toast.makeText(this, "수신 실패", Toast.LENGTH_SHORT).show()
@@ -334,7 +341,7 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 val et = v as EditText
                 val name = et.text.toString()
-
+                withWhoNameList.add(name)
                 binding.recordFlexboxlt.addChip(name)
 
                 et.text = null
@@ -427,9 +434,48 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
             } else if(importanceScore.isNullOrEmpty()) {
                 Toast.makeText(this@RecordActivity, "중요도를 설정해주세요", Toast.LENGTH_SHORT).show()
             } else {        // POST api 연결 / My로 이동 및 작은카테고리이름, 목표 이름 전달 (시연용)
-                val intent = Intent(this, BnbActivity::class.java)
-                intent.putExtra("fragmentName", "MY")
-                startActivity(intent)
+                launch(coroutineContext) {
+                    try {
+                        Log.d("TAG", "setListener: post 요청 시작")
+                        var postMyLifolioReq: PostMyLifolioReq = PostMyLifolioReq(
+                                categoryId = bigCategoryId,
+                                content = binding.recordContentTx.text.toString(),
+                                endDate = endDate,
+                                goalofyearId = 1,
+                                latitude = latitude,
+                                longitude = longitude,
+                                name = withWhoNameList,
+                                star = importanceScore.toInt(),
+                                startDate = startDate,
+                                title = binding.recordTitleEt.text.toString()
+                        )
+                        var postReqPart = MultipartBody.Part.createFormData("postMyLifolioReq", postMyLifolioReq.toString())
+
+//                        var postReqPart = RequestBody.create("application/json".toMediaTypeOrNull(), postMyLifolioReq.toString())
+                        Log.d("TAG", "setListener: $filePath")
+                        var filePart: MultipartBody.Part? = null
+                        if(!filePath.isNullOrEmpty()) {
+                            var imageFile = File(filePath)
+                            filePart = MultipartBody.Part.createFormData(
+                                    "imageUrl",
+                                    imageFile.name,
+                                    imageFile.asRequestBody("image/*".toMediaType())
+                            )
+                        }
+
+                        service.createRecord(
+                                filePart, postReqPart).enqueue(MethodCallback.generalCallback<BaseRes, BaseRes, BaseRes> { })
+
+                        val intent = Intent(this@RecordActivity, BnbActivity::class.java)
+                        intent.putExtra("fragmentName", "MY")
+                        startActivity(intent)
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+
+
             }
         }
 
