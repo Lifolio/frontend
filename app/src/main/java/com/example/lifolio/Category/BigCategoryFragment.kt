@@ -1,6 +1,7 @@
 package com.example.lifolio.Category
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.lifolio.Category.model.PostCategoryReq
+import com.example.lifolio.EditCategory.EditCategoryActivity
 import com.example.lifolio.JWT.ApiClient
 import com.example.lifolio.MainApplication
 import com.example.lifolio.R
@@ -187,7 +189,12 @@ class BigCategoryFragment : Fragment(), CoroutineScope {
                                 colorIdSelected,
                                 subCategoryNameList,
                                 categoryName
-                            ), userId).enqueue(MethodCallback.generalCallback<BaseRes, BaseRes, BaseRes> { })
+                            ), userId).enqueue(MethodCallback.generalCallback<BaseRes, BaseRes, BaseRes> { response ->
+                            if(response!!.isSuccess == true) {
+                                val intent = Intent(addCategoryActivity, EditCategoryActivity::class.java)
+                                startActivity(intent)
+                            }
+                        })
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
