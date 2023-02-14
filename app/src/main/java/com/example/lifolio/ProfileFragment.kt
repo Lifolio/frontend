@@ -1,26 +1,14 @@
 package com.example.lifolio
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.example.lifolio.GoalFragment.Companion.newInstance
-import com.example.lifolio.My.MyFragment
-import com.example.lifolio.My.MyFragment.Companion.newInstance
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.lifolio.Login.LoginActivity
 import com.example.lifolio.databinding.FragmentProfileBinding
-import org.w3c.dom.Text
 
 class ProfileFragment : Fragment() {
 
@@ -38,21 +26,31 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
         }
+
+        // 회원 탈퇴
+        binding.withdrawal.setOnClickListener{
+            val intent = Intent(getActivity(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            activity?.finish()
+        }
+
+        // 로그아웃
+        binding.logout.setOnClickListener {
+            val intent = Intent(getActivity(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            activity?.finish()
+        }
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = FragmentProfileBinding.inflate(layoutInflater)
 
-//        //배지 더보기 클릭 시 배지 화면으로 이동
-//        binding.btnGotoBadges.setOnClickListener {
-//            val intent = Intent(getActivity(), BadgeNewActivity::class.java)
-//            startActivity(intent)
-//            activity?.finish()
-//        }
     }
 }
