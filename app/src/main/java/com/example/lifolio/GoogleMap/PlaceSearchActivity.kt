@@ -220,7 +220,7 @@ class PlaceSearchActivity : AppCompatActivity(), CoroutineScope {
                 finish()
             }
             else {
-                Toast.makeText(this, "수신 실패", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "수신 실패", Toast.LENGTH_SHORT).show()
             }
         }
         return resultLauncher
