@@ -107,7 +107,7 @@ class ViewAllLifolioActivity : AppCompatActivity(){
         xAxis.valueFormatter = object: ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
                 val day = dayList.get(value.toInt() - 1)
-                Log.d("TAG", "getFormattedValue: ${day.substring(day.length - 2)}")
+//                Log.d("TAG", "getFormattedValue: ${day.substring(day.length - 2)}")
                 return day.substring(day.length - 2)
             }
         }
