@@ -26,11 +26,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.lifolio.BnbActivity
 import com.example.lifolio.GoogleMap.PlaceSearchActivity
 import com.example.lifolio.JWT.ApiClient
 import com.example.lifolio.MainApplication
+import com.example.lifolio.My.MyFragment
 import com.example.lifolio.R
 import com.example.lifolio.Record.model.BigCategory
 import com.example.lifolio.Record.model.GetBigCategoryRes
@@ -382,8 +385,6 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
                             e.printStackTrace()
                         }
                     }
-//                    smallCategorySpinner.adapter
-//                    smallSpinnerAdapter = ArrayAdapter(this@RecordActivity, R.layout.item_record_spinner, smallCategorySpinnerItems)
                 }
 
             }
@@ -425,8 +426,10 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
                 Toast.makeText(this@RecordActivity, "큰 카테고리를 선택해주세요", Toast.LENGTH_SHORT).show()
             } else if(importanceScore.isNullOrEmpty()) {
                 Toast.makeText(this@RecordActivity, "중요도를 설정해주세요", Toast.LENGTH_SHORT).show()
-            } else {        // POST api 연결 / 액티비티 피니시
-                finish()
+            } else {        // POST api 연결 / My로 이동 및 작은카테고리이름, 목표 이름 전달 (시연용)
+                val intent = Intent(this, BnbActivity::class.java)
+                intent.putExtra("fragmentName", "MY")
+                startActivity(intent)
             }
         }
 
