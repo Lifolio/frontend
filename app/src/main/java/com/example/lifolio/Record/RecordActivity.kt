@@ -352,7 +352,9 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 Log.d("TAG", "onItemSelected: p2 is $p2")
                 if(p2 == 0 || p3.toInt() == 0) {
-                    Log.d("TAG", "onItemSelected: index 0??")
+                    Log.d("TAG", "onItemSelected: big category index 0")
+                    bigCategoryId = 0
+                    smallCategoryName = ""
                 } else {
                     bigCategoryId = bigCategoryList.get(p2 - 1).categoryId
                     Log.d("TAG", "onItemSelected: " + " bigId is "+ bigCategoryId)
@@ -394,8 +396,12 @@ class RecordActivity : AppCompatActivity(), CoroutineScope {
 
         smallCategorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                smallCategoryName = smallCategorySpinnerItems.get(p2)
-                Log.d("TAG", "onItemSelected: " + p2 + " "+ smallCategoryName)
+                if(p2 == 0) {
+                    smallCategoryName = ""
+                } else {
+                    smallCategoryName = smallCategorySpinnerItems.get(p2)
+                    Log.d("TAG", "onItemSelected: " + p2 + " "+ smallCategoryName)
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
