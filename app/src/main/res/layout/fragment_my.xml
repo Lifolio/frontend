@@ -161,9 +161,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/calendar_title" />
 
+            <TextView
+                android:id="@+id/archive"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="라이폴리오 아카이브"
+                app:layout_constraintTop_toBottomOf="@id/calendar"
+                android:gravity="center"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/subtitle"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="내가 좋아하는 기억들만 모아보아요!"
+                app:layout_constraintTop_toBottomOf="@id/archive"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/groom"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+
+
             <FrameLayout
-                android:layout_width="360dp"
-                android:layout_height="360dp"
+                android:id="@+id/groom"
+                android:layout_width="460dp"
+                android:layout_height="460dp"
+                android:layout_marginTop="90dp"
                 android:background="@drawable/corners"
                 app:layout_constraintTop_toBottomOf="@id/calendar"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -172,8 +202,8 @@
 
                 <ScrollView
                     android:id="@+id/inner_scroll"
-                    android:layout_width="308dp"
-                    android:layout_height="300dp"
+                    android:layout_width="380dp"
+                    android:layout_height="380dp"
                     android:layout_marginVertical="50dp"
                     android:scrollbars="none"
                     android:layout_gravity="center"
