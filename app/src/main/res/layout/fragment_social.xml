@@ -6,11 +6,11 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="소셜 임시"
-        android:textSize="40dp"
-        />
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        android:src="@drawable/underconstruction"/>
 
 </LinearLayout>

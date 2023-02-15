@@ -25,9 +25,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="'올해의 나'는?"
+            android:text="올해의 나"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@
             android:id="@+id/customoftheyear_eiit_goal_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="66dp"
+            android:layout_marginEnd="70dp"
             android:background="@drawable/custom_of_the_year_edit_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +96,7 @@
             android:id="@+id/customoftheyear_save_goal_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="66dp"
+            android:layout_marginEnd="70dp"
             android:background="@drawable/custom_of_the_year_save_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +133,7 @@
             android:layout_height="56dp"
             android:layout_marginTop="12dp"
             android:text="2022년의 나"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:background="#38cceed4"
             app:layout_constraintTop_toBottomOf="@+id/customoftheyear_tv1" />
 
@@ -246,7 +246,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="2023년의 나"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:background="#40ffdaaf"
             app:layout_constraintTop_toBottomOf="@+id/customoftheyear_22year_history_const" />
 
