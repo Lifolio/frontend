@@ -51,7 +51,6 @@ class ViewAllLifolioActivity : AppCompatActivity(){
             .replace(binding.viewAllLifolioFragmentViewConst.id, ViewWay1Fragment())
             .commitAllowingStateLoss()
 
-
         binding.viewAllLifolioViewWayGroup.setOnCheckedChangeListener { radioGroup, i ->
             when(i){
                 R.id.view_all_lifolio_view_way1_btn ->{
@@ -89,6 +88,9 @@ class ViewAllLifolioActivity : AppCompatActivity(){
         )
 
         lineChart = binding.viewAllLifolioStarChart
+
+        lineChart.extraBottomOffset = 20F
+        lineChart.extraTopOffset = 20F
 
         val xAxis: XAxis = lineChart.xAxis
         // x축 설정

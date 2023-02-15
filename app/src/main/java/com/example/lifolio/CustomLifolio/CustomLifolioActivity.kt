@@ -60,8 +60,6 @@ class CustomLifolioActivity : AppCompatActivity() {
     private var dummyList2: ArrayList<Entry> = arrayListOf<Entry>()
     private var dummyList3: ArrayList<Entry> = arrayListOf<Entry>()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCustomLifolioBinding.inflate(layoutInflater)
@@ -115,6 +113,15 @@ class CustomLifolioActivity : AppCompatActivity() {
         lineChart1 = binding.customlifolioChart1
         lineChart2 = binding.customlifolioChart2
         lineChart3 = binding.customlifolioChart3
+
+        lineChart1.extraBottomOffset = 20F
+        lineChart1.extraTopOffset = 20F
+
+        lineChart2.extraBottomOffset = 20F
+        lineChart2.extraTopOffset = 20F
+
+        lineChart3.extraBottomOffset = 20F
+        lineChart3.extraTopOffset = 20F
 
         dummyList1.add(Entry(1f, 50f))
         dummyList1.add(Entry(2f, 70f))

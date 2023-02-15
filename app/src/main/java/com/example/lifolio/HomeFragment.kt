@@ -174,6 +174,12 @@ class HomeFragment : Fragment() {
         allChart = binding.homeAllChart
         categoryChart2 = binding.homeCategoryChart2
 
+        allChart.extraBottomOffset = 20F
+        allChart.extraTopOffset = 20F
+
+        categoryChart2.extraBottomOffset = 20F
+        categoryChart2.extraTopOffset = 20F
+
         var dayList: Array<String> = arrayOf(
             "2022-09",
             "2022-10",
