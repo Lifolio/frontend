@@ -49,8 +49,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="67dp"
+            android:layout_height="28dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/view_all_lifolio_search_category"
@@ -105,8 +105,8 @@
         app:layout_constraintTop_toBottomOf="@+id/view_small_category_select_category_const">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="66dp"
+            android:layout_height="30dp"
             android:layout_marginTop="14dp"
             android:background="@drawable/view_all_lifolio_when_view"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,13 +127,13 @@
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/view_small_category_view_way1_btn"
-                android:layout_width="25dp"
+                android:layout_width="28dp"
                 android:layout_height="25dp"
                 android:button="@drawable/view_all_lifolio_view_way1_button_status" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/view_small_category_view_way2_btn"
-                android:layout_width="25dp"
+                android:layout_width="28dp"
                 android:layout_height="25dp"
                 android:button="@drawable/view_all_lifolio_view_way2_button_status" />
 
