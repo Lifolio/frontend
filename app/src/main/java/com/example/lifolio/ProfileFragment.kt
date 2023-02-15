@@ -19,6 +19,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+
         //배지 더보기 클릭 시 배지 화면으로 이동
         binding.btnGotoBadges.setOnClickListener {
             val intent = Intent(getActivity(), BadgeNewActivity::class.java)
@@ -50,5 +51,6 @@ class ProfileFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         binding = FragmentProfileBinding.inflate(layoutInflater)
+
     }
 }
