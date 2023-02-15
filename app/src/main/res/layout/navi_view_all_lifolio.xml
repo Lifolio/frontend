@@ -34,8 +34,8 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/navi_view_all_lifolio_header_edit_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:background="@drawable/view_all_lifolio_edit_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
